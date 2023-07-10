@@ -54,7 +54,7 @@
             <nav class="header-right-menu">
               <ul>
                 <li><a class="active" href="{{ route('profile') }}">Profile</a></li>
-                <!-- <li><a class="join" href="#">join</a></li> -->
+                <li><a class="join" href="{{ route('index') }}">Logout</a></li>
               </ul>
             </nav>
           </div>

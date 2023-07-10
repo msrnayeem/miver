@@ -50,15 +50,23 @@
         </div>
         <div class="col-lg-6">
           <div class="right">
-            <nav class="header-right-menu">
-              <ul>
-                <!-- <li><a class="active" href="{{ route('profile') }}">Profile</a></li> -->
-                <li><a href="#"><i class="fas fa-flag-usa"></i>English</a></li>
-                <li><a href="#">Become a Seller</a></li>
-                <li><a href="{{ route('login') }}">Sing In</a></li>
-                <li><a class="join" href="#">join</a></li>
-              </ul>
+              <nav class="header-right-menu">
+                @if(!session()->has('user_name'))
+                    <ul>
+                        <!-- <li><a class="active" href="{{ route('profile') }}">Profile</a></li> -->
+                        <li><a href="#"><i class="fas fa-flag-usa"></i>English</a></li>
+                        <li><a href="#">Become a Seller</a></li>
+                        <li><a href="{{ route('login') }}">Sign In</a></li>
+                        <li><a class="join" href="#">Join</a></li>
+                    </ul>
+                @else
+                    <ul>
+                        <li><a class="active" href="{{ route('profile') }}">Profile</a></li>
+                        <li><a class="join" href="{{ route('index') }}">Logout</a></li>
+                    </ul>
+                @endif
             </nav>
+
           </div>
         </div>
       </div>
