@@ -20,4 +20,8 @@ Route::get('/', function () {
 
 //shahidur
 Route::get('/', [MainController::class, 'index'])->name('index');
-Route::get('/profile', [MainController::class, 'profile'])->name('profile');
+    //user
+    Route::get('/login', [MainController::class, 'login'])->name('login');
+    Route::post('/login', [MainController::class, 'loginSubmitted'])->name('login');
+
+    Route::get('/profile', [MainController::class, 'profile'])->name('profile');

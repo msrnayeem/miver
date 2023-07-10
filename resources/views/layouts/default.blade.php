@@ -52,10 +52,10 @@
           <div class="right">
             <nav class="header-right-menu">
               <ul>
-                <li><a class="active" href="{{ route('profile') }}">Profile</a></li>
+                <!-- <li><a class="active" href="{{ route('profile') }}">Profile</a></li> -->
                 <li><a href="#"><i class="fas fa-flag-usa"></i>English</a></li>
                 <li><a href="#">Become a Seller</a></li>
-                <li><a href="#">Sing In</a></li>
+                <li><a href="{{ route('login') }}">Sing In</a></li>
                 <li><a class="join" href="#">join</a></li>
               </ul>
             </nav>
