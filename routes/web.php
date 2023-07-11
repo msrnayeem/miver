@@ -27,7 +27,12 @@ Route::get('/category/graphics-design', [CategoryController::class, 'graphicsDes
 //shahidur
 Route::get('/', [MainController::class, 'index'])->name('index');
     //user
-    Route::get('/login', [MainController::class, 'login'])->name('login');
-    Route::post('/login', [MainController::class, 'loginSubmitted'])->name('login');
+    Route::get('/loginn', [MainController::class, 'login'])->name('loginn');
+    Route::post('/loginn', [MainController::class, 'loginSubmitted'])->name('loginn');
+    Route::get('/logout', [MainController::class, 'logout'])->name('logout');
 
     Route::get('/profile', [MainController::class, 'profile'])->name('profile');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

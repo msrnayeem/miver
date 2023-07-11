@@ -1,54 +1,20 @@
 @extends('layouts.default')
 
 @section('title', 'Miverr - Home')
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('assets/css/category.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/digitalmarketing.css') }}">
 
 
 @section('content')
 <!-- top banner -->
-<style>
-    .container {
-        position: relative;
-        display: inline-block;
-        max-width: 100%;
-        margin-top: 10px;
-    }
 
-    .container img {
-        max-width: 100%;
-        height: auto;
-    }
-
-    .text-overlay {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-        font-family: 'Macan', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-
-        font-size: 24px;
-        font-weight: bold;
-        text-align: center;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        width: 100%;
-        box-sizing: border-box;
-        padding: 10px;
-    }
-
-    .subtext {
-        font-family: 'Macan', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-
-        font-size: 14px;
-        margin-top: 5px;
-    }
-</style>
-
-<div class="container">
-    <img src="{{ asset('assets/images/category/digital-marketing-desktop.png') }}" alt="digital marketing">
+<div class="CategoryBanner">
+    <img src="{{ asset('assets/images/category/gfx.png') }}" alt="digital marketing">
     <div class="text-overlay">
-        Digital Marketing
+        Graphics & Design
         <div class="subtext">
-            Build your brand. Grow your business.
+            A single place, millions of creative talents
         </div>
     </div>
 </div>
@@ -56,74 +22,25 @@
 
 
 <!-- categories -->
-<style>
-    .container {
-        max-width: 100%;
-        padding: 20px;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start; /* Align heading to the left */
-        text-align: left;
-    }
-
-    .categories {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        gap: 20px;
-        margin-top: 20px;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
-    .card {
-        width: 230px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        padding: 20px;
-        box-sizing: border-box;
-    }
-
-    .card img {
-        max-width: 100%;
-        height: auto;
-    }
-
-    .card h3 {
-        margin-top: 20px;
-    }
-
-    .card ul {
-        margin-top: 10px;
-        padding-left: 0;
-        list-style: none;
-    }
-
-    .card li {
-        margin-bottom: 5px;
-    }
-</style>
-
-<div class="container">
-    <h3>Explore Digital Marketing</h3>
+<div class="CategoryContainer">
+    <h3>Explore Graphics & Design</h3>
     <div class="categories">
         <div class="card">
-            <img src="{{ asset('assets/images/category/search.png') }}" alt="search">
-            <h3>Search</h3>
+            <img src="{{ asset('assets/images/category/logo.png') }}" alt="search">
+            <h3>Logo & Brand Identity</h3>
             <ul>
-                <li><a href="#">List item 1</a></li>
-                <li><a href="#">List item 2</a></li>
-                <li><a href="#">List item 3</a></li>
+                <li><a href="#">Logo design</a></li>
+                <li><a href="#">Brand style guides</a></li>
+                <li><a href="#">Fonts and typography</a></li>
             </ul>
         </div>
         <div class="card">
-            <img src="{{ asset('assets/images/category/social.png') }}" alt="social">
-            <h3>Social</h3>
+            <img src="{{ asset('assets/images/category/webapp.png') }}" alt="social">
+            <h3>Web & App Design</h3>
             <ul>
-                <li><a href="#">List item 1</a></li>
-                <li><a href="#">List item 2</a></li>
-                <li><a href="#">List item 3</a></li>
+                <li><a href="#">Website Design</a></li>
+                <li><a href="#">App design</a></li>
+                <li><a href="#">UI/UX design</a></li>
             </ul>
         </div>
         <div class="card">
@@ -184,121 +101,33 @@
 <!-- category -->
 
 
+
 <!-- guides -->
-
-<style>
-.related-guides-container {
-        margin-top: 20px;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
-    .related-guides-container .guide-container {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        text-decoration: none;
-        color: #333;
-        
-    }
-
-    .related-guides-container .guide-container img {
-        width: 100%;
-        object-fit: cover;
-       
-    }
-
-    .related-guides-container .guide-container .guide-content {
-        flex-grow: 1;
-        text-align: left;
-    }
-
-    .related-guides-container .guide-container .guide-title {
-        font-weight: bold;
-    }
-
-    .related-guides-container .guide-container .guide-description {
-        font-size: 14px;
-    }
-</style>
-
-
-
-<div class="related-guides-container">
+<div class="GuideContainer">
     <h3>Digital Marketing Related Guides</h3>
     <div class="categories">
         <div class="card">
-            <a href="" class="guide-container">
-                <img src="{{ asset('assets/images/category/whatIsMarketing.jpg') }}" alt="Guide 1">
-                <div class="guide-content">
-                    <a href="" class="guide-description">What is Marketing?</a>
-                </div>
-            </a>
+            <img src="{{ asset('assets/images/category/whatIsMarketing.jpg') }}" alt="search">
+            <div class="guide-content">
+                <a href="" class="guide-description">What is Marketing?</a>
+            </div>
+            
         </div>
-       
         <div class="card">
-            <a href="" class="guide-container">
-                <img src="{{ asset('assets/images/category/promote.jpg') }}" alt="Guide 1">
-                <div class="guide-content">
-                    <a href="" class="guide-description">15 ways to promote your business online</a>
-                </div>
-            </a>
+            <img src="{{ asset('assets/images/category/promote.jpg') }}" alt="social">
+            <div class="guide-content">
+                <a href="" class="guide-description">15 ways to promote your business online</a>
+            </div>
         </div>
+        
+        
     </div>
 </div>
-<!-- guides -->
+<!-- guide end -->
+
+
 
 <!-- faq -->
-<style>
-    .digital-marketing-faqs{
-        margin-top: 20px;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-    .faq {
-        margin-bottom: 20px;
-        position: relative;
-        
-    }
-
-    .faq input[type="checkbox"] {
-        display: none;
-    }
-
-    .faq label {
-        cursor: pointer;
-        display: block;
-        position: relative;
-        padding-right: 25px; /* Adjust the padding as needed */
-        font-size: 20px;
-    }
-
-    .faq label::before {
-        content: "\25BC";
-        display: inline-block;
-        position: absolute;
-        top: 0;
-        right: 0;
-        margin-right: 5px;
-        transform: rotate(0deg);
-        transition: transform 0.3s ease;
-    }
-
-    .faq input[type="checkbox"]:checked + label::before {
-        transform: rotate(180deg);
-    }
-
-    .faq input[type="checkbox"] ~ .faq-content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease;
-    }
-
-    .faq input[type="checkbox"]:checked ~ .faq-content {
-        max-height: 1000px;
-        transition: max-height 0.5s ease;
-    }
-</style>
 
 <div class="digital-marketing-faqs">
     <h3 >Digital Marketing FAQs</h3>

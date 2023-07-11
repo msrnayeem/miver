@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Session;
 
 class MainController extends Controller
 {
@@ -65,8 +66,9 @@ class MainController extends Controller
     //logout
     public function logout()
     {
-        session()->flush();
+        //Session::forget('user_name');
+         Session::flush();
 
-        return redirect()->route('login');
+        return redirect()->route('index');
     }
 }
