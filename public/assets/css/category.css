@@ -1,0 +1,89 @@
+.CategoryBanner {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    margin-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.CategoryBanner img {
+    max-width: 100%;
+    height: auto;
+}
+
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-family: 'Macan', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.subtext {
+    font-family: 'Macan', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+
+.CategoryContainer {
+    max-width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align heading to the left */
+    text-align: left;
+}
+
+.CategoryContainer .categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.CategoryContainer .categories .card {
+    width: 230px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.CategoryContainer .categories .card img {
+    max-width: 100%;
+    height: auto;
+}
+
+.CategoryContainer .categories .card h3 {
+    margin-top: 20px;
+}
+
+.CategoryContainer .categories .card ul {
+    margin-top: 10px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.CategoryContainer .categories .card li {
+    margin-bottom: 5px;
+}
+
+
+
+

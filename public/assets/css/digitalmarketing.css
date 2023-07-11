@@ -1,0 +1,98 @@
+.GuideContainer {
+    max-width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align heading to the left */
+    text-align: left;
+}
+
+.GuideContainer .categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.GuideContainer .categories .card {
+    width: 230px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.GuideContainer .categories .card img {
+    max-width: 100%;
+    height: auto;
+}
+
+.GuideContainer .categories .card h3 {
+    margin-top: 20px;
+}
+
+.GuideContainer .categories .card ul {
+    margin-top: 10px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.GuideContainer .categories .card li {
+    margin-bottom: 5px;
+}
+
+
+
+
+.digital-marketing-faqs{
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.faq {
+    margin-bottom: 20px;
+    position: relative;
+    
+}
+
+.faq input[type="checkbox"] {
+    display: none;
+}
+
+.faq label {
+    cursor: pointer;
+    display: block;
+    position: relative;
+    padding-right: 25px; /* Adjust the padding as needed */
+    font-size: 20px;
+}
+
+.faq label::before {
+    content: "\25BC";
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 5px;
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+}
+
+.faq input[type="checkbox"]:checked + label::before {
+    transform: rotate(180deg);
+}
+
+.faq input[type="checkbox"] ~ .faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.faq input[type="checkbox"]:checked ~ .faq-content {
+    max-height: 1000px;
+    transition: max-height 0.5s ease;
+}
