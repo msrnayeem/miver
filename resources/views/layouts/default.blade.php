@@ -91,7 +91,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#">Writing & Translation</a>
+                <a href="{{ route('writing-translation') }}">Writing & Translation</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
@@ -99,7 +99,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#">Video & Animation</a>
+                <a href="{{ route('video-animation') }}">Video & Animation</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
@@ -107,7 +107,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#">Music & Audio</a>
+                <a href="{{ route('music-audio') }}">Music & Audio</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
@@ -115,7 +115,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#">Programming & Tech</a>
+                <a href="{{ route('programming-tech') }}">Programming & Tech</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
@@ -123,7 +123,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#">Business</a>
+                <a href="{{ route('business') }}">Business</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
@@ -131,7 +131,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#">Lifestyle</a>
+                <a href="{{ route('lifestyle') }}">Lifestyle</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>

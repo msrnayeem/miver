@@ -15,4 +15,12 @@ class Category extends Model
     {
         return $this->hasMany(SubCategory::class);
     }
+    public function faqs()
+    {
+        return $this->hasMany(Faq::class);
+    }
+    public function guides()
+    {
+        return $this->hasMany(Guide::class);
+    }
 }
