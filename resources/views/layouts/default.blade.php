@@ -73,7 +73,7 @@
     <nav class="header-bottom-menu">
         <ul>
             <li>
-            <a href="#">Graphics & Design</a>
+            <a href="{{ route('graphics-design') }}">Graphics & Design</a>
             <ul class="subcategories">
                 <li><a href="#">Logo Design</a></li>
                 <li><a href="#">Illustration</a></li>
@@ -82,7 +82,7 @@
             </li>
             <!-- Repeat the above structure for other categories -->
             <li>
-                <a href="#">Digital Marketing</a>
+                <a href="{{ route('digital-marketing') }}">Digital Marketing</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>

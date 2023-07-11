@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//category/digital-marketing
+Route::get('/category/digital-marketing', [CategoryController::class, 'digitalMarketing'])->name('digital-marketing');
+
+//graphics-design
+Route::get('/category/graphics-design', [CategoryController::class, 'graphicsDesign'])->name('graphics-design');
 
 //shahidur
 Route::get('/', [MainController::class, 'index'])->name('index');
