@@ -65,13 +65,7 @@
 .header-right-menu ul li{
     display: inline-block;
 }
-.header-right-menu ul li a{
-    text-decoration: none;
-    padding: 0px 10px;
-    color: #666;
-    font-weight: 700;
-    display: inline-block;
-}
+
 .header-right-menu ul li a i{
     color: rgb(250, 65, 52);
     margin-right: 5px;
@@ -82,6 +76,28 @@
 }
 .active:hover{
     color: #41e4cb!important;
+}
+.header-right-menu ul li  {
+    text-decoration: none;
+    padding: 0px 10px;
+    color: #666;
+    font-weight: 700;
+    display: inline-block;
+}
+.header-right-menu ul li  a{
+    text-decoration: none;
+    padding: 0px 10px;
+    color: #666;
+    font-weight: 700;
+    display: inline-block;
+}
+.header-right-menu ul li:hover{
+    cursor: pointer;
+    color: chocolate ;
+}
+.header-right-menu ul li a:hover{
+    cursor: pointer;
+    color: chocolate ;
 }
 .header-right-menu ul li:last-child a {
     background-color: #fff;
@@ -94,12 +110,12 @@
     background-color: #1dbf73;
     color: #fff;
 }
-.header-right-menu ul li:nth-child(3) a:hover{
+/* .header-right-menu ul li:nth-child(3) a:hover{
     color: #999;
 }   
 .header-right-menu ul li:nth-child(4) a:hover{
     color: #999;
-}
+} */
 /* header bottom menu start  */
 .header-bottom-menu{
     padding: 10px 0px;

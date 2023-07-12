@@ -31,52 +31,96 @@
   font-weight: 400;
   color: #333;
 }
-.close{
+
+@media (min-width: 768px) {
+  /* Medium and larger devices (tablets and desktop screens), larger width */
+  .modal-lg {
+    max-width: 800px;
+  }
+}
+@media (max-width: 767px) {
+  /* Hide the image column on mobile devices */
+  .modal-content .col-sm-6:first-child {
+    display: none;
+  }
   
-}
-@media (max-width: 575px) {
-  .modal-body .col-sm-4 {
-    text-align: center;
-    margin-top: 25px;
+  /* Make the login part take up the full width on mobile devices */
+  .modal-content .col-sm-6:last-child {
+    width: 100%;
   }
 }
-@media (min-width: 576px) {
-  .modal-dialog {
-      max-width: 650px;
-  }
-}
+
 
   </style>
 <!-- Modal -->
-<div class="modal fade" id="learnMore1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal fade" id="joinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
-
       <div class="modal-body">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        </br>
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-8">
-             <img src="{{ asset('assets/images/sign.png') }}" alt="" width=80%/>
-          </div>
-          <div class="col-sm-4 align-self-center"> 
-            
-            <h3>  Sign in to your account </h3>
-            <h4>
-                Don’t have an account? Join here </h4>
-            
-          </div>          
-        </div>  
-      </div>
-      
-      </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6">
+              <img src="{{ asset('assets/images/sign.png') }}" alt="" width="100%" />
+            </div>
+            <div class="col-sm-6 ">
+              <form id="signInForm" class="mt-4">
+                <div class="form-group">
+                  <h3>Sign in to your account</h3>
+                </div>
+                <div class="form-group">
+                  <p>Don't have an account? <a href="#" id="toggleSignUpForm">Sign Up</a></p>
+                </div>
+                <div class="form-group" style="margin-top: 40px;">
+                  <label for="email">Email</label>
+                  <input type="email" id="signInemail" name="signInemail" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" id="signInpassword" name="signInpassword" class="form-control" />
+                </div>
+                <div class="form-group  d-flex justify-content-end" style="margin-top: 30px;">
+                  <button type="submit" class="btn btn-primary">Sign In</button>
+                </div>
+              </form>
 
+              <form id="signUpForm" class="mt-4" style="display: none;">
+                <div class="form-group">
+                  <h3>Create a new account</h3>
+                </div>
+                <div class="form-group">
+                  <p>Already have an account? <a href="#" id="toggleSignInForm">Sign In</a></p>
+                </div>
+                <div class="form-group"  style="margin-top: 40px;">
+                  <label for="email">Email</label>
+                  <input type="email" id="signUpemail" name="signUpemail" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" id="signUppassword" name="signUppassword" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="signUppasswordC">Password</label>
+                  <input type="password" id="signUppasswordC" name="signUppasswordC" class="form-control" />
+                </div>
+                <div class="form-group  d-flex justify-content-end"  style="margin-top: 20px;">
+                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                </div>
+                
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
+
+<!-- end modal -->
+
 
   <!-- Add your site or application content here -->
   <header class="header sticky-top">
@@ -112,10 +156,9 @@
                         <!-- <li><a class="active" href="{{ route('profile') }}">Profile</a></li> -->
                         <li><a href="#"><i class="fas fa-flag-usa"></i>English</a></li>
                         <li><a href="#">Become a Seller</a></li>
-                        <li><a href="{{ route('loginn') }}">Sign In</a></li>
-                        <button type="button" class="btn btn-modal" data-toggle="modal" data-target="#learnMore1">
-    Learn More
-  </button>
+                        <li id="signInTrigger">Sign In</li>
+                        <li id="joinTrigger"><a href="#" class="active">Join</a></li>
+
                     </ul>
                 @else
                     <ul>
@@ -337,12 +380,15 @@
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+
+  <!-- <script src="js/vendor/modernizr-3.11.2.min.js"></script>
   <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/main.js"></script> -->
+ 
 
   <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
   <script>
@@ -351,28 +397,9 @@
   </script>
   <script src="https://www.google-analytics.com/analytics.js" async></script>
   
- 
+  
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    var modal = document.getElementById('authModal');
-    var toggleBtn = document.getElementById('toggleBtn');
-    var loginForm = document.getElementById('loginForm');
-    var signupForm = document.getElementById('signupForm');
-
-    toggleBtn.addEventListener('click', function() {
-        if (signupForm.style.display === 'none') {
-            signupForm.style.display = 'block';
-            loginForm.style.display = 'none';
-            toggleBtn.textContent = 'Already have an account? Sign In';
-        } else {
-            signupForm.style.display = 'none';
-            loginForm.style.display = 'block';
-            toggleBtn.textContent = "Don't have an account? Sign Up";
-        }
-    });
-
-    modal.style.display = 'block';
-});
+    
 
   if (window.location.href !== "http://localhost/miverr/") {
   var headerSearch = document.getElementById('header-search');
@@ -381,6 +408,30 @@
   headerBottomMenu.classList.add('show');
   headerSearch.classList.add('show');
 }
+
+document.getElementById('signInTrigger').addEventListener('click', function() {
+  $('#signUpForm').hide();
+  $('#signInForm').show();
+  $('#joinModal').modal('show');
+});
+
+document.getElementById('joinTrigger').addEventListener('click', function() {
+  $('#signInForm').hide();
+  $('#signUpForm').show();
+  $('#joinModal').modal('show');
+});
+
+document.getElementById('toggleSignUpForm').addEventListener('click', function() {
+  $('#signInForm').hide();
+  $('#signUpForm').show();
+});
+
+document.getElementById('toggleSignInForm').addEventListener('click', function() {
+  $('#signUpForm').hide();
+  $('#signInForm').show();
+});
+
+
 
 </script>
 
