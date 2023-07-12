@@ -16,7 +16,8 @@ use App\Http\Controllers\CategoryController;
 
 
 //category
-Route::get('/category/{id}', [CategoryController::class, 'category'])->name('category');
+Route::get('/category/{category}', [CategoryController::class, 'category'])->name('category');
+
 
 
 
