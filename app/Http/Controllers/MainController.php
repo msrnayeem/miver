@@ -25,6 +25,26 @@ class MainController extends Controller
         }
        
     }
+    public function profilePic(Request $request){
+        $request->validate([
+            'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = session()->get('id'). '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads'), $imageName);
+
+           //if file exists than overwrite
+           
+            // return riderct with msg
+            
+            return redirect()->back()->withErrors(['image' => 'Image uploaded successfully.']);
+        }
+    
+
+        return redirect()->back()->withErrors(['image' => 'No image selected.']);
+    }
     public function login()
     {
         return view('pages.user.login');
@@ -54,6 +74,7 @@ class MainController extends Controller
         // //set session
       
          $request->session()->put('user_name', $user->username);
+        $request->session()->put('id', $user->id);
         
         // //set cookie
         // $cookie = cookie('user_name', $user->username, 60 * 24 * 30);

@@ -55,6 +55,7 @@ Route::get('/', [MainController::class, 'index'])->name('index');
     Route::get('/logout', [MainController::class, 'logout'])->name('logout');
 
     Route::get('/profile', [MainController::class, 'profile'])->name('profile');
+    Route::post('/profile-pic', [MainController::class, 'profilePic'])->name('profilePic');
 
 
 
