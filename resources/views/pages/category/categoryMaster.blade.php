@@ -10,7 +10,7 @@
 <!-- top banner -->
 
 <div class="CategoryBanner">
-    <img src="{{ $category->bannerImageLink }}" alt="digital marketing">
+    <img src="{{ asset($category->bannerImageLink) }}" alt="digital marketing">
     <div class="text-overlay">
     {{ $category->name }}
         <div class="subtext">

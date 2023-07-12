@@ -22,6 +22,61 @@
 </head>
 
 <body>
+  <style>
+    .modal-body .col-sm-8 {
+    text-align: center;
+}
+.intro-title {
+  margin-bottom: 5px;
+  font-weight: 400;
+  color: #333;
+}
+.close{
+  
+}
+@media (max-width: 575px) {
+  .modal-body .col-sm-4 {
+    text-align: center;
+    margin-top: 25px;
+  }
+}
+@media (min-width: 576px) {
+  .modal-dialog {
+      max-width: 650px;
+  }
+}
+
+  </style>
+<!-- Modal -->
+<div class="modal fade" id="learnMore1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </br>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8">
+             <img src="{{ asset('assets/images/sign.png') }}" alt="" width=80%/>
+          </div>
+          <div class="col-sm-4 align-self-center"> 
+            
+            <h3>  Sign in to your account </h3>
+            <h4>
+                Don’t have an account? Join here </h4>
+            
+          </div>          
+        </div>  
+      </div>
+      
+      </div>
+
+    </div>
+  </div>
+</div>
 
   <!-- Add your site or application content here -->
   <header class="header sticky-top">
@@ -58,7 +113,9 @@
                         <li><a href="#"><i class="fas fa-flag-usa"></i>English</a></li>
                         <li><a href="#">Become a Seller</a></li>
                         <li><a href="{{ route('loginn') }}">Sign In</a></li>
-                        <li><a class="join" href="#">Join</a></li>
+                        <button type="button" class="btn btn-modal" data-toggle="modal" data-target="#learnMore1">
+    Learn More
+  </button>
                     </ul>
                 @else
                     <ul>
@@ -307,6 +364,27 @@
   
  
   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var modal = document.getElementById('authModal');
+    var toggleBtn = document.getElementById('toggleBtn');
+    var loginForm = document.getElementById('loginForm');
+    var signupForm = document.getElementById('signupForm');
+
+    toggleBtn.addEventListener('click', function() {
+        if (signupForm.style.display === 'none') {
+            signupForm.style.display = 'block';
+            loginForm.style.display = 'none';
+            toggleBtn.textContent = 'Already have an account? Sign In';
+        } else {
+            signupForm.style.display = 'none';
+            loginForm.style.display = 'block';
+            toggleBtn.textContent = "Don't have an account? Sign Up";
+        }
+    });
+
+    modal.style.display = 'block';
+});
+
   if (window.location.href !== "http://localhost/miverr/") {
   var headerSearch = document.getElementById('header-search');
   var headerBottomMenu = document.querySelector('.header-bottom-menu');

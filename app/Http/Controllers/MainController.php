@@ -60,7 +60,7 @@ class MainController extends Controller
      
 
 
-        return redirect()->route('profile');
+        return redirect()->route('index');
     }
     
     //logout
