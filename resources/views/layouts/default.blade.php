@@ -131,7 +131,7 @@
     <nav class="header-bottom-menu">
         <ul>
             <li>
-            <a href="{{ route('graphics-design') }}">Graphics & Design</a>
+            <a href="{{ route('category', ['id' => 1]) }}">Graphics & Design</a>
             <ul class="subcategories">
                 <li><a href="#">Logo Design</a></li>
                 <li><a href="#">Illustration</a></li>
@@ -140,7 +140,7 @@
             </li>
             <!-- Repeat the above structure for other categories -->
             <li>
-                <a href="{{ route('digital-marketing') }}">Digital Marketing</a>
+                <a href="{{ route('category', ['id' => 2]) }}">Digital Marketing</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
@@ -148,7 +148,7 @@
                 </ul>
             </li>
             <li>
-                <a href="{{ route('writing-translation') }}">Writing & Translation</a>
+                <a href="{{ route('category', ['id' => 3]) }}">Writing & Translation</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
@@ -156,7 +156,7 @@
                 </ul>
             </li>
             <li>
-                <a href="{{ route('video-animation') }}">Video & Animation</a>
+                <a href="{{ route('category', ['id' => 4]) }}">Video & Animation</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
@@ -164,7 +164,7 @@
                 </ul>
             </li>
             <li>
-                <a href="{{ route('music-audio') }}">Music & Audio</a>
+                <a href="{{ route('category', ['id' => 5]) }}">Music & Audio</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
@@ -172,7 +172,7 @@
                 </ul>
             </li>
             <li>
-                <a href="{{ route('programming-tech') }}">Programming & Tech</a>
+                <a href="{{ route('category', ['id' => 6]) }}">Programming & Tech</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
@@ -180,7 +180,7 @@
                 </ul>
             </li>
             <li>
-                <a href="{{ route('business') }}">Business</a>
+                <a href="{{ route('category', ['id' => 9]) }}">Photography</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
@@ -188,24 +188,13 @@
                 </ul>
             </li>
             <li>
-                <a href="{{ route('lifestyle') }}">Lifestyle</a>
+                <a href="{{ route('category', ['id' => 7]) }}">Business</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
                     <!-- Add more subcategories here -->
                 </ul>
-            </li>
-            
-            <li>
-                <a href="#">Others</a>
-                <ul class="subcategories">
-                    <li><a href="#">Social Media Marketing</a></li>
-                    <li><a href="#">SEO</a></li>
-                    <!-- Add more subcategories here -->
-                </ul>
-            </li>
-            <!-- Repeat the above structure for other categories -->
-            
+            </li>            
         </ul>
     </nav>
 

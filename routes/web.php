@@ -14,37 +14,10 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-//category/digital-marketing
-Route::get('/category/digital-marketing', [CategoryController::class, 'digitalMarketing'])->name('digital-marketing');
+//category
+Route::get('/category/{id}', [CategoryController::class, 'category'])->name('category');
 
-//graphics-design
-Route::get('/category/graphics-design', [CategoryController::class, 'graphicsDesign'])->name('graphics-design');
-
-
-//writingTranslation
-Route::get('/category/writing-translation', [CategoryController::class, 'writingTranslation'])->name('writing-translation');
-
-
-
-//video-animation
-Route::get('/category/video-animation', [CategoryController::class, 'videoAnimation'])->name('video-animation');
-
-
-//musicAudio
-Route::get('/category/music-audio', [CategoryController::class, 'musicAudio'])->name('music-audio');
-
-//programmingTech
-Route::get('/category/programming-tech', [CategoryController::class, 'programmingTech'])->name('programming-tech');
-
-//business
-Route::get('/category/business', [CategoryController::class, 'business'])->name('business');
-
-//lifestyle
-Route::get('/category/lifestyle', [CategoryController::class, 'lifestyle'])->name('lifestyle');
 
 
 //shahidur

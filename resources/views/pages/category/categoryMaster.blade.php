@@ -10,7 +10,7 @@
 <!-- top banner -->
 
 <div class="CategoryBanner">
-    <img src="{{ asset($category->bannerImageLink) }}" alt="digital marketing">
+    <img src="{{ asset('assets/images/category/'.$category->id.'.png') }}" alt="digital marketing">
     <div class="text-overlay">
     {{ $category->name }}
         <div class="subtext">
@@ -27,7 +27,7 @@
     <div class="categories">
         @foreach($category->subCategories as $subCategory)
         <div class="card">
-            <img src="{{ $subCategory->imageLink }}" alt="Logo & Brand Identity">
+        <img src="" alt="{{ $category->name }}">
             <h3>{{ $subCategory->name }}</h3>
             <ul>
                 @foreach($subCategory->subSubCategories as $subSubCategory)
