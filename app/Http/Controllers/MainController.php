@@ -45,43 +45,29 @@ class MainController extends Controller
 
         return redirect()->back()->withErrors(['image' => 'No image selected.']);
     }
-    public function login()
-    {
-        return view('pages.user.login');
-    }
+
     public function loginSubmitted(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required',
-            'password' => 'required',
-        ]);
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-        $email = $request->input('email');
-        $password = $request->input('password');
-
+        $email = $request->signInemail;
+        $password = $request->signInpassword;
+    
         // Assuming you have a "User" model with an "email" column
         $user = User::where('email', $email)->first();
+    
         if (!$user) {
-            return redirect()->back()->withErrors(['email' => 'Invalid email or password'])->withInput();
+            return response()->json([ [1] ]);
         }
+    
         // Assuming the password is stored as a hash in the "password" column
         if (!Hash::check($password, $user->password)) {
-            return redirect()->back()->withErrors(['email' => 'Invalid email or password'])->withInput();
+            return response()->json([ [2] ]);
         }
-
-        // //set session
-      
-         $request->session()->put('user_name', $user->username);
+    
+        // Set session
+        $request->session()->put('user_name', $user->username);
         $request->session()->put('id', $user->id);
-        
-        // //set cookie
-        // $cookie = cookie('user_name', $user->username, 60 * 24 * 30);
-     
-
-
-        return redirect()->route('index');
+    
+        return response()->json([ [3] ]);
     }
     
     //logout

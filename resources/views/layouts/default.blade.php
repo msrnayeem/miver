@@ -3,6 +3,8 @@
 
 <head>
   <meta charset="utf-8">
+
+
   <title>Miverr</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -66,7 +68,8 @@
               <img src="{{ asset('assets/images/sign.png') }}" alt="" width="100%" />
             </div>
             <div class="col-sm-6 ">
-              <form id="signInForm" class="mt-4">
+              <form id="signInForm" class="mt-4" method="post" action="{{ route('loginn') }}">
+              @csrf
                 <div class="form-group">
                   <h3>Sign in to your account</h3>
                 </div>
@@ -390,12 +393,12 @@
   <script src="js/main.js"></script> -->
  
 
-  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+<!--  
   <script>
     window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
     ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
   </script>
-  <script src="https://www.google-analytics.com/analytics.js" async></script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script> -->
   
   
   <script>
@@ -431,6 +434,32 @@ document.getElementById('toggleSignInForm').addEventListener('click', function()
   $('#signInForm').show();
 });
 
+$("#signInForm").submit(function(e){
+         e.preventDefault();
+
+        var all = $(this).serialize();
+
+        $.ajax({
+            url:  $(this).attr('action'),
+            type: "POST",
+            data: all,
+            beforeSend:function(){
+                $(document).find('span.error-text').text('');
+            },
+            success: function(data){
+                if(data == 1){
+                    window.location.replace(
+                     '{{route("dashboard.index")}}'
+                    );
+                }else if(data == 2){
+
+                    $("#show_error").hide().html("Invalid login details");
+                }
+
+            }
+            })
+
+        });
 
 
 </script>
