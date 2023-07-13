@@ -54,84 +54,85 @@
 
 
   </style>
-<!-- Modal -->
-<div class="modal fade" id="joinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-6">
-              <img src="{{ asset('assets/images/sign.png') }}" alt="" width="100%" />
-            </div>
-            <div class="col-sm-6">
-              <form id="signInForm" class="mt-4" method="post">
-                @csrf
-                <div class="form-group">
-                  <h3>Sign in to your account</h3>
-                </div>
+  @if(!session()->has('user_name'))
 
-                <div class="form-group">
-                  <p>Don't have an account? <a href="#" id="toggleSignUpForm">Sign Up</a></p>
-                </div>
-                
-                <div id="signIn_error" style="color: red; margin-top: 30px;"></div>
+  <div class="modal fade" id="joinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6">
+                <img src="{{ asset('assets/images/sign.png') }}" alt="" width="100%" />
+              </div>
+              <div class="col-sm-6">
+                <form id="signInForm" class="mt-4" method="post">
+                  @csrf
+                  <div class="form-group">
+                    <h3>Sign in to your account</h3>
+                  </div>
 
-                <div class="form-group" style="margin-top: 10px;">
-                  <label for="email">Email</label>
-                  <input type="email" id="signInemail" name="signInemail" class="form-control" required/>
-                </div>
-                <div class="form-group">
-                  <label for="password">Password</label>
-                  <input type="password" id="signInpassword" name="signInpassword" class="form-control" required/>
-                </div>
-                <div class="form-group d-flex justify-content-end" style="margin-top: 30px;">
-                  <button type="submit" class="btn btn-primary">Sign In</button>
-                </div>
-                
-              </form>
+                  <div class="form-group">
+                    <p>Don't have an account? <a href="#" id="toggleSignUpForm">Sign Up</a></p>
+                  </div>
+                  
+                  <div id="signIn_error" style="color: red; margin-top: 30px;"></div>
 
-              <form id="signUpForm" class="mt-4" style="display: none;">
-                @csrf
-                <div class="form-group">
-                  <h3>Create a new account</h3>
-                </div>
+                  <div class="form-group" style="margin-top: 10px;">
+                    <label for="email">Email</label>
+                    <input type="email" id="signInemail" name="signInemail" class="form-control" required/>
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="signInpassword" name="signInpassword" class="form-control" required/>
+                  </div>
+                  <div class="form-group d-flex justify-content-end" style="margin-top: 30px;">
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                  </div>
+                  
+                </form>
 
-                <div class="form-group">
-                  <p>Already have an account? <a href="#" id="toggleSignInForm">Sign In</a></p>
-                </div>
+                <form id="signUpForm" class="mt-4" style="display: none;">
+                  @csrf
+                  <div class="form-group">
+                    <h3>Create a new account</h3>
+                  </div>
 
-                <div id="signUp_error" style="color: red; margin-top: 30px;"></div>
+                  <div class="form-group">
+                    <p>Already have an account? <a href="#" id="toggleSignInForm">Sign In</a></p>
+                  </div>
 
-                <div class="form-group" style="margin-top: 10px;">
-                  <label for="email">Email</label>
-                  <input type="email" id="signUpemail" name="signUpemail" class="form-control"  />
-                </div>
-                <div class="form-group">
-                  <label for="password">Password</label>
-                  <input type="password" id="signUppassword" name="signUppassword" class="form-control" />
-                </div>
-                <div class="form-group">
-                  <label for="signUppasswordC">Confirm Password</label>
-                  <input type="password" id="signUppasswordC" name="signUppasswordC" class="form-control" />
-                </div>
-                <div class="form-group d-flex justify-content-end" style="margin-top: 20px;">
-                  <button type="submit" class="btn btn-primary">Sign Up</button>
-                </div>
-                
-              </form>
+                  <div id="signUp_error" style="color: red; margin-top: 30px;"></div>
 
+                  <div class="form-group" style="margin-top: 10px;">
+                    <label for="email">Email</label>
+                    <input type="email" id="signUpemail" name="signUpemail" class="form-control"  />
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="signUppassword" name="signUppassword" class="form-control" />
+                  </div>
+                  <div class="form-group">
+                    <label for="signUppasswordC">Confirm Password</label>
+                    <input type="password" id="signUppasswordC" name="signUppasswordC" class="form-control" />
+                  </div>
+                  <div class="form-group d-flex justify-content-end" style="margin-top: 20px;">
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                  </div>
+                  
+                </form>
+
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-
+@endif
 
 
 <!-- end modal -->
@@ -395,10 +396,113 @@
     </div>
   </footer>
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+@if(!session()->has('user_name'))
+  <script>
+    document.getElementById('signInTrigger').addEventListener('click', function() {
+      $('#signUpForm').hide();
+      $('#signInForm').show();
+      $('#joinModal').modal('show');
+    });
+
+    document.getElementById('joinTrigger').addEventListener('click', function() {
+      $('#signInForm').hide();
+      $('#signUpForm').show();
+      $('#joinModal').modal('show');
+    });
+
+    document.getElementById('toggleSignUpForm').addEventListener('click', function() {
+      $('#signInForm').hide();
+      $('#signUpForm').show();
+      $("#signIn_error").text("");
+      $("#signUp_error").text("");
+    });
+
+    document.getElementById('toggleSignInForm').addEventListener('click', function() {
+      $('#signUpForm').hide();
+      $('#signInForm').show();
+      $("#signUp_error").text("");
+      $("#signIn_error").text("");
+    });
+    $("#signUpemail, #signUppassword, #signUppasswordC").focus(function() {
+        $("#signUp_error").text("");
+      });
+      $("#signInemail, #signInpassword").focus(function() {
+        $("#signIn_error").text("");
+      });
+    $("#signInForm").submit(function(e) {
+        e.preventDefault();
+        var all = $(this).serialize();
+        var urll = '{{ route("loginn") }}';
+        $.ajax({
+            url: urll,
+            type: "POST",
+            data: all,
+            success: function(data) {
+                if (data === 'done') {
+                    window.location.href = "{{ route('profile') }}";
+                }
+                else {
+                    $("#signIn_error").text("Invalid Credentials");
+                }
+            }
+        });
+    });
+
+    $("#signUpForm").submit(function(e) {
+        e.preventDefault();
+        var email = $("#signUpemail").val();
+        var password = $("#signUppassword").val();
+        var confirmPassword = $("#signUppasswordC").val();
+
+        // Perform validation checks
+        if (email === "") {
+          $("#signUp_error").text("Please enter your email");
+          return;
+        }
+
+        if (password === "") {
+          $("#signUp_error").text("Please enter a password");
+          return;
+        }
+
+        if (password.length < 8) {
+          $("#signUp_error").text("Password should be at least 8 characters long");
+          return;
+        }
+
+        if (!/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[0-9]/.test(password)) {
+          $("#signUp_error").text("Format : at least one uppercase letter, one lowercase letter, and one number");
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          $("#signUp_error").text("Passwords do not match");
+          return;
+        }
+
+        // If all validation checks pass, proceed with form submission via AJAX
+        var all = $(this).serialize();
+        var url = '{{ route("signup") }}';
+
+        $.ajax({
+          url: url,
+          type: "POST",
+          data: all,
+          success: function(data) {
+            $("#signUpForm")[0].reset();
+            $("#signUp_error").text(data.message);
+          },
+          error: function() {
+            $("#signUp_error").text("Error occurred during sign-up");
+          }
+        });
+    });
+    </script>
+@endif
 
   <!-- <script src="js/vendor/modernizr-3.11.2.min.js"></script>
   <script src="js/plugins.js"></script>
@@ -423,109 +527,6 @@
   headerBottomMenu.classList.add('show');
   headerSearch.classList.add('show');
 }
-
-document.getElementById('signInTrigger').addEventListener('click', function() {
-  $('#signUpForm').hide();
-  $('#signInForm').show();
-  $('#joinModal').modal('show');
-});
-
-document.getElementById('joinTrigger').addEventListener('click', function() {
-  $('#signInForm').hide();
-  $('#signUpForm').show();
-  $('#joinModal').modal('show');
-});
-
-document.getElementById('toggleSignUpForm').addEventListener('click', function() {
-  $('#signInForm').hide();
-  $('#signUpForm').show();
-  $("#signIn_error").text("");
-  $("#signUp_error").text("");
-});
-
-document.getElementById('toggleSignInForm').addEventListener('click', function() {
-  $('#signUpForm').hide();
-  $('#signInForm').show();
-  $("#signUp_error").text("");
-  $("#signIn_error").text("");
-});
-$("#signUpemail, #signUppassword, #signUppasswordC").focus(function() {
-    $("#signUp_error").text("");
-  });
-  $("#signInemail, #signInpassword").focus(function() {
-    $("#signIn_error").text("");
-  });
-$("#signInForm").submit(function(e) {
-    e.preventDefault();
-    var all = $(this).serialize();
-    var urll = '{{ route("loginn") }}';
-    $.ajax({
-        url: urll,
-        type: "POST",
-        data: all,
-        success: function(data) {
-            if (data === 'done') {
-                window.location.href = "{{ route('profile') }}";
-            }
-            else {
-                $("#signIn_error").text("Invalid Credentials");
-            }
-        }
-    });
-});
-
-$("#signUpForm").submit(function(e) {
-    e.preventDefault();
-    var email = $("#signUpemail").val();
-    var password = $("#signUppassword").val();
-    var confirmPassword = $("#signUppasswordC").val();
-
-    // Perform validation checks
-    if (email === "") {
-      $("#signUp_error").text("Please enter your email");
-      return;
-    }
-
-    if (password === "") {
-      $("#signUp_error").text("Please enter a password");
-      return;
-    }
-
-    if (password.length < 8) {
-      $("#signUp_error").text("Password should be at least 8 characters long");
-      return;
-    }
-
-    if (!/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[0-9]/.test(password)) {
-      $("#signUp_error").text("Format : at least one uppercase letter, one lowercase letter, and one number");
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      $("#signUp_error").text("Passwords do not match");
-      return;
-    }
-
-    // If all validation checks pass, proceed with form submission via AJAX
-    var all = $(this).serialize();
-    var url = '{{ route("signup") }}';
-
-    $.ajax({
-      url: url,
-      type: "POST",
-      data: all,
-      success: function(data) {
-        $("#signUpForm")[0].reset();
-        $("#signUp_error").text(data.message);
-      },
-      error: function() {
-        $("#signUp_error").text("Error occurred during sign-up");
-      }
-    });
-});
-
-
-
 </script>
 
  
