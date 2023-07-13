@@ -82,11 +82,11 @@
 
                 <div class="form-group" style="margin-top: 10px;">
                   <label for="email">Email</label>
-                  <input type="email" id="signInemail" name="signInemail" class="form-control" />
+                  <input type="email" id="signInemail" name="signInemail" class="form-control" required/>
                 </div>
                 <div class="form-group">
                   <label for="password">Password</label>
-                  <input type="password" id="signInpassword" name="signInpassword" class="form-control" />
+                  <input type="password" id="signInpassword" name="signInpassword" class="form-control" required/>
                 </div>
                 <div class="form-group d-flex justify-content-end" style="margin-top: 30px;">
                   <button type="submit" class="btn btn-primary">Sign In</button>
@@ -108,11 +108,11 @@
 
                 <div class="form-group" style="margin-top: 10px;">
                   <label for="email">Email</label>
-                  <input type="email" id="signUpemail" name="signUpemail" class="form-control" required />
+                  <input type="email" id="signUpemail" name="signUpemail" class="form-control"  />
                 </div>
                 <div class="form-group">
                   <label for="password">Password</label>
-                  <input type="password" id="signUppassword" name="signUppassword" class="form-control" required />
+                  <input type="password" id="signUppassword" name="signUppassword" class="form-control" />
                 </div>
                 <div class="form-group">
                   <label for="signUppasswordC">Confirm Password</label>
@@ -476,20 +476,51 @@ $("#signInForm").submit(function(e) {
 
 $("#signUpForm").submit(function(e) {
     e.preventDefault();
+    var email = $("#signUpemail").val();
+    var password = $("#signUppassword").val();
+    var confirmPassword = $("#signUppasswordC").val();
+
+    // Perform validation checks
+    if (email === "") {
+      $("#signUp_error").text("Please enter your email");
+      return;
+    }
+
+    if (password === "") {
+      $("#signUp_error").text("Please enter a password");
+      return;
+    }
+
+    if (password.length < 8) {
+      $("#signUp_error").text("Password should be at least 8 characters long");
+      return;
+    }
+
+    if (!/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[0-9]/.test(password)) {
+      $("#signUp_error").text("Format : at least one uppercase letter, one lowercase letter, and one number");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      $("#signUp_error").text("Passwords do not match");
+      return;
+    }
+
+    // If all validation checks pass, proceed with form submission via AJAX
     var all = $(this).serialize();
     var url = '{{ route("signup") }}';
-    
+
     $.ajax({
-        url: url,
-        type: "POST",
-        data: all,
-        success: function(data) { 
-              $("#signUpForm")[0].reset();           
-              $("#signUp_error").text(data.message);            
-        },
-        error: function() {
-            $("#signUp_error").text("Error occurred during sign-up");
-        }
+      url: url,
+      type: "POST",
+      data: all,
+      success: function(data) {
+        $("#signUpForm")[0].reset();
+        $("#signUp_error").text(data.message);
+      },
+      error: function() {
+        $("#signUp_error").text("Error occurred during sign-up");
+      }
     });
 });
 
