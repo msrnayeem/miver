@@ -14,7 +14,7 @@
   <meta property="og:url" content="">
   <meta property="og:image" content="">
 
-  <link rel="manifest" href="site.webmanifest">
+ 
   <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
@@ -67,16 +67,20 @@
             <div class="col-sm-6">
               <img src="{{ asset('assets/images/sign.png') }}" alt="" width="100%" />
             </div>
-            <div class="col-sm-6 ">
-              <form id="signInForm" class="mt-4" method="post" action="{{ route('loginn') }}">
-              @csrf
+            <div class="col-sm-6">
+              <form id="signInForm" class="mt-4" method="post">
+                @csrf
                 <div class="form-group">
                   <h3>Sign in to your account</h3>
                 </div>
+
                 <div class="form-group">
                   <p>Don't have an account? <a href="#" id="toggleSignUpForm">Sign Up</a></p>
                 </div>
-                <div class="form-group" style="margin-top: 40px;">
+                
+                <div id="signIn_error" style="color: red; margin-top: 30px;"></div>
+
+                <div class="form-group" style="margin-top: 10px;">
                   <label for="email">Email</label>
                   <input type="email" id="signInemail" name="signInemail" class="form-control" />
                 </div>
@@ -84,35 +88,42 @@
                   <label for="password">Password</label>
                   <input type="password" id="signInpassword" name="signInpassword" class="form-control" />
                 </div>
-                <div class="form-group  d-flex justify-content-end" style="margin-top: 30px;">
+                <div class="form-group d-flex justify-content-end" style="margin-top: 30px;">
                   <button type="submit" class="btn btn-primary">Sign In</button>
                 </div>
+                
               </form>
 
               <form id="signUpForm" class="mt-4" style="display: none;">
+                @csrf
                 <div class="form-group">
                   <h3>Create a new account</h3>
                 </div>
+
                 <div class="form-group">
                   <p>Already have an account? <a href="#" id="toggleSignInForm">Sign In</a></p>
                 </div>
-                <div class="form-group"  style="margin-top: 40px;">
+
+                <div id="signUp_error" style="color: red; margin-top: 30px;"></div>
+
+                <div class="form-group" style="margin-top: 10px;">
                   <label for="email">Email</label>
-                  <input type="email" id="signUpemail" name="signUpemail" class="form-control" />
+                  <input type="email" id="signUpemail" name="signUpemail" class="form-control" required />
                 </div>
                 <div class="form-group">
                   <label for="password">Password</label>
-                  <input type="password" id="signUppassword" name="signUppassword" class="form-control" />
+                  <input type="password" id="signUppassword" name="signUppassword" class="form-control" required />
                 </div>
                 <div class="form-group">
-                  <label for="signUppasswordC">Password</label>
+                  <label for="signUppasswordC">Confirm Password</label>
                   <input type="password" id="signUppasswordC" name="signUppasswordC" class="form-control" />
                 </div>
-                <div class="form-group  d-flex justify-content-end"  style="margin-top: 20px;">
+                <div class="form-group d-flex justify-content-end" style="margin-top: 20px;">
                   <button type="submit" class="btn btn-primary">Sign Up</button>
                 </div>
                 
               </form>
+
             </div>
           </div>
         </div>
@@ -120,6 +131,7 @@
     </div>
   </div>
 </div>
+
 
 
 <!-- end modal -->
@@ -427,39 +439,60 @@ document.getElementById('joinTrigger').addEventListener('click', function() {
 document.getElementById('toggleSignUpForm').addEventListener('click', function() {
   $('#signInForm').hide();
   $('#signUpForm').show();
+  $("#signIn_error").text("");
+  $("#signUp_error").text("");
 });
 
 document.getElementById('toggleSignInForm').addEventListener('click', function() {
   $('#signUpForm').hide();
   $('#signInForm').show();
+  $("#signUp_error").text("");
+  $("#signIn_error").text("");
+});
+$("#signUpemail, #signUppassword, #signUppasswordC").focus(function() {
+    $("#signUp_error").text("");
+  });
+  $("#signInemail, #signInpassword").focus(function() {
+    $("#signIn_error").text("");
+  });
+$("#signInForm").submit(function(e) {
+    e.preventDefault();
+    var all = $(this).serialize();
+    var urll = '{{ route("loginn") }}';
+    $.ajax({
+        url: urll,
+        type: "POST",
+        data: all,
+        success: function(data) {
+            if (data === 'done') {
+                window.location.href = "{{ route('profile') }}";
+            }
+            else {
+                $("#signIn_error").text("Invalid Credentials");
+            }
+        }
+    });
 });
 
-$("#signInForm").submit(function(e){
-         e.preventDefault();
+$("#signUpForm").submit(function(e) {
+    e.preventDefault();
+    var all = $(this).serialize();
+    var url = '{{ route("signup") }}';
+    
+    $.ajax({
+        url: url,
+        type: "POST",
+        data: all,
+        success: function(data) { 
+              $("#signUpForm")[0].reset();           
+              $("#signUp_error").text(data.message);            
+        },
+        error: function() {
+            $("#signUp_error").text("Error occurred during sign-up");
+        }
+    });
+});
 
-        var all = $(this).serialize();
-
-        $.ajax({
-            url:  $(this).attr('action'),
-            type: "POST",
-            data: all,
-            beforeSend:function(){
-                $(document).find('span.error-text').text('');
-            },
-            success: function(data){
-                if(data == 1){
-                    window.location.replace(
-                     '{{route("dashboard.index")}}'
-                    );
-                }else if(data == 2){
-
-                    $("#show_error").hide().html("Invalid login details");
-                }
-
-            }
-            })
-
-        });
 
 
 </script>
