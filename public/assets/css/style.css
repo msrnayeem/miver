@@ -3,6 +3,32 @@
     margin: 0;
     padding: 0;
 }
+.modal-body .col-sm-8 {
+    text-align: center;
+}
+.intro-title {
+  margin-bottom: 5px;
+  font-weight: 400;
+  color: #333;
+}
+
+@media (min-width: 768px) {
+  /* Medium and larger devices (tablets and desktop screens), larger width */
+  .modal-lg {
+    max-width: 800px;
+  }
+}
+@media (max-width: 767px) {
+  /* Hide the image column on mobile devices */
+  .modal-content .col-sm-6:first-child {
+    display: none;
+  }
+  
+  /* Make the login part take up the full width on mobile devices */
+  .modal-content .col-sm-6:last-child {
+    width: 100%;
+  }
+}
 
 /* header start  */
 .header{

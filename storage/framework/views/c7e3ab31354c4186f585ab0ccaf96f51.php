@@ -19,14 +19,14 @@
   <!-- Place favicon.ico in the root directory -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+  <link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/css/style.css')); ?>">
   <meta name="theme-color" content="#fafafa">
-  @stack('styles')
+  <?php echo $__env->yieldPushContent('styles'); ?>
 </head>
 
 <body>
  
-  @if(!session()->has('user_name'))
+  <?php if(!session()->has('user_name')): ?>
 
   <div class="modal fade" id="joinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -38,11 +38,11 @@
           <div class="container">
             <div class="row">
               <div class="col-sm-6">
-                <img src="{{ asset('assets/images/sign.png') }}" alt="" width="100%" />
+                <img src="<?php echo e(asset('assets/images/sign.png')); ?>" alt="" width="100%" />
               </div>
               <div class="col-sm-6">
                 <form id="signInForm" class="mt-4" method="post">
-                  @csrf
+                  <?php echo csrf_field(); ?>
                   <div class="form-group">
                     <h3>Sign in to your account</h3>
                   </div>
@@ -68,7 +68,7 @@
                 </form>
 
                 <form id="signUpForm" class="mt-4" style="display: none;">
-                  @csrf
+                  <?php echo csrf_field(); ?>
                   <div class="form-group">
                     <h3>Create a new account</h3>
                   </div>
@@ -104,7 +104,7 @@
       </div>
     </div>
   </div>
-@endif
+<?php endif; ?>
 
 
 <!-- end modal -->
@@ -119,7 +119,7 @@
             <div class="row">
               <div class="col-lg-2">
                 <div class="logo">
-                  <a href="{{ route('index') }}">Miverr</a>
+                  <a href="<?php echo e(route('index')); ?>">Miverr</a>
                 </div>
               </div>
               <div class="col-lg-10" id="header-search">
@@ -139,21 +139,21 @@
           <div class="right">
               <nav class="header-right-menu">
                 
-                @if(!session()->has('user_name'))
+                <?php if(!session()->has('user_name')): ?>
                     <ul>
-                        <!-- <li><a class="active" href="{{ route('profile') }}">Profile</a></li> -->
+                        <!-- <li><a class="active" href="<?php echo e(route('profile')); ?>">Profile</a></li> -->
                         <li><a href="#"><i class="fas fa-flag-usa"></i>English</a></li>
                         <li><a href="#">Become a Seller</a></li>
                         <li id="signInTrigger">Sign In</li>
                         <li id="joinTrigger"><a href="#" class="active">Join</a></li>
 
                     </ul>
-                @else
+                <?php else: ?>
                     <ul>
-                        <li><a class="active" href="{{ route('profile') }}">Profile</a></li>
-                        <li><a class="join" href="{{ route('logout') }}">Logout</a></li>
+                        <li><a class="active" href="<?php echo e(route('profile')); ?>">Profile</a></li>
+                        <li><a class="join" href="<?php echo e(route('logout')); ?>">Logout</a></li>
                     </ul>
-                @endif
+                <?php endif; ?>
             </nav>
 
           </div>
@@ -162,7 +162,7 @@
     <nav class="header-bottom-menu">
         <ul>
             <li>
-            <a href="{{ route('category', ['category' => 'graphics-design']) }}">Graphics & Design</a>
+            <a href="<?php echo e(route('category', ['category' => 'graphics-design'])); ?>">Graphics & Design</a>
             <ul class="subcategories">
                 <li><a href="#">Logo Design</a></li>
                 <li><a href="#">Illustration</a></li>
@@ -171,7 +171,7 @@
             </li>
             <!-- Repeat the above structure for other categories -->
             <li>
-                <a href="{{ route('category', ['category' => 'digital-marketing']) }}">Digital Marketing</a>
+                <a href="<?php echo e(route('category', ['category' => 'digital-marketing'])); ?>">Digital Marketing</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
@@ -179,7 +179,7 @@
                 </ul>
             </li>
             <li>
-                <a href="{{ route('category', ['category' => 'writing-translation']) }}">Writing & Translation</a>
+                <a href="<?php echo e(route('category', ['category' => 'writing-translation'])); ?>">Writing & Translation</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
@@ -187,7 +187,7 @@
                 </ul>
             </li>
             <li>
-                <a href="{{ route('category', ['category' => 'video-animation']) }}">Video & Animation</a>
+                <a href="<?php echo e(route('category', ['category' => 'video-animation'])); ?>">Video & Animation</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
@@ -195,7 +195,7 @@
                 </ul>
             </li>
             <li>
-                <a href="{{ route('category', ['category' => 'music-audio']) }}">Music & Audio</a>
+                <a href="<?php echo e(route('category', ['category' => 'music-audio'])); ?>">Music & Audio</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
@@ -203,7 +203,7 @@
                 </ul>
             </li>
             <li>
-                <a href="{{ route('category', ['category' => 'programming-tech']) }}">Programming & Tech</a>
+                <a href="<?php echo e(route('category', ['category' => 'programming-tech'])); ?>">Programming & Tech</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
@@ -211,7 +211,7 @@
                 </ul>
             </li>
             <li>
-            <a href="{{ route('category', ['category' => 'photography']) }}">Photography</a>
+            <a href="<?php echo e(route('category', ['category' => 'photography'])); ?>">Photography</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
@@ -219,7 +219,7 @@
                 </ul>
             </li>
             <li>
-                <a href="{{ route('category', ['category' => 'business']) }}">Business</a>
+                <a href="<?php echo e(route('category', ['category' => 'business'])); ?>">Business</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
@@ -234,7 +234,7 @@
 
 
     <main>
-        @yield('content')
+        <?php echo $__env->yieldContent('content'); ?>
     </main>
 
 
@@ -372,7 +372,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-@if(!session()->has('user_name'))
+<?php if(!session()->has('user_name')): ?>
   <script>
     document.getElementById('signInTrigger').addEventListener('click', function() {
       $('#signUpForm').hide();
@@ -408,14 +408,14 @@
     $("#signInForm").submit(function(e) {
         e.preventDefault();
         var all = $(this).serialize();
-        var urll = '{{ route("loginn") }}';
+        var urll = '<?php echo e(route("loginn")); ?>';
         $.ajax({
             url: urll,
             type: "POST",
             data: all,
             success: function(data) {
                 if (data === 'done') {
-                    window.location.href = "{{ route('profile') }}";
+                    window.location.href = "<?php echo e(route('profile')); ?>";
                 }
                 else {
                     $("#signIn_error").text("Invalid Credentials");
@@ -458,7 +458,7 @@
 
         // If all validation checks pass, proceed with form submission via AJAX
         var all = $(this).serialize();
-        var url = '{{ route("signup") }}';
+        var url = '<?php echo e(route("signup")); ?>';
 
         $.ajax({
           url: url,
@@ -474,7 +474,7 @@
         });
     });
     </script>
-@endif
+<?php endif; ?>
 
   <!-- <script src="js/vendor/modernizr-3.11.2.min.js"></script>
   <script src="js/plugins.js"></script>
@@ -501,7 +501,7 @@
 }
 </script>
 
-@stack('scripts')
+<?php echo $__env->yieldPushContent('scripts'); ?>
 </body>
 
-</html>
+</html><?php /**PATH C:\xampp\htdocs\miver\resources\views/layouts/default.blade.php ENDPATH**/ ?>

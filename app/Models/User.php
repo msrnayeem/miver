@@ -38,4 +38,8 @@ class User extends Model
     {
         return $this->belongsToMany(Category::class, 'category_user')->withTimestamps();
     }
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

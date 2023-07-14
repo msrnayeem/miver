@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,8 @@ Route::post('/signup', [MainController::class, 'signupSubmitted'])->name('signup
 //category
 Route::get('/category/{category}', [CategoryController::class, 'category'])->name('category');
 
-
+//all product
+Route::get('/all-gigs', [ProductController::class, 'showAllProducts'])->name('allProduct');
 
 
 //shahidur
