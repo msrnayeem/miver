@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             ReviewsTableSeeder::class,
             ConversationsTableSeeder::class,
             NotificationsTableSeeder::class,
+             ProductsTableSeeder::class,
         ]);
     }
 }

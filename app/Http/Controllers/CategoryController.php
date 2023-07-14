@@ -10,7 +10,7 @@ class CategoryController extends Controller
     public function category($category){     
         $category = Category::with('subCategories.subSubCategories', 'faqs', 'guides')
         ->where('bannerImageLink', $category)
-        ->first();
+        ->first();        
         return view('pages.category.categoryMaster', compact('category'));
     }
     
