@@ -150,6 +150,14 @@
                     </ul>
                 @else
                     <ul>
+                        <li>
+                        <a class="notification-icon" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" title="Notifications" data-content="You have new notifications!">
+                          <span class="fa-stack fa-lg">
+                              <i class="fa fa-bell fa-stack-1x"></i>
+                              <i class="fa fa-circle fa-stack-2x"></i>
+                          </span>
+                      </a>
+                        </li>
                         <li><a class="active" href="{{ route('profile') }}">Profile</a></li>
                         <li><a class="join" href="{{ route('logout') }}">Logout</a></li>
                     </ul>
@@ -488,9 +496,17 @@
   </script>
   <script src="https://www.google-analytics.com/analytics.js" async></script> -->
   
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+
+<script>
+  $(function () {
+    $('[data-toggle="popover"]').popover();
+  });
+</script>
   <script>
-    
+     
+
 
   if (window.location.href !== "http://localhost/miverr/") {
   var headerSearch = document.getElementById('header-search');

@@ -150,6 +150,9 @@
                     </ul>
                 <?php else: ?>
                     <ul>
+                    <li>
+                            <a class="notification-icon" tabindex="0" role="button" data-toggle="popover" data-placement="top" data-trigger="focus" title="Notifications" data-content="You have new notifications!">Notification</a>
+                        </li>
                         <li><a class="active" href="<?php echo e(route('profile')); ?>">Profile</a></li>
                         <li><a class="join" href="<?php echo e(route('logout')); ?>">Logout</a></li>
                     </ul>
@@ -490,7 +493,9 @@
   
   
   <script>
-    
+    var popover = new bootstrap.Popover(document.querySelector('.popover-dismiss'), {
+      trigger: 'focus'
+    })
 
   if (window.location.href !== "http://localhost/miverr/") {
   var headerSearch = document.getElementById('header-search');
