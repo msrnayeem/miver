@@ -1,29 +1,26 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="">
-
 <head>
   <meta charset="utf-8">
-
-
   <title>Miverr</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <meta property="og:title" content="">
   <meta property="og:type" content="">
   <meta property="og:url" content="">
   <meta property="og:image" content="">
-
- 
   <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/css/style.css')); ?>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-***" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/bootstrap-popover-x.css" media="all" rel="stylesheet" type="text/css" />
   <meta name="theme-color" content="#fafafa">
   <?php echo $__env->yieldPushContent('styles'); ?>
+  
 </head>
-
 <body>
  
   <?php if(!session()->has('user_name')): ?>
@@ -150,15 +147,31 @@
                     </ul>
                 <?php else: ?>
                     <ul>
-                    <li>
-                            <a class="notification-icon" tabindex="0" role="button" data-toggle="popover" data-placement="top" data-trigger="focus" title="Notifications" data-content="You have new notifications!">Notification</a>
+                       
+                        <li> 
+                            <a href="#" id="popoverButton" data-toggle="popover-x" data-trigger="focus" data-target="#myPopover10d" data-placement="bottom bottom-right">
+                                <i class="fas fa-bell"></i>
+                            </a>
+                              <div id="myPopover10d" class="popover popover-x popover-default">
+                                  <div class="arrow"></div>
+                                  <h3 class="popover-header popover-title">
+                                      <span class="close pull-right" data-dismiss="popover-x">&times;</span>
+                                      Notification
+                                  </h3>
+                                  <div class="popover-body popover-content" id="popoverContent">
+                                      Loading...
+                                  </div>
+                                  <div class="popover-footer">
+                                      <button type="submit" class="btn btn-sm btn-primary">Mark read</button>
+                                  </div>
+                              </div>
                         </li>
                         <li><a class="active" href="<?php echo e(route('profile')); ?>">Profile</a></li>
                         <li><a class="join" href="<?php echo e(route('logout')); ?>">Logout</a></li>
                     </ul>
                 <?php endif; ?>
             </nav>
-
+                     
           </div>
         </div>
       </div>
@@ -371,9 +384,9 @@
     </div>
   </footer>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<script src="../js/bootstrap-popover-x.js" type="text/javascript"></script>
 
 <?php if(!session()->has('user_name')): ?>
   <script>
@@ -477,25 +490,14 @@
         });
     });
     </script>
+   
+   
 <?php endif; ?>
 
-  <!-- <script src="js/vendor/modernizr-3.11.2.min.js"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script> -->
- 
 
-<!--  
+
+
   <script>
-    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
-  </script>
-  <script src="https://www.google-analytics.com/analytics.js" async></script> -->
-  
-  
-  <script>
-    var popover = new bootstrap.Popover(document.querySelector('.popover-dismiss'), {
-      trigger: 'focus'
-    })
 
   if (window.location.href !== "http://localhost/miverr/") {
   var headerSearch = document.getElementById('header-search');
@@ -506,6 +508,44 @@
 }
 </script>
 
+<script>
+        $(document).ready(function() {
+            $('#popoverButton').click(function() {
+                var popover = $(this);
+
+                $.ajax({
+                    url: '/get-notification-data',
+                    type: 'GET',
+                    success: function(response) {
+                        // Process the response and update the popover content
+                        var content = '';
+
+                        if (response.length > 0) {
+                            for (var i = 0; i < response.length; i++) {
+                                var notification = response[i];
+                                var message = notification.message;
+
+                                content += '<p style="background color:blue;">' + message + '</p>';
+                            }
+                        } else {
+                            content = '<p>No notifications found.</p>';
+                        }
+
+                        $('#popoverContent').html(content);
+
+                        // Show the popover
+                        popover.popover('show');
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error if necessary
+                        console.log(error);
+                    }
+                });
+
+                return false;
+            });
+        });
+    </script>
 <?php echo $__env->yieldPushContent('scripts'); ?>
 </body>
 

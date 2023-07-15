@@ -42,3 +42,21 @@ Route::get('/', [MainController::class, 'index'])->name('index');
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//get-notification-data
+
+Route::get('/get-notification-data', function() {
+    $notifications = [
+        [
+            'message' => 'Notification 1',
+            'isRead' => false,
+        ],
+        [
+            'message' => 'Notification 2',
+            'isRead' => true,
+        ],
+        // Add more notifications as needed
+    ];
+
+    return response()->json($notifications);
+  });

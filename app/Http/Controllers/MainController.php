@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Session;
 
 class MainController extends Controller
 {
+    public function notification()
+    {
+        return view('layouts.n');
+    }
     public function index()
     {
         return view('pages.index');
