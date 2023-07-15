@@ -24,7 +24,7 @@
 
                 </div>
             </div>
-              <h3><?php echo e($product->name); ?></h3>
+              <h3><a href="<?php echo e(route('singleProduct', ['id' => $product->id])); ?>"><?php echo e($product->name); ?></a></h3>
               <h4><?php echo e($product->price); ?></h4>
               <p><?php echo e($product->details); ?></p>
           </div>

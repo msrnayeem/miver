@@ -27,7 +27,8 @@ Route::get('/category/{category}', [CategoryController::class, 'category'])->nam
 
 //all product
 Route::get('/all-gigs', [ProductController::class, 'showAllProducts'])->name('allProduct');
-
+//single product
+Route::get('/singleProduct/{id}', [ProductController::class, 'singleProduct'])->name('singleProduct');
 
 //shahidur
 Route::get('/', [MainController::class, 'index'])->name('index');

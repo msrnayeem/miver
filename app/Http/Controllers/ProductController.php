@@ -32,4 +32,10 @@ class ProductController extends Controller
        
     return view('pages.product.allProduct', compact('products'));
     }
+
+    public function singleProduct($id)
+    {
+        $product = Product::with(['subsubcategory.subcategory', 'user:id,username,email'])->find($id);
+        return view('pages.product.singleProduct', compact('product'));
+    }
 }

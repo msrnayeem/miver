@@ -25,7 +25,7 @@
                 {{ $product->user->username }}
                 </div>
             </div>
-              <h3>{{ $product->name }}</h3>
+              <h3><a href="{{ route('singleProduct', ['id' => $product->id]) }}">{{ $product->name }}</a></h3>
               <h4>{{ $product->price }}</h4>
               <p>{{ $product->details }}</p>
           </div>
