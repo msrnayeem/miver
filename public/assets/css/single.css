@@ -1,0 +1,159 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.product-column {
+  flex-basis: 65%;
+  padding: 20px;
+  overflow-y: scroll;
+  height: 100vh;
+  scrollbar-width: thin; /* for Firefox */
+  scrollbar-color: transparent transparent; /* for Firefox */
+
+}
+.product-column::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.product-column::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.product-column::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+/* Hide scrollbar for Edge and IE */
+.product-column {
+  -ms-overflow-style: none;
+}
+
+.sidebar-column {
+  flex-basis: 30%;
+  padding: 20px;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.scrollable-content {
+  height: calc(100vh - 40px); /* Adjust the height as needed */
+  overflow-y: auto;
+  padding-right: 20px;
+  scrollbar-width: thin; /* for Firefox */
+  scrollbar-color: transparent transparent; /* for Firefox */
+}
+.scrollable-content::-webkit-scrollbar {
+  width: 0.5em;
+}
+.scrollable-content::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+/* Hide scrollbar for Edge and IE */
+.scrollable-content {
+  -ms-overflow-style: none;
+}
+.seller-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.seller-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.product-image {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.about-gig h3 {
+  margin-top: 20px;
+}
+
+.design-approach h3,
+.client-satisfaction h3,
+.get-started h3,
+.about-seller .title h3 {
+  margin-top: 20px;
+}
+
+.design-approach ul,
+.client-satisfaction p,
+.get-started p,
+.about-seller .about hr,
+.about-seller .about p {
+  margin-top: 10px;
+}
+
+.about-seller .seller-column {
+  margin-bottom: 10px;
+}
+
+.seller-details .info p {
+  margin-bottom: 10px;
+}
+
+.contact-link {
+  text-decoration: none;
+  color: blue;
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.tab-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.tab {
+  cursor: pointer;
+  padding: 5px 10px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+}
+
+.tab.active {
+  background-color: #ddd;
+}
+
+.info-container .info {
+  display: none;
+}
+
+.info.active {
+  display: block;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .product-column,
+  .sidebar-column {
+    flex-basis: 100%;
+  }
+}

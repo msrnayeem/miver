@@ -1,4 +1,4 @@
-<style>
+
 .CategoryContainer {
   max-width: 100%;
   margin: 0 auto;
@@ -25,7 +25,9 @@
 }
 
 .card {
-  width: 230px;
+  max-width: 350px;
+  min-width:290px;
+  
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
