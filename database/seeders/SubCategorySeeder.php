@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
-use App\Models\SubCategory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class SubCategorySeeder extends Seeder
@@ -25,7 +23,7 @@ class SubCategorySeeder extends Seeder
             'Lifestyle',
             'Industries',
             'Gaming',
-            'Education'
+            'Education',
         ];
 
         foreach ($categories as $categoryName) {
@@ -33,13 +31,13 @@ class SubCategorySeeder extends Seeder
 
             if ($category) {
                 for ($i = 1; $i <= 3; $i++) {
-                    $subCategoryName = 'Sub Category ' . $i;
+                    $subCategoryName = 'Sub Category '.$i;
 
                     $subCategory = $category->subCategories()->where('name', $subCategoryName)->first();
 
-                    if (!$subCategory) {
+                    if (! $subCategory) {
                         $category->subCategories()->create([
-                            'name' => $subCategoryName
+                            'name' => $subCategoryName,
                         ]);
                     }
                 }

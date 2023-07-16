@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MainController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProductController;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,21 +32,18 @@ Route::get('/singleProduct/{id}', [ProductController::class, 'singleProduct'])->
 
 //shahidur
 Route::get('/', [MainController::class, 'index'])->name('index');
-    //user
-    
-    
-    Route::get('/logout', [MainController::class, 'logout'])->name('logout');
+//user
 
-    Route::get('/profile', [MainController::class, 'profile'])->name('profile');
-    Route::post('/profile-pic', [MainController::class, 'profilePic'])->name('profilePic');
+Route::get('/logout', [MainController::class, 'logout'])->name('logout');
 
-
+Route::get('/profile', [MainController::class, 'profile'])->name('profile');
+Route::post('/profile-pic', [MainController::class, 'profilePic'])->name('profilePic');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //get-notification-data
 
-Route::get('/get-notification-data', function() {
+Route::get('/get-notification-data', function () {
     $notifications = [
         [
             'message' => 'Notification 1',
@@ -60,4 +57,4 @@ Route::get('/get-notification-data', function() {
     ];
 
     return response()->json($notifications);
-  });
+});

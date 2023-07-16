@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Service extends Model
@@ -18,6 +17,7 @@ class Service extends Model
     {
         return $this->hasMany(Order::class);
     }
+
     public function reviews()
     {
         return $this->hasMany(Review::class);

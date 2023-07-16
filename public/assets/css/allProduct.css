@@ -1,83 +1,144 @@
-
 .CategoryContainer {
-  max-width: 100%;
-  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#filter-form{
+  width: 90%;
+  margin: 10px 10px 10px 10px;
+}
+.filter-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
   padding: 20px;
-  padding-left: 50px;
-  padding-right: 50px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 100%;
+}
+
+.filter-section label {
+  margin-bottom: 10px;
+}
+
+.category-select,
+.price-slider,
+.days-slider,
+.button-section {
+  flex: 1 1 25%;
+  margin-bottom: 20px;
+  
+}
+
+.category-select select,
+.price-slider input[type="range"],
+.days-slider input[type="range"] {
+  width: 90%;
+}
+
+.button-section {
+  flex: 1 1 25%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.button-section .btn {
+  margin-left: 10px;
+}
+.selected-values {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.selected-values p {
+  margin-bottom: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .filter-section {
+    flex-direction: column;
+  }
+
+  .category-select,
+  .price-slider,
+  .days-slider,
+  .button-section {
+    flex: 1 1 100%;
+  }
 }
 
 .categories {
   display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 20px;
-}
-
-
-
-.categories {
- 
-  display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  
 }
 
 .card {
-  max-width: 350px;
-  min-width:290px;
-  
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  min-width: 210px;
+  max-width: 250px;
+  margin: 10px;
   padding: 10px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .card img {
   width: 100%;
   height: auto;
   border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 .user-section {
   display: flex;
   align-items: center;
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .user-icon {
   width: 40px;
   height: 40px;
- 
+  overflow: hidden;
   border-radius: 50%;
 }
 
-.user-image {
+.user-icon img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
 .user-name {
-  margin-left: 30%;
+  margin-left: 10px;
   font-weight: bold;
-  font-size: 20px;
 }
 
-.card h3 {
-  margin: 5px 0;
-  font-size: 16px;
+h3 a {
+  color: #333;
+  text-decoration: none;
 }
 
-.card h4 {
-  margin: 5px 0;
-  font-size: 14px;
+h4 {
+  color: #666;
+  margin-top: 5px;
+}
+
+p {
   color: #888;
+  margin-top: 5px;
 }
 
-.card p {
-  margin: 10px 0;
-  font-size: 14px;
+@media screen and (max-width: 768px) {
+  .card {
+    width: 100%;
+  }
 }
 
 .pagination {
@@ -89,27 +150,25 @@
 }
 
 .pagination ul {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    justify-content: center;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  justify-content: center;
 }
 
 .pagination li {
-    margin: 0 5px;
+  margin: 0 5px;
 }
 
 .pagination li a {
-    display: inline-block;
-    padding: 5px 10px;
-    background-color: #f1f1f1;
-    color: #333;
-    text-decoration: none;
-    border-radius: 5px;
-    
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #f1f1f1;
+  color: #333;
+  text-decoration: none;
+  border-radius: 5px;
 }
 
 .pagination li a:hover {
-    background-color: #37ec17;
+  background-color: #37ec17;
 }
-

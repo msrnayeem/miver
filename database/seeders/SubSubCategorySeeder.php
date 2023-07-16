@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\SubCategory;
+use Illuminate\Database\Seeder;
 
 class SubSubCategorySeeder extends Seeder
 {
@@ -13,7 +12,7 @@ class SubSubCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        
+
         $subCategories = SubCategory::all();
 
         foreach ($subCategories as $subCategory) {
@@ -24,7 +23,7 @@ class SubSubCategorySeeder extends Seeder
 
                 for ($i = 1; $i <= $remainingSubSubCategories; $i++) {
                     $subCategory->subSubCategories()->create([
-                        'name' => 'Sub-Sub Category ' . $i
+                        'name' => 'Sub-Sub Category '.$i,
                     ]);
                 }
             }

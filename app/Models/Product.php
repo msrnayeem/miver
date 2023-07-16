@@ -10,6 +10,7 @@ class Product extends Model
     {
         return $this->belongsTo(SubSubCategory::class, 'sub_sub_category_id');
     }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

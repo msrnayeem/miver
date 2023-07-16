@@ -2,11 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use App\Models\Order;
 use App\Models\Service;
 use App\Models\User;
+use Illuminate\Database\Seeder;
 
 class OrdersTableSeeder extends Seeder
 {

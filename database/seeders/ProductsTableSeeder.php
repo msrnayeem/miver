@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Product;
 use App\Models\SubSubCategory;
 use App\Models\User;
+use Illuminate\Database\Seeder;
+
 class ProductsTableSeeder extends Seeder
 {
     /**
@@ -24,8 +24,8 @@ class ProductsTableSeeder extends Seeder
         $products = [];
         for ($i = 1; $i <= 35; $i++) {
             $products[] = [
-                'name' => 'Product name ' . $i,
-                'details' => 'Details for product ' . $i,
+                'name' => 'Product name '.$i,
+                'details' => 'Details for product '.$i,
                 'price' => mt_rand(1, 100) + (mt_rand(0, 99) / 100), // Random decimal value from 1 to 100
                 'user_id' => $userIds[array_rand($userIds)],
                 'sub_sub_category_id' => $subSubCategoryIds[array_rand($subSubCategoryIds)],

@@ -10,12 +10,12 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-{
-    Schema::table('categories', function (Blueprint $table) {
-        $table->string('bannerImageLink')->nullable();
-        $table->string('bannertext')->nullable();
-    });
-}
+    {
+        Schema::table('categories', function (Blueprint $table) {
+            $table->string('bannerImageLink')->nullable();
+            $table->string('bannertext')->nullable();
+        });
+    }
 
     /**
      * Reverse the migrations.

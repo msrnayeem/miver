@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-
 use App\Models\Service;
 use Carbon\Carbon;
+use Illuminate\Database\Seeder;
+
 class ServicesTableSeeder extends Seeder
 {
     /**

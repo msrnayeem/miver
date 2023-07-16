@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
@@ -38,6 +37,7 @@ class User extends Model
     {
         return $this->belongsToMany(Category::class, 'category_user')->withTimestamps();
     }
+
     public function products()
     {
         return $this->hasMany(Product::class);

@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Order;
 use App\Models\Conversation;
+use App\Models\Order;
 use Illuminate\Database\Seeder;
 
 class ConversationsTableSeeder extends Seeder
