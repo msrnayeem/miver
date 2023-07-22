@@ -1,9 +1,17 @@
 <?php
+//use route
+
+use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProductController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MessagesController;
+
+
+Route::get('/chat', [MMessagesController::class, 'index'])->name('chat.index');
+Route::post('/chat/send', [MessagesController::class, 'send'])->name('chat.send');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -58,3 +66,6 @@ Route::get('/get-notification-data', function () {
 
     return response()->json($notifications);
 });
+
+
+
