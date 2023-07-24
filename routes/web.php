@@ -9,8 +9,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MessagesController;
 
 
-Route::get('/chat', [MMessagesController::class, 'index'])->name('chat.index');
-Route::post('/chat/send', [MessagesController::class, 'send'])->name('chat.send');
+Route::get('/chat', [MessagesController::class, 'index'])->name('chat.index');
+Route::post('/send-message', [MessagesController::class, 'send'])->name('chat.send');
 
 
 /*
@@ -59,6 +59,10 @@ Route::get('/get-notification-data', function () {
         ],
         [
             'message' => 'Notification 2',
+            'isRead' => true,
+        ],
+        [
+            'message' => 'Notification 3',
             'isRead' => true,
         ],
         // Add more notifications as needed

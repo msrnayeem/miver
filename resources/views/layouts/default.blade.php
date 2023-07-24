@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html class="no-js" lang="">
+<html>
 <head>
-  <meta charset="utf-8">
+  
   <title>Miverr</title>
-  <meta name="description" content="">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta property="og:title" content="">
   <meta property="og:type" content="">
@@ -11,14 +11,15 @@
   <meta property="og:image" content="">
   <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-***" crossorigin="anonymous">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../css/bootstrap-popover-x.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="https://unpkg.com/@popperjs/core@2" media="all" rel="stylesheet" type="text/css" />
   <meta name="theme-color" content="#fafafa">
   @stack('styles')
+
   
 </head>
 <body>
@@ -146,26 +147,118 @@
 
                     </ul>
                 @else
+                
                     <ul>
-                       
-                        <li> 
-                            <a href="#" id="popoverButton" data-toggle="popover-x" data-trigger="focus" data-target="#myPopover10d" data-placement="bottom bottom-right">
-                                <i class="fas fa-bell"></i>
-                            </a>
-                              <div id="myPopover10d" class="popover popover-x popover-default">
-                                  <div class="arrow"></div>
-                                  <h3 class="popover-header popover-title">
-                                      <span class="close pull-right" data-dismiss="popover-x">&times;</span>
-                                      Notification
-                                  </h3>
-                                  <div class="popover-body popover-content" id="popoverContent">
-                                      Loading...
-                                  </div>
-                                  <div class="popover-footer">
-                                      <button type="submit" class="btn btn-sm btn-primary">Mark read</button>
-                                  </div>
+                      <li id="notification">
+                            <p>
+                                <i class="fa-solid fa-message" ></i>
+                                <i class="fa fa-bell" aria-hidden="true"></i>
+                                <span class="site-header__notification-count" data-notification-render="item_count">4</span>
+                            </p>
+                            
+                            <div class="notification-container">
+                              <div class="top">
+                                <h2>Notifications</h2>
                               </div>
+                              <div class="main">
+                                <!-- Content of main div with overflow-y: auto; -->
+                              </div>
+                              <div class="footer">
+                              <a href="#" style="text-decoration: underline;">mark as read</a>
+                              </div>
+                            </div>
+                            
+                      </li>
+                       
+                    <style>
+                      .notification-container{
+                        z-index: 333;
+                            width: 18%;
+                            height: 300px;
+                            cursor: default;
+                            background-color:cyan;
+                            position: absolute;
+                            top: 45%; /* This will position the cart panel below the cart icon */
+                            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add some shadow for a better appearance */
+                            border-radius: 1px;
+                            border: 1px solid green;
+                            display: none;
+                            flex-direction: column;
+                            right: 19%;
+                            
+                      } 
+                      .cart-container{
+                        z-index: 333;
+                            width: 20%;
+                            height: 300px;
+                            cursor: default;
+                            background-color:cyan;
+                            position: absolute;
+                            top: 45%; /* This will position the cart panel below the cart icon */
+                            border-radius: 1px;
+                            border: 1px solid green;
+                            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add some shadow for a better appearance */
+                            display: none;
+                            flex-direction: column;
+                            right: 15%;
+                            
+                      }
+                      .top {
+                        height: 10%;
+                        overflow: hidden;
+                        background-color: #f0f0f0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                      }
+
+                      .top h2 {
+                        padding: 30px;
+                        font-size: 15px;
+                        background-color: yellow;
+                      }
+
+                      .main {
+                        height: 80%;
+                        overflow-y: auto;
+                        padding: 10px;
+                      }
+
+                      .footer {
+                        height: 10%;
+                        background-color: #f0f0f0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                      }
+
+                      .footer a {
+                        margin: 0;
+                        font-size: 14px;
+                        
+                      }
+                    </style>
+                    
+                        <li id="cart">
+                          <p>
+                              <i class="fa-solid fa-message" id="cartIcon"></i>
+                              <span class="site-header__cart-count" data-cart-render="item_count">4</span>
+                           </p>
+                          
+                          <div class="cart-container">
+                            <div class="top">
+                              <h2>Chat</h2>
+                            </div>
+                            <div class="main">
+                              <!-- Content of main div with overflow-y: auto; -->
+                            </div>
+                            <div class="footer">
+                             <a href="#" style="text-decoration: underline;"> all messages </a>
+                            </div>
+                          </div>
+                          
                         </li>
+                        
                         <li><a class="active" href="{{ route('profile') }}">Profile</a></li>
                         <li><a class="join" href="{{ route('logout') }}">Logout</a></li>
                     </ul>
@@ -250,11 +343,13 @@
 
 
     <main>
+      
         @yield('content')
     </main>
 
 
     <footer class="footer-top">
+      
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-6">
@@ -262,7 +357,7 @@
             <div class="row">
               <div class="col-lg-4">
                 <div class="f-r-box">
-                  <h4>Categories</h4>
+                  <h4>Categories s</h4>
                   <nav>
                     <ul>
                       <li><a href="#">Graphics & Design</a></li>
@@ -280,7 +375,7 @@
               </div>
               <div class="col-lg-4">
                 <div class="f-r-box">
-                  <h4>About</h4>
+                  <h4>About t</h4>
                   <nav>
                     <ul>
                       <li><a href="#">Careers</a></li>
@@ -494,11 +589,7 @@
    
 @endif
 
-
-
-
   <script>
-
   if (window.location.href !== "http://localhost/miverr/") {
   var headerSearch = document.getElementById('header-search');
   var headerBottomMenu = document.querySelector('.header-bottom-menu');
@@ -507,10 +598,40 @@
   headerSearch.classList.add('show');
 }
 </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Show cart container on cart icon click
+        $('#cart').on('click', function() {
+            $('.notification-container').hide();
+            $('.cart-container').show();
+        });
 
+        // Show notification container on notification icon click
+        $('#notification').on('click', function() {
+            $('.cart-container').hide();
+            $('.notification-container').show();
+        });
+
+        // Hide both containers when clicking outside them
+        $(document).on('click', function(event) {
+            if (
+                !$(event.target).closest('#cart, #notification').length &&
+                !$(event.target).closest('.cart-container, .notification-container').length
+            ) {
+                $('.cart-container, .notification-container').hide();
+            }
+        });
+    });
+</script>
+
+
+</script>
 <script>
         $(document).ready(function() {
             $('#popoverButton').click(function() {
+
+              
                 var popover = $(this);
 
                 $.ajax({

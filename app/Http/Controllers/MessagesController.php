@@ -15,33 +15,19 @@ class MessagesController extends Controller
     public function send(Request $request)
     {
         
-        $message = new Message([
-            'from_user' => session()->get('id'),
-            'to_user' => $request->input('to_user'),
-            'content' => $request->input('message')
+        // Validate the request
+        $request->validate([
+            'message' => 'required|string',
         ]);
-        $message->save();
 
-        $options = [
-            'cluster' => env('PUSHER_APP_CLUSTER'),
-            'encrypted' => true,
-        ];
+        // Save the message to your database or handle it as needed
+        // For this example, we'll just broadcast the message directly
 
-        $pusher = new Pusher(
-            env('PUSHER_APP_KEY'),
-            env('PUSHER_APP_SECRET'),
-            env('PUSHER_APP_ID'),
-            $options
-        );
+        $message = $request->input('message');
 
-        $data = [
-            'message' => $request->input('message'),
-            'from_user' => auth()->id(),
-            'to_user' => $request->input('to_user'),
-        ];
+        // Broadcast the message using Laravel Echo and Pusher
+        event(new \App\Events\MessageSent($message));
 
-        $pusher->trigger('chat-channel', 'chat-event', $data);
-
-        return response()->json(['status' => 'Message sent']);
+        return response()->json(['status' => 'Message sent!']);
     }
 }
