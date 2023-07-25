@@ -11,20 +11,152 @@
   <meta property="og:image" content="">
   <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+ 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-***" crossorigin="anonymous">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://unpkg.com/@popperjs/core@2" media="all" rel="stylesheet" type="text/css" />
   <meta name="theme-color" content="#fafafa">
   @stack('styles')
+  <style>
+.notification-container{
+  z-index: 333;
+  width: 15%;
+  height: 250px;
+  cursor: default;
+  background-color:green;
+  position: absolute;
+  top: 47%; /* This will position the cart panel below the cart icon */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add some shadow for a better appearance */
+  border-radius: 10px;
+  display: none;
+  flex-direction: column;
+  right: 9%;   
+  } 
 
+.user-avatar {
+  width: 24px; /* Set the desired width and height for the circular avatar */
+  height: 24px;
+  border-radius: 50%; /* Apply circular border-radius to make the image circular */
+  object-fit: cover; /* Ensure the image fills the circular space without distortion */
+  
+}
+.cart-container{
+  z-index: 333;
+  width: 15%;
+  height: 250px;
+  cursor: default;
+  background-color:green;
+  position: absolute;
+  top: 47%; /* This will position the cart panel below the cart icon */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add some shadow for a better appearance */
+  border-radius: 10px;
+  display: none;
+  flex-direction: column;
+  right: 6%;
+      
+}
+.profile-container{
+  z-index: 333;
+  cursor: default;
+  background-color:cyan;
+  position: absolute;
+  top: 47%; /* This will position the cart panel below the cart icon */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add some shadow for a better appearance */
+  text-align: left;
+  display: none;
+  flex-direction: column;
+  right: 1%;
+  padding: 5px;
+  font-size:12px;
+}
+
+.profile-container .profile-item:last-child {
+  border-bottom: none;
+}
+
+
+
+.top {
+  height: 10%;
+  overflow: hidden;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.top h2 {
+  margin-top:12px;
+  padding: 30px;
+  font-size: 15px;
+  color: black;
+  
+}
+
+.main {
+  height: 80%;
+  overflow-y: auto;
+  padding: 2px;
+  color:black;
+  font-size: 12px;
+}
+
+.footer {
+  height: 10%;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.count {
+  position: absolute;
+  /* Adjust this value to position the dot correctly */
+  width: 8px; /* Customize the width of the dot */
+  height: 8px; /* Customize the height of the dot */
+  background-color: red; /* Customize the background color of the dot */
+  border-radius: 50%; /* Make the dot display as a circle */
+}
+.main .notification-item.odd {
+  padding: 4px;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: left;
+  background-color: #f9f9f9; /* Custom background color for odd items */
+}
+
+/* Style for each even notification item */
+.main .notification-item.even {
+  margin-top:1px;
+  margin-bottom:1px;
+  padding: 4px;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: left;
+  background-color: #f0f0f0; /* Custom background color for even items */
+}
+
+.main .notification-item:last-child {
+  border-bottom: none;
+}
+
+/* Hover effect for odd notification items */
+.main .notification-item.odd:hover {
+  background-color: #e5e5e5; /* Custom hover color for odd items */
+}
+
+/* Hover effect for even notification items */
+.main .notification-item.even:hover {
+  background-color: #d9d9d9; /* Custom hover color for even items */
+}
+
+
+</style>
   
 </head>
 <body>
  
-  @if(!session()->has('user_name'))
+<!--modal -->
+@if(!session()->has('user_name'))
 
   <div class="modal fade" id="joinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -147,13 +279,11 @@
 
                     </ul>
                 @else
-                
                     <ul>
                       <li id="notification">
                             <p>
-                                <i class="fa-solid fa-message" ></i>
                                 <i class="fa fa-bell" aria-hidden="true"></i>
-                                <span class="site-header__notification-count" data-notification-render="item_count">4</span>
+                                <span class="count"></span>
                             </p>
                             
                             <div class="notification-container">
@@ -162,105 +292,74 @@
                               </div>
                               <div class="main">
                                 <!-- Content of main div with overflow-y: auto; -->
+                                <div class="notification-item odd">Notification 1 Notification 1 Notification 1 Notification 1 Notification 1 Notification 1 Notification 1</div>
+                                <div class="notification-item even">Notification 2</div>
+                                <div class="notification-item odd">Notification 3</div>
+                                <div class="notification-item even">Notification 4</div>
+                                <div class="notification-item odd">Notification 5</div>
+                                <div class="notification-item even">Notification 6</div>
+                                <div class="notification-item odd">Notification 7</div>
+                                <div class="notification-item even">Notification 8</div>
+                                <div class="notification-item odd">Notification 9</div>
+                                <div class="notification-item even">Notification 10</div>
+                                <div class="notification-item odd">Notification 11</div>
+                                <div class="notification-item even">Notification 12</div>
+                                <div class="notification-item odd">Notification 13</div>
+                                <div class="notification-item even">Notification 14</div>
+                                <div class="notification-item odd">Notification 15</div>
+
                               </div>
                               <div class="footer">
-                              <a href="#" style="text-decoration: underline;">mark as read</a>
+                                <a href="#" style="text-decoration: underline; color:black;!important; font-size: 12px;">mark as read</a>
                               </div>
                             </div>
-                            
                       </li>
-                       
-                    <style>
-                      .notification-container{
-                        z-index: 333;
-                            width: 18%;
-                            height: 300px;
-                            cursor: default;
-                            background-color:cyan;
-                            position: absolute;
-                            top: 45%; /* This will position the cart panel below the cart icon */
-                            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add some shadow for a better appearance */
-                            border-radius: 1px;
-                            border: 1px solid green;
-                            display: none;
-                            flex-direction: column;
-                            right: 19%;
-                            
-                      } 
-                      .cart-container{
-                        z-index: 333;
-                            width: 20%;
-                            height: 300px;
-                            cursor: default;
-                            background-color:cyan;
-                            position: absolute;
-                            top: 45%; /* This will position the cart panel below the cart icon */
-                            border-radius: 1px;
-                            border: 1px solid green;
-                            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add some shadow for a better appearance */
-                            display: none;
-                            flex-direction: column;
-                            right: 15%;
-                            
-                      }
-                      .top {
-                        height: 10%;
-                        overflow: hidden;
-                        background-color: #f0f0f0;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                      }
 
-                      .top h2 {
-                        padding: 30px;
-                        font-size: 15px;
-                        background-color: yellow;
-                      }
-
-                      .main {
-                        height: 80%;
-                        overflow-y: auto;
-                        padding: 10px;
-                      }
-
-                      .footer {
-                        height: 10%;
-                        background-color: #f0f0f0;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                      }
-
-                      .footer a {
-                        margin: 0;
-                        font-size: 14px;
-                        
-                      }
-                    </style>
-                    
-                        <li id="cart">
-                          <p>
-                              <i class="fa-solid fa-message" id="cartIcon"></i>
-                              <span class="site-header__cart-count" data-cart-render="item_count">4</span>
-                           </p>
-                          
-                          <div class="cart-container">
-                            <div class="top">
-                              <h2>Chat</h2>
-                            </div>
-                            <div class="main">
-                              <!-- Content of main div with overflow-y: auto; -->
-                            </div>
-                            <div class="footer">
-                             <a href="#" style="text-decoration: underline;"> all messages </a>
-                            </div>
+                      <li id="cart">
+                        <p>
+                          <i class="fa fa-comments" aria-hidden="true"></i>
+                            <span class="count"></span>
+                          </p>
+                        <div class="cart-container">
+                          <div class="top">
+                            <h2>Chat</h2>
                           </div>
-                          
-                        </li>
-                        
-                        <li><a class="active" href="{{ route('profile') }}">Profile</a></li>
-                        <li><a class="join" href="{{ route('logout') }}">Logout</a></li>
+                          <div class="main">
+                            <!-- Content of main div with overflow-y: auto; -->
+                            <div class="notification-item odd">chat 1 chat 1 chat 1 chat 1 chat 1 chat 1 chat 1</div>
+                              <div class="notification-item even">chat 2</div>
+                              <div class="notification-item odd">chat 3</div>
+                              <div class="notification-item even">chat 4</div>
+                              <div class="notification-item odd">chat 5</div>
+                              <div class="notification-item even">chat 6</div>
+                              <div class="notification-item odd">chat 7</div>
+                              <div class="notification-item even">chat 8</div>
+                              <div class="notification-item odd">chat 9</div>
+                              <div class="notification-item even">chat 10</div>
+                              <div class="notification-item odd">chat 11</div>
+                              <div class="notification-item even">chat 12</div>
+                              <div class="notification-item odd">chat 13</div>
+                              <div class="notification-item even">chat 14</div>
+                              <div class="notification-item odd">chat 15</div>
+                          </div>
+                          <div class="footer">
+                            <a href="#" style="text-decoration: underline; color:black;!important; font-size: 12px;"> all messages </a>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li id="profile">
+                        <p>
+                            <img class="user-avatar" src="{{ asset('uploads/'.$user->id.'.jpg') }}" alt="User Image">
+                        </p>
+                        <div class="profile-container" id="userDropdown">
+                          <div class="notification-item odd"><a href="{{ route('profile') }}" class="profile-item even">Profile</a></div>
+                          <div class="notification-item even"><a href="#" class="profile-item odd">Setting</a></div>
+                          <div class="notification-item even"><a href="#" class="profile-item odd">Change Password</a></div>
+                          <div class="notification-item even"><a href="{{ route('logout') }}" class="profile-item odd">Logout</a></div>
+          
+                        </div>
+                      </li>
                     </ul>
                 @endif
             </nav>
@@ -479,8 +578,10 @@
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+
 <script src="../js/bootstrap-popover-x.js" type="text/javascript"></script>
 
 @if(!session()->has('user_name'))
@@ -526,7 +627,7 @@
             data: all,
             success: function(data) {
                 if (data === 'done') {
-                    window.location.href = "{{ route('profile') }}";
+                    window.location.href = "{{ route('index') }}";
                 }
                 else {
                     $("#signIn_error").text("Invalid Credentials");
@@ -603,6 +704,7 @@
     $(document).ready(function() {
         // Show cart container on cart icon click
         $('#cart').on('click', function() {
+          $('.profile-container').hide();
             $('.notification-container').hide();
             $('.cart-container').show();
         });
@@ -610,23 +712,31 @@
         // Show notification container on notification icon click
         $('#notification').on('click', function() {
             $('.cart-container').hide();
+            $('.profile-container').hide();
             $('.notification-container').show();
+        });
+        $('#profile').on('click', function() {
+            $('.cart-container').hide();
+            $('.notification-container').hide();
+            $('.profile-container').show();
         });
 
         // Hide both containers when clicking outside them
         $(document).on('click', function(event) {
             if (
-                !$(event.target).closest('#cart, #notification').length &&
-                !$(event.target).closest('.cart-container, .notification-container').length
+                !$(event.target).closest('#cart, #notification, #profile').length &&
+                !$(event.target).closest('.cart-container, .notification-container,.profile-container').length
             ) {
-                $('.cart-container, .notification-container').hide();
+                $('.cart-container, .notification-container, .profile-container').hide();
             }
         });
     });
+
+ 
 </script>
 
 
-</script>
+
 <script>
         $(document).ready(function() {
             $('#popoverButton').click(function() {
