@@ -31,7 +31,7 @@
   border-radius: 10px;
   display: none;
   flex-direction: column;
-  right: 9%;   
+  right: 13%;   
   } 
 
 .user-avatar {
@@ -53,13 +53,13 @@
   border-radius: 10px;
   display: none;
   flex-direction: column;
-  right: 6%;
+  right: 10%;
       
 }
 .profile-container{
   z-index: 333;
   cursor: default;
-  background-color:cyan;
+  background-color:white;
   position: absolute;
   top: 47%; /* This will position the cart panel below the cart icon */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add some shadow for a better appearance */
@@ -69,13 +69,12 @@
   right: 1%;
   padding: 5px;
   font-size:12px;
+  
 }
 
-.profile-container .profile-item:last-child {
-  border-bottom: none;
+.notification-item {
+  margin-bottom: 5px;
 }
-
-
 
 .top {
   height: 10%;
@@ -348,9 +347,14 @@
                         </div>
                       </li>
 
+                      <li id="order">
+                        <p>Orders</p>
+                        
+                      </li>
+
                       <li id="profile">
                         <p>
-                            <img class="user-avatar" src="<?php echo e(asset('uploads/'.$user->id.'.jpg')); ?>" alt="User Image">
+                            <img class="user-avatar" src="<?php echo e(asset('uploads/'.session()->has('id').'.jpg')); ?>" alt="User Image">
                         </p>
                         <div class="profile-container" id="userDropdown">
                           <div class="notification-item odd"><a href="<?php echo e(route('profile')); ?>" class="profile-item even">Profile</a></div>
