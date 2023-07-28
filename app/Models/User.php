@@ -42,12 +42,5 @@ class User extends Model
     {
         return $this->hasMany(Product::class);
     }
-    public function received()
-    {
-        return $this->hasMany(Message::class, 'to_user');
-    }
-    public function sent()
-    {
-        return $this->hasMany(Message::class, 'from_user_id');
-    }
+
 }

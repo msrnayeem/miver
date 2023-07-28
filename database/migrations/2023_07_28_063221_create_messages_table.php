@@ -9,21 +9,23 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('from_user');
-            $table->unsignedBigInteger('to_user');
-            $table->text('content');
+            $table->bigInteger('from_id');
+            $table->bigInteger('to_id');
+            $table->string('body',5000)->nullable();
+            $table->string('attachment')->nullable();
+            $table->boolean('seen')->default(false);
             $table->timestamps();
-
-            $table->foreign('from_user')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('to_user')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
         Schema::dropIfExists('messages');
     }

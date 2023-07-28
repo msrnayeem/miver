@@ -35,7 +35,7 @@ class ProductController extends Controller
 
     public function singleProduct($id)
     {
-        $product = Product::with(['subsubcategory.subcategory', 'user:id,username,email'])->find($id);
+        $product = Product::with(['subsubcategory.subcategory', 'user:id,name,email'])->find($id);
 
         return view('pages.product.singleProduct', compact('product'));
     }

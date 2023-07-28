@@ -1,28 +1,16 @@
 <?php
-//use route
 
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\MessagesController;
+use App\Http\Controllers\MessageController;
+
+//get messages
+Route::get('/get-message', [MessageController::class, 'getMessages'])->name('messages.index');
 
 
-Route::get('/chat', [MessagesController::class, 'index'])->name('chat.index');
-Route::post('/send-message', [MessagesController::class, 'send'])->name('chat.send');
-
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 //login
 Route::post('/loginn', [MainController::class, 'loginSubmitted'])->name('loginn');

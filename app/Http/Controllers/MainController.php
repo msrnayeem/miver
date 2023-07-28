@@ -71,7 +71,7 @@ class MainController extends Controller
         }
 
         // Set session
-        $request->session()->put('user_name', $user->username);
+        $request->session()->put('name', $user->name);
         $request->session()->put('id', $user->id);
 
         return 'done';
@@ -107,7 +107,7 @@ class MainController extends Controller
     //logout
     public function logout()
     {
-        //Session::forget('user_name');
+        //Session::forget('name');
         Session::flush();
 
         return redirect()->route('index');
