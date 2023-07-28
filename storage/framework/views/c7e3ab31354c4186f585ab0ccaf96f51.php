@@ -116,7 +116,7 @@
   </header>
 
 
-  <main>
+  <main id=>
       <?php echo $__env->yieldContent('content'); ?>
   </main>
 

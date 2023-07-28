@@ -116,7 +116,7 @@
   </header>
 
 
-  <main>
+  <main id="#main_div">
       @yield('content')
   </main>
 

@@ -3,6 +3,10 @@
     margin: 0;
     padding: 0;
 }
+#main_div{
+   
+    background-color:  #f7f7f7;
+}
 .modal-body .col-sm-8 {
     text-align: center;
 }
