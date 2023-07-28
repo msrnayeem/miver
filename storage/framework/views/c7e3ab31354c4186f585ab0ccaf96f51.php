@@ -97,7 +97,7 @@
                             <img class="user-avatar" src="<?php echo e(asset('uploads/1.jpg')); ?>" alt="User Image">
                         </p>
                         <div class="profile-container" id="userDropdown">
-                          <div class="notification-item odd"><a href="/profile" class="profile-item even">Profile</a></div>
+                          <div class="notification-item odd"><a href="<?php echo e(route('profile')); ?>" class="profile-item even">Profile</a></div>
                           <div class="notification-item even"><a href="#" class="profile-item odd">Setting</a></div>
                           <div class="notification-item even"><a href="#" class="profile-item odd">Change Password</a></div>
                           <div class="notification-item even"><a href="/logout" class="profile-item odd">Logout</a></div>
@@ -116,7 +116,7 @@
   </header>
 
 
-  <main id=>
+  <main id="#main_div">
       <?php echo $__env->yieldContent('content'); ?>
   </main>
 

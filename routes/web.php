@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\UserController;
 
 //get messages
 Route::get('/get-message', [MessageController::class, 'getMessages'])->name('messages.index');
@@ -20,6 +21,8 @@ Route::post('/signup', [MainController::class, 'signupSubmitted'])->name('signup
 
 //category
 Route::get('/category/{category}', [CategoryController::class, 'category'])->name('category');
+Route::get('/getCategoriesDetails', [CategoryController::class, 'getCategoryInfo'])->name('getCategoryInfo');
+
 
 //all product
 Route::get('/all-gigs', [ProductController::class, 'showAllProducts'])->name('allProduct');
@@ -32,7 +35,14 @@ Route::get('/', [MainController::class, 'index'])->name('index');
 
 Route::get('/logout', [MainController::class, 'logout'])->name('logout');
 
-Route::get('/profile', [MainController::class, 'profile'])->name('profile');
+Route::group(['prefix' => 'user'], function () {
+    Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+    // Route::get('/add-gig', [UserController::class, 'addGig'])->name('user.add.gig');
+    Route::get('/seller/personal-info', [UserController::class, 'personalInfo'])->name('seller.personal.info');
+    Route::get('/seller/professional-info', [UserController::class, 'professionalInfo'])->name('seller.professional.info');
+    Route::get('/add-gig', [UserController::class, 'addGig'])->name('user.add.gig');
+});
+
 Route::post('/profile-pic', [MainController::class, 'profilePic'])->name('profilePic');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

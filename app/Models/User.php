@@ -43,4 +43,9 @@ class User extends Model
         return $this->hasMany(Product::class);
     }
 
+    public function personalInfo()
+    {
+        return $this->hasOne(PersonalInfo::class);
+    }
+
 }

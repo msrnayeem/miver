@@ -27,6 +27,10 @@
     padding-left: 10px;
     padding-right: 10px;
 }
+#become-seller a{
+    text-decoration: none;
+    color: #fff;
+}
     </style>
 @endpush
 @section('content')
@@ -62,7 +66,7 @@
         </div>
       </div>
       <div class="col-md-6 d-flex justify-content-center align-items-center" id="become-seller">
-        <span class="btn-standard btn-green">Become a Seller</span>
+        <a href="{{ route('seller.personal.info') }}"><span class="btn-standard btn-green">Become a Seller</span></a>
       </div>
     </div>
   </div>

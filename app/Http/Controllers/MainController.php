@@ -19,18 +19,7 @@ class MainController extends Controller
         return view('pages.index');
     }
 
-    public function profile()
-    {
-        if (session()->has('id')) {
-            //check id in user table
-            $user = User::where('id', session()->get('id'))->first();
-
-            return view('pages.user.profile', compact('user'));
-        } else {
-            return redirect()->route('index');
-        }
-
-    }
+ 
 
     public function profilePic(Request $request)
     {
