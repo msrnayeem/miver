@@ -34,6 +34,15 @@
 
     <div class="row mb-4 mt-4"> <!-- Added mb-4 class to add bottom margin -->
         <div class="col-md-4">
+            <label for="phone">Phone</label>
+        </div>
+        <div class="col-md-6">
+            <input type="text" id="phone" name="phone" class="form-control">
+        </div>
+    </div>
+
+    <div class="row mb-4 mt-4"> <!-- Added mb-4 class to add bottom margin -->
+        <div class="col-md-4">
             <label for="profile_pic">Profile Picture</label>
         </div>
         <div class="col-md-6">

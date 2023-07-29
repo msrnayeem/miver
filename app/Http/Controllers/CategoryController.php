@@ -17,26 +17,42 @@ class CategoryController extends Controller
     }
 
     public function getCategoryInfo(Request $request)
-{
-    $occupation = $request->input('occupation');
-    
-    $categories = Category::with('subCategories.subSubCategories')
-        ->where('bannerImageLink', $occupation)
-        ->get(['id', 'name']); // Retrieve only id and name of categories
+    {
+        $category = $request->input('category');
+        
+        $categories = Category::with('subCategories.subSubCategories')
+            ->where('bannerImageLink', $category)
+            ->get(['id', 'name']); // Retrieve only id and name of categories
 
-    $subSubcategoriesData = [];
-    foreach ($categories as $category) {
-        foreach ($category->subCategories as $subCategory) {
-            foreach ($subCategory->subSubCategories as $subSubCategory) {
-                $subSubcategoriesData[] = [
-                    'id' => $subSubCategory->id,
-                    'name' => $subSubCategory->name,
-                ];
+        $subSubcategoriesData = [];
+        $subCategoriesInfo = [];
+        
+        if($request->input('info') == 'sub_category'){
+            foreach ($categories as $category) {
+                foreach ($category->subCategories as $subCategory) {
+                    $subCategoriesInfo[] = [
+                        'id' => $subCategory->id,
+                        'name' => $subCategory->name,
+                    ];
+                }
             }
+    
+            return response()->json($subCategoriesInfo);
+        } 
+        else{
+            foreach ($categories as $category) {
+                foreach ($category->subCategories as $subCategory) {
+                    foreach ($subCategory->subSubCategories as $subSubCategory) {
+                        $subSubcategoriesData[] = [
+                            'id' => $subSubCategory->id,
+                            'name' => $subSubCategory->name,
+                        ];
+                    }
+                }
+            }
+        
+            return response()->json($subSubcategoriesData);
         }
     }
-
-    return response()->json($subSubcategoriesData);
-}
 
 }
