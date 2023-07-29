@@ -57,13 +57,16 @@
                             <span><i class="fa fa-facebook-f"></i></span> 
                             <span><i class="fa fa-instagram"></i></span> 
                             <span><i class="fa fa-linkedin"></i></span> 
-                        </div> <div class=" px-2 rounded mt-4 date "> 
+                        </div> 
+                        <div class=" px-2 rounded mt-4 date "> 
                             <span class="join">Joined, <?php echo e(\Carbon\Carbon::parse($user->created_at)->format('M d, Y')); ?></span> 
                         </div> 
                         <br><br>
                         <div class="col-md-6" id="become-seller">
-                                <a href="<?php echo e(route('seller.personal.info')); ?>"><span class="btn-standard btn-green">Become a Seller</span></a>
-                            </div>
+                                <a href="<?php echo e(route('seller.personal.info')); ?>">
+                                    <span class="btn-standard btn-green">Become a Seller</span>
+                                </a>
+                        </div>
                     </div> 
                 </div>
             </div>
@@ -72,34 +75,23 @@
       <!-- tav -->
 
         <div class="col-md-6">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="active-tab" data-toggle="tab" href="#active-gigs" role="tab" aria-controls="active-gigs" aria-selected="true">Active gigs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="drafts-tab" data-toggle="tab" href="#drafts" role="tab" aria-controls="drafts" aria-selected="false">Drafts</a>
-                </li>
-            </ul>
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="active-gigs" role="tabpanel" aria-labelledby="active-tab">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- Content for Active gigs tab -->
-                            <h3>Active gigs</h3>
-                            <!-- Add other content specific to Active gigs tab here -->
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="drafts" role="tabpanel" aria-labelledby="drafts-tab">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- Content for Drafts tab -->
-                            <h3>Drafts</h3>
-                            <!-- Add other content specific to Drafts tab here -->
-                        </div>
-                    </div>
+            <div class="row">
+                <div>
+                    <button class="text-center" id="active-gigs">Active gigs</button>
+                    <button class="text-center" id="drafts">Drafts</button>
                 </div>
             </div>
+
+            <div class="row" id="for_gigs" >
+                <div class="container">
+                    <div class="card"> this is for activr gigs</div>
+                </div>
+            </div>  
+            <div class="row" id="for_drafts" style="display:none;">
+                <div class="container">
+                    <div class="card"> this is for drafts</div>
+                </div>
+            </div>         
         </div>
 
     <!-- tab emd -->
@@ -113,8 +105,21 @@
 <?php $__env->startPush('scripts'); ?>
 <script src="<?php echo e(asset('js/profile.js')); ?>"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // When clicking on "Active gigs", show the corresponding section and hide "Drafts"
+        $('#active-gigs').on('click', function() {
+            $('#for_gigs').show();
+            $('#for_drafts').hide();
+        });
+
+        // When clicking on "Drafts", show the corresponding section and hide "Active gigs"
+        $('#drafts').on('click', function() {
+            $('#for_drafts').show();
+            $('#for_gigs').hide();
+        });
+    });
+</script>
 
 <?php $__env->stopPush(); ?>
 <?php echo $__env->make('layouts.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\miver\resources\views/pages/user/profile.blade.php ENDPATH**/ ?>

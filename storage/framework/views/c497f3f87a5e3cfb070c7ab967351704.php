@@ -17,11 +17,11 @@
     <div class="container">
         <div class="row mb-4 mt-4">
             <div class="col-md-4">
-                <label for="occupation">Your Occupation</label>
+                <label for="category">Your Occupation</label>
             </div>
             
             <div class="col-md-6">
-                <select id="occupation" name="occupation" class="form-control">
+                <select id="category" name="category" class="form-control">
                     <option value="">Select an occupation</option>
                     <option value="graphics-design">Graphics Design</option>
                     <option value="digital-marketing">Digital Marketing</option>
@@ -112,13 +112,13 @@
 
 <script>
     $(document).ready(function() {
-        $('#occupation').on('change', function() {
-            var selectedOccupation = $(this).val();
-            if (selectedOccupation !== '') {
+        $('#category').on('change', function() {
+            var selectedCategory = $(this).val();
+            if (selectedCategory !== '') {
                 $.ajax({
                     url: '/getCategoriesDetails', // Replace with your route URL for getCategoryInfo
                     type: 'GET',
-                    data: { occupation: selectedOccupation },
+                    data: { category: selectedCategory },
                     success: function(response) {
                         console.log(response); // Display the response in the console
 
