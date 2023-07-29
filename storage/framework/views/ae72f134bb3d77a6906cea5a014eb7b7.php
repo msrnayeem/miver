@@ -1,16 +1,14 @@
-@extends('layouts.default')
-
-@section('title', 'Miverr - Home')
-@push('styles')
-    <link rel="stylesheet" type="text/css" href="{{ asset('') }}">
+<?php $__env->startSection('title', 'Miverr - Home'); ?>
+<?php $__env->startPush('styles'); ?>
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('')); ?>">
     <style>
     .step-header {
         border-bottom: 1px solid #e4e5e7;
     }
     </style>
  
-@endpush
-@section('content')
+<?php $__env->stopPush(); ?>
+<?php $__env->startSection('content'); ?>
 
 <div class="container px-0">
     
@@ -97,17 +95,17 @@
     </div>
 
     <div class="row mb-4 mt-4">
-    <a href="{{ route('user.add.gig') }}"><span class="btn btn-info">Finish</span></a>
+    <a href="<?php echo e(route('user.add.gig')); ?>"><span class="btn btn-info">Finish</span></a>
     </div>
 </div>
 
 
 
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('scripts')
-<script src="{{ asset('') }}"></script>
+<?php $__env->startPush('scripts'); ?>
+<script src="<?php echo e(asset('')); ?>"></script>
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -170,4 +168,5 @@
 </script>
 
 
-@endpush
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('layouts.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\Shahidur project\project\miver\resources\views/pages/user/professional-info.blade.php ENDPATH**/ ?>

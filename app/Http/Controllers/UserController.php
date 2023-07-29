@@ -22,7 +22,7 @@ class UserController extends Controller
     public function personalInfo()
     {
         if (session()->has('id')) {
-            return view('pages.user.personal-info');
+            return view('pages.user.personal-info')->with('userId',session()->has('id'));
         } else {
             return redirect()->route('index');
         }
