@@ -58,12 +58,10 @@
             <label for="full_name" class="header_name">Full Name <span class="text-danger">*</span><span class="fst-italic ps-2" style="color: #95979d;"> Private</span></label>
         </div>
         <div class="col-md-8 d-flex">
-            <div class="col-md-4 me-3">
+            
                 <input type="text" id="first_name" name="first_name" class="form-control">
-            </div>
-            <div class="col-md-4">
-                <input type="text" id="last_name" name="last_name" class="form-control">
-            </div>
+           
+            
         </div>
     </div>
 
@@ -87,6 +85,23 @@
         <div class="col-md-8">
             <div class="col-md-4">
                 <input type="text" id="phone" name="phone" class="form-control">
+            </div>
+            <div class="col-md-4 .d-sm-none .d-md-block"></div>
+            <div class="col-md-4 .d-sm-none .d-md-block"></div>
+        </div>
+    </div>
+    <div class="row my-5 py-5"> <!-- Added mb-4 class to add bottom margin -->
+        <div class="col-md-4">
+            <label for="profession" class="header_name">Profession<span class="text-danger">*</span> </label>
+        </div>
+        <div class="col-md-8">
+            <div class="col-md-4">
+                <select class="form-select" aria-label="Default select example" name="profession" id="profession">
+                    <option selected>Select Profession</option>
+                    <option value="1">Web Developer</option>
+                    <option value="2">Web Designer</option>
+                    <option value="3">Graphic Designer</option>
+                </select>
             </div>
             <div class="col-md-4 .d-sm-none .d-md-block"></div>
             <div class="col-md-4 .d-sm-none .d-md-block"></div>

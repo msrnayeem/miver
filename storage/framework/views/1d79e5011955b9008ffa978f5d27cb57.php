@@ -7,7 +7,7 @@
             <div class="row">
               <div class="col-lg-4">
                 <div class="f-r-box">
-                  <h4>Categories s</h4>
+                  <h4>Categories</h4>
                   <nav>
                     <ul>
                       <li><a href="#">Graphics & Design</a></li>
@@ -25,7 +25,7 @@
               </div>
               <div class="col-lg-4">
                 <div class="f-r-box">
-                  <h4>About t</h4>
+                  <h4>About</h4>
                   <nav>
                     <ul>
                       <li><a href="#">Careers</a></li>

@@ -1,19 +1,21 @@
-
-
 <?php $__env->startSection('title', 'Miverr - Home'); ?>
 <?php $__env->startPush('styles'); ?>
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset('')); ?>">
+    <style>
+    .step-header {
+        border-bottom: 1px solid #e4e5e7;
+    }
+    </style>
  
 <?php $__env->stopPush(); ?>
 <?php $__env->startSection('content'); ?>
 
-<div class="container">
+<div class="container px-0">
     
-    <div class="row mb-4 mt-4">
-        <div class="col-md-12">
-            <h1>Professional Information</h1>
-        </div>
-    </div>
+    <header class="step-header pt-4">
+        <h2 class="fw-bold my-3" style="color:#62646a;">Professional Info</h2>
+    </header>
+    <p class="text-end fst-italic" style="color: #95979d;font-weight:600;">* Mandatory fields</p>
     <div class="container">
         <div class="row mb-4 mt-4">
             <div class="col-md-4">
