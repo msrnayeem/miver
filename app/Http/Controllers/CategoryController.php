@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\SubSubCategory;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -16,43 +17,33 @@ class CategoryController extends Controller
         return view('pages.category.categoryMaster', compact('category'));
     }
 
-    public function getCategoryInfo(Request $request)
+    public function getSubCategory(Request $request)
     {
         $category = $request->input('category');
         
-        $categories = Category::with('subCategories.subSubCategories')
+        $categories = Category::with('subCategories')
             ->where('bannerImageLink', $category)
             ->get(['id', 'name']); // Retrieve only id and name of categories
 
-        $subSubcategoriesData = [];
         $subCategoriesInfo = [];
         
-        if($request->input('info') == 'sub_category'){
-            foreach ($categories as $category) {
-                foreach ($category->subCategories as $subCategory) {
-                    $subCategoriesInfo[] = [
-                        'id' => $subCategory->id,
-                        'name' => $subCategory->name,
-                    ];
-                }
+        foreach ($categories as $category) {
+            foreach ($category->subCategories as $subCategory) {
+                $subCategoriesInfo[] = [
+                    'id' => $subCategory->id,
+                    'name' => $subCategory->name,
+                ];
             }
-    
-            return response()->json($subCategoriesInfo);
-        } 
-        else{
-            foreach ($categories as $category) {
-                foreach ($category->subCategories as $subCategory) {
-                    foreach ($subCategory->subSubCategories as $subSubCategory) {
-                        $subSubcategoriesData[] = [
-                            'id' => $subSubCategory->id,
-                            'name' => $subSubCategory->name,
-                        ];
-                    }
-                }
-            }
-        
-            return response()->json($subSubcategoriesData);
         }
+
+        return response()->json($subCategoriesInfo);
+           
     }
+
+    public function getSubSubCategory(Request $request){
+        $subSubCategoryInfo = SubSubCategory :: where('sub_category_id', $request->input('SubCategory'))->get(['id', 'name']);
+        return response()->json($subSubCategoryInfo);
+    }
+
 
 }

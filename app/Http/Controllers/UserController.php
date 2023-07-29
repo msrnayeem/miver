@@ -27,17 +27,15 @@ class UserController extends Controller
             return redirect()->route('index');
         }
     }
-    public function professionalInfo()
-    {
-        if (session()->has('id')) {
-            return view('pages.user.professional-info');
-        } else {
-            return redirect()->route('index');
-        }
-    }
+
 
     public function addGig()
     {
         return view('pages.user.add-gig');        
+    }
+
+    public function gigInfo()
+    {
+        return view('pages.user.gig-info');
     }
 }

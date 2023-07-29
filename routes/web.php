@@ -21,7 +21,8 @@ Route::post('/signup', [MainController::class, 'signupSubmitted'])->name('signup
 
 //category
 Route::get('/category/{category}', [CategoryController::class, 'category'])->name('category');
-Route::get('/getCategoriesDetails', [CategoryController::class, 'getCategoryInfo'])->name('getCategoryInfo');
+Route::get('/getSubCategory', [CategoryController::class, 'getSubCategory'])->name('getSubCategory');
+Route::get('/getSubSubCategory', [CategoryController::class, 'getSubSubCategory'])->name('getSubSubCategory');
 
 
 //all product
@@ -39,8 +40,8 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
     // Route::get('/add-gig', [UserController::class, 'addGig'])->name('user.add.gig');
     Route::get('/seller/personal-info', [UserController::class, 'personalInfo'])->name('seller.personal.info');
-    Route::get('/seller/professional-info', [UserController::class, 'professionalInfo'])->name('seller.professional.info');
     Route::get('/add-gig', [UserController::class, 'addGig'])->name('user.add.gig');
+    Route::get('/gig-info.', [UserController::class, 'gigInfo'])->name('user.gig.info');
 });
 
 Route::post('/profile-pic', [MainController::class, 'profilePic'])->name('profilePic');

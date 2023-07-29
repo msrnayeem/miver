@@ -74,18 +74,12 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6"> </div>
-                <br>
-                <br>
-                <div class="col-md-6" id="service_type_wrapper" style="display: none;">
-                    <select class="form-control" id="service_type">
-                        <option value="">Select service type</option>
-                        <option value="basic">Basic</option>
-                        <option value="standard">Standard</option>
-                        <option value="premium">Premium</option>
-                    </select>
-                </div>
+            
+            <div class="row mb-4 mt-4">
+                <div class="col-md-4"></div>
+                <div class="col-md-6"  id="checkboxContainer" >
+                </div>      
+
             </div>
         </div>
     </div>
@@ -122,10 +116,9 @@
     <!-- main row 3 complete -->
 
     <br><br>
-    <div class="row">
-        <div class="col-md-12">
-            <button class="btn btn-primary">Save & Continue</button>
-        </div>
+    
+    <div class="row my-2 py-2 text-end">
+        <a href="{{ route('user.gig.info') }}"><span class="btn btn" style="background-color:#1dbf73; color:white; padding-inline:40px">Continue</span></a>
     </div>
 </div>
 
@@ -149,13 +142,14 @@
 
             if (selectedCategory !== '') {
                 $.ajax({
-                    url: '/getCategoriesDetails', 
+                    url: '/getSubCategory', 
                     type: 'GET',
                     data: { 
                         category: selectedCategory,
                         info: 'sub_category'
                      },
                     success: function(response) {
+    
                         selectElement.innerHTML = '';
 
                         response.forEach(function(subCategory) {
@@ -174,9 +168,40 @@
         $("#sub_category").change(function() {
             var subCategorySelected = $(this).val();
             if (subCategorySelected !== "") {
-                $("#service_type_wrapper").show();
-            } else {
-                $("#service_type_wrapper").hide();
+                $.ajax({
+                    url: '/getSubSubCategory', // Replace with your route URL for getCategoryInfo
+                    type: 'GET',
+                    data: { SubCategory: subCategorySelected },
+                    success: function(response) {
+                        console.log(response);
+                        // Clear the previous content in the checkboxContainer div
+                        var checkboxHtml = '<div class="row">';
+                        var columnCount = 2; // Number of columns
+                        var itemsPerColumn = Math.ceil(response.length / columnCount);
+                        
+                        for (var i = 0; i < columnCount; i++) {
+                            checkboxHtml += '<div class="col-md-6">';
+                            for (var j = i * itemsPerColumn; j < (i + 1) * itemsPerColumn && j < response.length; j++) {
+                                var subSubCategory = response[j];
+                                checkboxHtml += '<div class="form-check">';
+                                checkboxHtml += '<input class="form-check-input" type="checkbox" name="sub_sub_category_ids[]" value="' + subSubCategory.id + '">';
+                                checkboxHtml += '<label class="form-check-label">' + subSubCategory.name + '</label>';
+                                checkboxHtml += '</div>';
+                            }
+                            checkboxHtml += '</div>';
+                        }
+                        checkboxHtml += '</div>';
+
+                        // Update the content of #checkboxContainer and show it
+                        $('#checkboxContainer').html(checkboxHtml);
+                    },
+                    error: function() {
+                        var errorHtml = '<p>Error fetching sub sub category details.</p>';
+                        $('#checkboxContainer').empty();
+                        $('#checkboxContainer').html(errorHtml);
+                        
+                    }
+                });
             }
         });
     });

@@ -150,7 +150,7 @@
     </div>
 
     <div class="row my-2 py-2 text-end">
-        <a href="{{ route('seller.professional.info') }}"><span class="btn btn" style="background-color:#1dbf73; color:white; padding-inline:40px">Continue</span></a>
+        <a href="{{ route('user.add.gig') }}"><span class="btn btn" style="background-color:#1dbf73; color:white; padding-inline:40px">Continue</span></a>
     </div>
 </div>
 
