@@ -7,69 +7,69 @@ $(document).ready(function() {
     });
 
     $('#messenger').on('click', function() {
-    $('.profile-container').hide();
-    $('.notification-container').hide();
-    var messengerContainer = $('.messenger-container');
+      $('.profile-container').hide();
+      $('.notification-container').hide();
+      var messengerContainer = $('.messenger-container');
 
-    // Check if the messenger container is hidden
-    if (messengerContainer.is(':hidden')) {
-    $('.no-messages-message').hide(); // Initially hide the "No messages yet" message
-    $('.loading-message').show();
-    
-    $.ajax({
-    url: '/get-message',
-    method: 'GET',
-    success: function(data) {
-      $('.loading-message').hide();
-      if (data.status === true && data.data.length > 0) {
-       
-        messengerContainer.find('.main').empty();
+      // Check if the messenger container is hidden
+      if (messengerContainer.is(':hidden')) {
+      $('.no-messages-message').hide(); // Initially hide the "No messages yet" message
+      $('.loading-message').show();
+      
+        $.ajax({
+          url: '/get-message',
+          method: 'GET',
+          success: function(data) {
+            $('.loading-message').hide();
+            if (data.status === true && data.data.length > 0) {
+            
+              messengerContainer.find('.main').empty();
 
-        data.data.forEach(function(message) {
-          var receiverName = message.receiver.name.split(' ')[0];
-          var body = message.body;
-          var truncatedBody = body.length > 20 ? body.substring(0, 20) + '...' : body;
-          var timestamp = calculateTimeAgo(message.created_at);
-          var messageHTML = `
-            <div class="container px-0 pb-1 px-2">
-              <div class="row mx-0 bg-white rounded">
-                <div class="col-auto px-1">
-                  <img src="/uploads/1.jpg" alt="User 1 Avatar" class="chat_avatar">
-                </div>
-                <div class="col px-0 mx-1">
-                  <div class="row mx-0">
-                    <div class="col-5 px-0 text-start">${receiverName}</div>
-                    <div class="col-7 px-0 text-end fw-lighter">
-                      <small>${timestamp}</small>
+              data.data.forEach(function(message) {
+                var receiverName = message.receiver.name.split(' ')[0];
+                var body = message.body;
+                var truncatedBody = body.length > 20 ? body.substring(0, 20) + '...' : body;
+                var timestamp = calculateTimeAgo(message.created_at);
+                var messageHTML = `
+                  <div class="container px-0 pb-1 px-2">
+                    <div class="row mx-0 bg-white rounded">
+                      <div class="col-auto px-1">
+                        <img src="/uploads/1.jpg" alt="User 1 Avatar" class="chat_avatar">
+                      </div>
+                      <div class="col px-0 mx-1">
+                        <div class="row mx-0">
+                          <div class="col-5 px-0 text-start">${receiverName}</div>
+                          <div class="col-7 px-0 text-end fw-lighter">
+                            <small>${timestamp}</small>
+                          </div>
+                        </div>
+                        <div class="row mx-0 text-start">
+                          <p class="my-0 px-0 fw-lighter">${truncatedBody}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div class="row mx-0 text-start">
-                    <p class="my-0 px-0 fw-lighter">${truncatedBody}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          `;
+                `;
 
-          messengerContainer.find('.main').append(messageHTML);
-        });
+                messengerContainer.find('.main').append(messageHTML);
+              });
 
-        // Show the messenger container after adding the messages
-        messengerContainer.toggle();
-      } else {
-        console.log('No messages found');
-        
-        $('.loading-message').remove();
-        $('.no-messages-message').show();
-        messengerContainer.show();
-        
-      }
-    },
-    error: function(xhr, status, error) {
-      console.error('Error fetching messages:', error);
-      $('.loading-message').hide();
-    }
-    });
+              // Show the messenger container after adding the messages
+              messengerContainer.toggle();
+            } else {
+              console.log('No messages found');
+              
+              $('.loading-message').remove();
+              $('.no-messages-message').show();
+              messengerContainer.show();
+              
+            }
+        },
+        error: function(xhr, status, error) {
+          console.error('Error fetching messages:', error);
+          $('.loading-message').hide();
+        }
+      });
     } else {
     // If the messenger container is already open, just toggle it to hide it
     messengerContainer.toggle();

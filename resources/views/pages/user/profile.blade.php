@@ -106,7 +106,6 @@
 
 @push('scripts')
 <script src="{{ asset('js/profile.js') }}"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script>
     $(document).ready(function() {
         // When clicking on "Active gigs", show the corresponding section and hide "Drafts"
