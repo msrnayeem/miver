@@ -23,6 +23,10 @@
   }
 }
 @media (max-width: 767px) {
+  #imageForSignIn{
+    display: none; /* Hide the image column on mobile view */
+  }
+
   /* Hide the image column on mobile devices */
   .modal-content .col-sm-6:first-child {
     display: none;

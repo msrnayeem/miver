@@ -33,7 +33,7 @@
                     <input type="text" class="form-control" placeholder="Find Service" aria-label="Recipient's username" aria-describedby="basic-addon2">
                     <i class="fas fa-search" aria-hidden="true"></i>
                     <div class="input-group-append">
-                    <button class="search btn btn-outline-secondary" type="button">Search</button>
+                      <button class="search btn btn-outline-secondary" type="button" style="margin-left: 10px;">Search</button>
                     </div>
                 </div>
               </div>
@@ -133,7 +133,7 @@
   @endif
 
 <script>
-  if (window.location.href !== "http://localhost/miverr/") {
+  if (window.location.href !== "http://127.0.0.1:8000/") {
   var headerSearch = document.getElementById('header-search');
   var headerBottomMenu = document.querySelector('.header-bottom-menu');
 
