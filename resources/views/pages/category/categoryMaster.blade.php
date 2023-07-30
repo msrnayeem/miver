@@ -27,7 +27,7 @@
     <div class="categories">
         @foreach($category->subCategories as $subCategory)
         <div class="card">
-        <img src="" alt="{{ $category->name }}">
+        <img src="{{ asset('assets/images/' . $category->bannerImageLink . '/' . $subCategory->imageName) }}" alt="{{ $category->name }}">
             <h3>{{ $subCategory->name }}</h3>
             <ul>
                 @foreach($subCategory->subSubCategories as $subSubCategory)
@@ -48,9 +48,20 @@
     <h3>{{ $category->name }} Related Guides</h3>
     <div class="categories">
         @if(!$category->guides->isEmpty())
+            
+            @php
+                $counter = 1;
+            @endphp
+
             @foreach($category->guides as $guide)
+                    @php
+                    // Convert the counter to a two-digit string with leading zeros
+                    $idd = str_pad($counter, 2, '0', STR_PAD_LEFT);
+                    $counter++; // Increment the counter for the next iteration
+                @endphp
+
             <div class="card">
-                <img src="{{ $guide->imageLink }}" alt="Logo & Brand Identity">
+            <img src="{{ asset('assets/images/' . $category->bannerImageLink . '/' .$idd. '.jpg') }}" alt="Logo & Brand Identity">
                 <div class="guide-content">
                     <a href="" class="guide-description">{{ $guide->title }}</a>
                 </div>
