@@ -20,7 +20,7 @@ public function getMessages()
             $query->where('to_id', $userId)
                 ->orWhere('from_id', $userId);
         })
-        
+        ->groupByRaw('LEAST(from_id, to_id), GREATEST(from_id, to_id)')
         ->orderByDesc('created_at')
         ->get();
         if($messages != null){
