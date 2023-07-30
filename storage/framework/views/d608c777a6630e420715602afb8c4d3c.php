@@ -1,8 +1,6 @@
-@extends('layouts.default')
-
-@section('title', 'Miverr - Home')
-@push('styles')
-    <link rel="stylesheet" type="text/css" href="{{ asset('') }}">
+<?php $__env->startSection('title', 'Miverr - Home'); ?>
+<?php $__env->startPush('styles'); ?>
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('')); ?>">
     <style>
       .text-center{
         margin-bottom: 22px;
@@ -13,8 +11,8 @@
       }
     </style>
  
-@endpush
-@section('content')
+<?php $__env->stopPush(); ?>
+<?php $__env->startSection('content'); ?>
 
 
   <div class="container">
@@ -140,18 +138,19 @@
 
     </div>
     <div class="row my-2 py-2 text-end">
-          <a href="{{ route('profile') }}"><span class="btn btn" style="background-color:#1dbf73; color:white; padding-inline:50px">Save</span></a>
+          <a href="<?php echo e(route('profile')); ?>"><span class="btn btn" style="background-color:#1dbf73; color:white; padding-inline:50px">Save</span></a>
     </div> 
   </div>
 
  
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('scripts')
-<script src="{{ asset('') }}"></script>
+<?php $__env->startPush('scripts'); ?>
+<script src="<?php echo e(asset('')); ?>"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Bootstrap CSS (make sure to include the Bootstrap CSS in your HTML) -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-@endpush
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('layouts.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\Shahidur project\project\miver\resources\views/pages/user/gig-info.blade.php ENDPATH**/ ?>

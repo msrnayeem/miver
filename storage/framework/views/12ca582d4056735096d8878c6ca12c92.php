@@ -1,21 +1,21 @@
 <html>
 <head>
-  @include('component.meta')
+  <?php echo $__env->make('component.meta', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
   <title>Miverr</title>
 
    
-        @include('component.head-css')
-@if(session()->has('name'))
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/carts.css') }}">
-@endif
-    @stack('styles')
+        <?php echo $__env->make('component.head-css', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php if(session()->has('name')): ?>
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/css/carts.css')); ?>">
+<?php endif; ?>
+    <?php echo $__env->yieldPushContent('styles'); ?>
 </head>
 
 <body>
 
-@if(!session()->has('name'))
-  @include('component.register')
-@endif
+<?php if(!session()->has('name')): ?>
+  <?php echo $__env->make('component.register', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php endif; ?>
 
   <header class="header sticky-top">
     <div class="container-fluid">
@@ -25,7 +25,7 @@
             <div class="row">
               <div class="col-lg-2">
                 <div class="logo">
-                  <a href="{{ route('index') }}">Miverr</a>
+                  <a href="<?php echo e(route('index')); ?>">Miverr</a>
                 </div>
               </div>
               <div class="col-lg-10" id="header-search">
@@ -44,16 +44,16 @@
         <div class="col-lg-6">
           <div class="right">
               <nav class="header-right-menu">
-                @if(!session()->has('name'))
+                <?php if(!session()->has('name')): ?>
                     <ul>
-                        <!-- <li><a class="active" href="{{ route('profile') }}">Profile</a></li> -->
+                        <!-- <li><a class="active" href="<?php echo e(route('profile')); ?>">Profile</a></li> -->
                         <li><a href="#"><i class="fas fa-flag-usa"></i>English</a></li>
                         <li><a href="#">Become a Seller</a></li>
                         <li id="signInTrigger">Sign In</li>
                         <li id="joinTrigger"><a href="#" class="active">Join</a></li>
 
                     </ul>
-                @else
+                <?php else: ?>
                     <ul>
                       <li id="notification">
                             <p>
@@ -94,43 +94,43 @@
 
                       <li id="profile">
                         
-                            <img class="user-avatar align-self-start" src="{{ asset('uploads/1.jpg') }}" alt="User Image" style="width:29px;height:29px;margin-bottom: 8px;">
+                            <img class="user-avatar align-self-start" src="<?php echo e(asset('uploads/1.jpg')); ?>" alt="User Image" style="width:29px;height:29px;margin-bottom: 8px;">
                         
                         <div class="profile-container" id="userDropdown">
-                          <div class="notification-item odd"><a href="{{ route('profile') }}" class="profile-item even">Profile</a></div>
+                          <div class="notification-item odd"><a href="<?php echo e(route('profile')); ?>" class="profile-item even">Profile</a></div>
                           <div class="notification-item even"><a href="#" class="profile-item odd">Setting</a></div>
                           <div class="notification-item even"><a href="#" class="profile-item odd">Change Password</a></div>
                           <div class="notification-item even"><a href="/logout" class="profile-item odd">Logout</a></div>
                         </div>
                       </li>
                     </ul>        
-                @endif
+                <?php endif; ?>
               </nav>    
             </div>
           </div>
       </div>
 
-    @include('component.header-bottom-menu')
+    <?php echo $__env->make('component.header-bottom-menu', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     </div>
   </header>
 
 
   <main id="#main_div">
-      @yield('content')
+      <?php echo $__env->yieldContent('content'); ?>
   </main>
 
-  @include('component.footer')
+  <?php echo $__env->make('component.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 
-  @if(!session()->has('name'))
-    <script src="{{ asset('js/register.js') }}"></script>
-  @else
-    <script src="{{ asset('js/logged.js') }}"></script>
-  @endif
+  <?php if(!session()->has('name')): ?>
+    <script src="<?php echo e(asset('js/register.js')); ?>"></script>
+  <?php else: ?>
+    <script src="<?php echo e(asset('js/logged.js')); ?>"></script>
+  <?php endif; ?>
 
 <script>
   if (window.location.href !== "http://localhost/miverr/") {
@@ -142,7 +142,7 @@
 }
 </script>
 
-@stack('scripts')
+<?php echo $__env->yieldPushContent('scripts'); ?>
 </body>
 
-</html>
+</html><?php /**PATH E:\Shahidur project\project\miver\resources\views/layouts/default.blade.php ENDPATH**/ ?>

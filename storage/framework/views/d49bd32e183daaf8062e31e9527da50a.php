@@ -127,4 +127,4 @@
         </div>
       </div>
     </div>
-  </footer>
+  </footer><?php /**PATH E:\Shahidur project\project\miver\resources\views/component/footer.blade.php ENDPATH**/ ?>

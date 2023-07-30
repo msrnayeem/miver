@@ -1,8 +1,6 @@
-@extends('layouts.default')
-
-@section('title', 'Miverr - Home')
-@push('styles')
-    <link rel="stylesheet" type="text/css" href="{{ asset('') }}">
+<?php $__env->startSection('title', 'Miverr - Home'); ?>
+<?php $__env->startPush('styles'); ?>
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('')); ?>">
     <style>
     .container{
         font: 400 16px/24px "Macan","Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -42,8 +40,8 @@
 
     </style>
  
-@endpush
-@section('content')
+<?php $__env->stopPush(); ?>
+<?php $__env->startSection('content'); ?>
 
 <div class="container">
     
@@ -115,7 +113,7 @@
         <div class="col-md-8">
 
             <div class="imageContainer" title="Profile Picture" >
-                <img src="{{ asset('uploads/'.$userId.'.jpg') }}" class="rounded-circle shadow-4-strong image" id="image" height="150" width="150" />
+                <img src="<?php echo e(asset('uploads/'.$userId.'.jpg')); ?>" class="rounded-circle shadow-4-strong image" id="image" height="150" width="150" />
                 <input type="file" id="myfile" style="display: none;"/>
                 <div class="middle" >
                     <i class="fa fa-camera" id="cam_icon" style="font-size:36px; color:black;"></i>
@@ -150,7 +148,7 @@
     </div>
 
     <div class="row my-2 py-2 text-end">
-        <a href="{{ route('user.add.gig') }}"><span class="btn btn" style="background-color:#1dbf73; color:white; padding-inline:40px">Continue</span></a>
+        <a href="<?php echo e(route('user.add.gig')); ?>"><span class="btn btn" style="background-color:#1dbf73; color:white; padding-inline:40px">Continue</span></a>
     </div>
 </div>
 
@@ -161,11 +159,11 @@
 }
     </style>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('scripts')
-<script src="{{ asset('') }}"></script>
-<script src="{{ asset('js/profile.js') }}"></script>
+<?php $__env->startPush('scripts'); ?>
+<script src="<?php echo e(asset('')); ?>"></script>
+<script src="<?php echo e(asset('js/profile.js')); ?>"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $('#image').click(function(){
@@ -175,4 +173,5 @@
         $('#myfile').click()
     })
     </script>
-@endpush
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('layouts.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\Shahidur project\project\miver\resources\views/pages/user/personal-info.blade.php ENDPATH**/ ?>
