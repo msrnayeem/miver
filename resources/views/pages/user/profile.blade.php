@@ -143,7 +143,7 @@
             </div>  
             <div class="row mt-5" id="for_drafts" style="display:none;">
 
-                @for($i=1; $i<=2; $i++ )
+                @for($i=1; $i<=4; $i++ )
                 <div class="col-md-4 my-3">
                     <div class="gig_card border">
                         <div>
@@ -158,7 +158,7 @@
                 </div>
                 @endfor
 
-                <div class="col-md-4">
+                <div class="col-md-4 my-3">
                     <div class="gig_card border container">
                         <div class="row h-100">
                             <div class="col ">

@@ -1,7 +1,80 @@
 <?php $__env->startSection('title', 'Miverr - Home'); ?>
 
-
 <?php $__env->startSection('content'); ?>
+
+<style>
+  .caro_btn{
+    width: 40px;
+    background-color: #d1d1d1;
+    border-radius: 50%;
+    padding-block: 10px;
+    padding-inline: 10px;
+  }
+
+  .cart-img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        display: block;
+        border-radius: 10px;
+        
+   }
+
+   .heading-caption{
+    margin-left: 125px;
+    font-family: Goudy Old Style,serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 35px;
+    color: black;
+}
+
+.gig_title{
+  font-size: 17px;
+  color:#56575a; 
+  font-weight:500;
+  text-decoration:none;
+}
+.video_image{
+  width: 100%;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+@media screen and (max-width:414px){
+    .heading-caption{
+        margin-left: 30px;
+        font-size:23px;
+    }
+      
+}
+    
+    @media only screen and (max-width:575px){
+        .laptop{
+            display: none;
+        }
+    }
+    .get-start-cont{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .pro-content{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .video-play{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+  </style>
 <section class="slider">
     <div class="container">      
       <div class="row">
@@ -56,7 +129,7 @@
       </nav>
     </div>
   </section>
-  <section class="service">
+  <!-- <section class="service">
     <div class="container-fluid">
       <div class="service-cont">
         <h2>Popular professional services</h2>
@@ -152,7 +225,185 @@
       </div>
     </div>  
     </div>
-  </section>
+  </section> -->
+
+
+
+      <!--professional services section-->
+      <div class="row">
+        <div class="row align-items-center" style="height: 100px;">
+            <h2 class="heading-caption">Popular professional services</h2>
+        </div>
+        <div class="row px-0 m-0 align-items-center justify-content-center">
+                        <!--slider for mobile-->
+                        <!--slider-->
+                        <div class="row d-flex align-items-center d-sm-none">
+                            <div class="col-1 d-flex align-items-center justify-content-center px-0">
+                               <a class="caro_btn" role="button" data-bs-target="#carouselExampleIndicatorMobile" data-bs-slide="prev">
+                                  <div class="carousel-nav-icon">
+                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <path d="m88.6,121.3c0.8,0.8 1.8,1.2 2.9,1.2s2.1-0.4 2.9-1.2c1.6-1.6 1.6-4.2 0-5.8l-51-51 51-51c1.6-1.6 1.6-4.2 0-5.8s-4.2-1.6-5.8,0l-54,53.9c-1.6,1.6-1.6,4.2 0,5.8l54,53.9z"/>
+                                     </svg>
+                                  </div>
+                               </a>
+                            </div>
+                            <div class="col-10">
+                               <!--Start carousel-->
+                               <div id="carouselExampleIndicatorMobile" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+                      
+                                  <div class="carousel-inner">
+                                     <div class="carousel-item active">
+                                        <div class="row mx-0">
+                                            
+                                            <div style="padding-inline: 0px; min-width: 130px;" class="col col-md cart-view">
+                                                <div class="cart-img-container align-self-start" style="height: 180px;">
+                                                    <a href="#"><img src="<?php echo e(asset('image.png')); ?>" class="cart-img" ></a>
+                                                </div>
+                                                <div class="cart-product-details " style=" color:black;margin-block:10px;font-family: Source Sans Pro,sans-serif;font-style: normal;">
+                                                    <div class="d-flex justify-content-between mb-1" style="font-size: 18px;"><span >Seller name </span><span class="text-end">Level 2</span></div>
+                                                    <p class="text-start gig_title mb-4">I will create web design</p>
+
+                                                    <div class="d-flex mb-4">
+                                                        <span class=" review">
+                                                            <i class="fa fa-star" aria-hidden="true"></i>5<span style="color:#56575a; ">(30)</span>
+                                                        </span>
+                                                    </div>
+                                                    <p>From $20</p>
+                                                </div> 
+                                            </div>
+
+                                        </div>
+                                     </div>
+                                     
+                                    <?php for($i=1; $i<=4; $i++): ?>
+                                     <div class="carousel-item">
+                                        <div class="row mx-0">
+
+                                            <div style="padding-inline: 0px; min-width: 130px;" class="col col-md cart-view">
+                                                <div class="cart-img-container align-self-start" style="height: 180px;">
+                                                    <a href="#"><img src="<?php echo e(asset('image.png')); ?>" class="cart-img" ></a>
+                                                </div>
+                                                <div class="cart-product-details " style=" color:black;margin-block:10px;font-family: Source Sans Pro,sans-serif;font-style: normal;">
+                                                    <div class="d-flex justify-content-between mb-1" style="font-size: 18px;"><span >Seller name <?php echo e($i); ?></span><span class="text-end">Level 2</span></div>
+                                                    <p class="text-start gig_title mb-4">I will create web design <?php echo e($i); ?></p>
+
+                                                    <div class="d-flex mb-4">
+                                                        <span class=" review">
+                                                            <i class="fa fa-star" aria-hidden="true"></i>5<span style="color:#56575a; ">(3<?php echo e($i); ?>)</span>
+                                                        </span>
+                                                    </div>
+                                                    <p>From $20</p>
+                                                </div> 
+                                            </div>
+
+                                        </div>
+                                     </div>
+                                     <?php endfor; ?>
+
+                                  </div>
+                               </div>
+                               <!--End carousel-->
+                            </div>
+                            <div class="col-1 d-flex align-items-center justify-content-center px-0"><a class="caro_btn" role="button" data-bs-target="#carouselExampleIndicatorMobile" data-bs-slide="next">
+                               <div class="carousel-nav-icon">
+                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                     <path d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z"/>
+                                  </svg>
+                               </div>
+                               </a>
+                            </div>
+                         </div>
+                        <!--end slider-->
+                        <!--end of slider for mobile-->
+
+                        <!--for large screen section-->
+                        <!--slider-->
+                        <div class="row align-items-center laptop">
+                            <div class="col-1 d-flex align-items-center justify-content-center px-0">
+                               <a class="caro_btn" role="button" data-bs-target="#carouselExampleIndicator" data-bs-slide="prev">
+                                  <div class="carousel-nav-icon">
+                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <path d="m88.6,121.3c0.8,0.8 1.8,1.2 2.9,1.2s2.1-0.4 2.9-1.2c1.6-1.6 1.6-4.2 0-5.8l-51-51 51-51c1.6-1.6 1.6-4.2 0-5.8s-4.2-1.6-5.8,0l-54,53.9c-1.6,1.6-1.6,4.2 0,5.8l54,53.9z"/>
+                                     </svg>
+                                  </div>
+                               </a>
+                            </div>
+                            <div class="col-10">
+                               <!--Start carousel-->
+                               <div id="carouselExampleIndicator" class="carousel slide" data-bs-ride="carousel" >
+                      
+                                  <div class="carousel-inner">
+                                     <div class="carousel-item active">
+                                        <div class="row mx-0">
+
+                                          <?php for($i=1; $i<=6;$i++): ?>
+                                            <div style="padding-inline: 6px; min-width: 130px;" class="col col-md cart-view">
+                                                <div class="cart-img-container align-self-start" style="height: 180px;">
+                                                    <a href="#"><img src="<?php echo e(asset('image.png')); ?>" class="cart-img" ></a>
+                                                </div>
+                                                <div class="cart-product-details " style=" color:black;margin-block:10px;font-family: Source Sans Pro,sans-serif;font-style: normal;">
+                                                  <div class="d-flex justify-content-between mb-1" style="font-size: 18px;"><span >Seller name <?php echo e($i); ?> </span><span class="text-end">Level 2</span></div>
+                                                  <a class="text-start gig_title mb-4" href="#">I will create web design <?php echo e($i); ?></a>
+
+                                                  <div class="d-flex mb-4">
+                                                      <span class=" review">
+                                                          <i class="fa fa-star" aria-hidden="true"></i>5<span style="color:#56575a; ">(3<?php echo e($i); ?>)</span>
+                                                      </span>
+                                                  </div>
+                                                  <p>From $2<?php echo e($i); ?></p>
+                                                </div> 
+                                            </div>
+                                          <?php endfor; ?>
+            
+
+                                        </div>
+                                     </div>
+                                     <div class="carousel-item">
+                                        <div class="row mx-0">
+                                            
+                                            <?php for($i=7; $i<=12;$i++): ?>
+                                            <div style="padding-inline: 6px; min-width: 130px;" class="col col-md cart-view">
+                                                <div class="cart-img-container align-self-start" style="height: 180px;">
+                                                    <a href="#"><img src="<?php echo e(asset('image.png')); ?>" class="cart-img" ></a>
+                                                </div>
+                                                <div class="cart-product-details " style=" color:black;margin-block:10px;font-family: Source Sans Pro,sans-serif;font-style: normal;">
+                                                  <div class="d-flex justify-content-between mb-1" style="font-size: 18px;"><span >Seller name <?php echo e($i); ?> </span><span class="text-end">Level 2</span></div>
+                                                  <a class="text-start gig_title mb-4" href="#">I will create web design <?php echo e($i); ?></a>
+
+                                                  <div class="d-flex mb-4">
+                                                      <span class=" review">
+                                                          <i class="fa fa-star" aria-hidden="true"></i>5<span style="color:#56575a; ">(3<?php echo e($i); ?>)</span>
+                                                      </span>
+                                                  </div>
+                                                  <p>From $2<?php echo e($i); ?></p>
+                                                </div> 
+                                            </div>
+                                            <?php endfor; ?>
+            
+                                           
+                                        </div>
+                                     </div>
+                                  </div>
+                               </div>
+                               <!--End carousel-->
+                            </div>
+                            <div class="col-1 d-flex align-items-center justify-content-center px-0"><a class="caro_btn" role="button" data-bs-target="#carouselExampleIndicator" data-bs-slide="next">
+                               <div class="carousel-nav-icon">
+                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                     <path d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z"/>
+                                  </svg>
+                               </div>
+                               </a>
+                            </div>
+                         </div>
+                        <!--end slider-->
+
+        </div>
+    </div>
+    <!--end of professional services section-->
+
+
+
   <section class="work">
     <div class="container-fluid">
       <div class="row">
@@ -176,7 +427,7 @@
         <div class="col-lg-6">
           <div class="work-right">
             <picture class="work-right-img">
-              <img style="width: 650px;" src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_700,dpr_1.0/general_assets/logged_out_homepage/assets/selling_proposition/1400-selling-proposition-2x.png" alt="">
+              <img class="video_image" src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_700,dpr_1.0/general_assets/logged_out_homepage/assets/selling_proposition/1400-selling-proposition-2x.png" alt="">
             </picture>
             <article class="video-play">
               <span><i class="fas fa-play"></i></span>
@@ -264,7 +515,8 @@
           <div class="col-lg-3">
             <div class="project-box">
               <picture class="p-b-img">
-                <img src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_320,dpr_1.0/general_assets/logged_out_homepage/assets/made_on_fiverr/carmelacaldart0.jpg" alt="">
+                <img style="width:100%;object-fit: cover;object-position: center center;" 
+                  src="https://fiverr-res.cloudinary.com/q_auto,f_auto,dpr_1.0/general_assets/logged_out_homepage/assets/made_on_fiverr/carmelacaldart0.jpg" alt="">
               </picture>
               <article class="p-b-cont">
                 <span><a href="#"><img src="https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/bc8d9342a981e3e7f42c4c3e15b30e7d-1555596582200/4754a943-ba33-4953-b84a-033fd3d36350.jpg" alt="">IIIustration <p>camelacaldarto</p></a></span>
@@ -274,7 +526,8 @@
           <div class="col-lg-3">
             <div class="project-box">
               <picture class="p-b-img">
-                <img src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_320,dpr_1.0/general_assets/logged_out_homepage/assets/made_on_fiverr/spickex.jpg" alt="">
+                <img style="width:100%;object-fit: cover;object-position: center center;" 
+                src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_320,dpr_1.0/general_assets/logged_out_homepage/assets/made_on_fiverr/spickex.jpg" alt="">
               </picture>
               <article class="p-b-cont">
                 <span><a href="#"><img src="https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/profile/photos/22711136/original/fiverr_profile.jpg" alt="">Flyer Design <p>by spickex</p></a></span>
@@ -284,7 +537,8 @@
           <div class="col-lg-3">
             <div class="project-box">
               <picture class="p-b-img">
-                <img src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_320,dpr_1.0/general_assets/logged_out_homepage/assets/made_on_fiverr/artsi3d.png" alt="">
+                <img style="width:100%;object-fit: cover;object-position: center center;"
+                src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_320,dpr_1.0/general_assets/logged_out_homepage/assets/made_on_fiverr/artsi3d.png" alt="">
               </picture>
               <article class="p-b-cont">
                 <span><a href="#"><img src="https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/a832de173d05a95cd49903ba5b7dad13-1533185904165/f601e668-0887-4bf6-be52-ff28be45a1e3.jpg" alt="">3 d Models & Product Design <p>by artsi3d</p></a></span>
@@ -294,7 +548,8 @@
           <div class="col-lg-3">
             <div class="project-box">
               <picture class="p-b-img">
-                <img src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_320,dpr_1.0/general_assets/logged_out_homepage/assets/made_on_fiverr/dvincentgomes.jpg" alt="">
+                <img style="width:100%;object-fit: cover;object-position: center center;"
+                src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_320,dpr_1.0/general_assets/logged_out_homepage/assets/made_on_fiverr/dvincentgomes.jpg" alt="">
               </picture>
               <article class="p-b-cont">
                 <span><a href="#"><img src="https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/01b6ce5dc58e320d3e1e27d9c6a10143-1556123965312/c675e6f4-303e-4fab-9854-314669dda095.jpg" alt="">IIIustration <p>dvincentgomes</p></a></span>
@@ -312,7 +567,7 @@
         <div class="col-lg-6">
           <div class="work-right">
             <picture class="work-right-img">
-              <img style="width: 650px;" src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_600,dpr_1.0/general_assets/logged_out_homepage/assets/testimonials/1440-haerfest-2x.jpg" alt="">
+              <img class="video_image" src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_600,dpr_1.0/general_assets/logged_out_homepage/assets/testimonials/1440-haerfest-2x.jpg" alt="">
             </picture>
             <article class="video-play">
               <span><i class="fas fa-play"></i></span>
@@ -332,7 +587,8 @@
   <section class="fiver-pro">
     <div class="container-fluid">
       <div class="pro-img">
-        <img src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_1400,dpr_1.0/general_assets/logged_out_homepage/assets/pro/pro_banner_1400px-2x.jpg" alt="">
+        <img style="width:100%;min-height:300px;object-fit: cover;object-position: center center;"
+         src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_1400,dpr_1.0/general_assets/logged_out_homepage/assets/pro/pro_banner_1400px-2x.jpg" alt="">
       </div>
       <div class="pro-content">
         <h4>Try Fiverr pro</h4>
@@ -372,11 +628,11 @@
   </section>
   <section class="guide">
     <div class="container-fluid">
-      <h2>Fiverr guides</h2>
+      <h2 class="px-4">Fiverr guides</h2>
       <div class="row">
         <div class="guide-boxes">
           <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-4 text-center">
               <div class="guide-box">
                 <div class="g-b-img">
                   <img src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_450,dpr_1.0/general_assets/logged_out_homepage/assets/fiverr_guides/1440-create-website-2x.jpg" alt="">
@@ -387,7 +643,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 text-center">
               <div class="guide-box">
                 <div class="g-b-img">
                   <img src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_450,dpr_1.0/general_assets/logged_out_homepage/assets/fiverr_guides/1440-digital-marketing-2x.jpg" alt="">
@@ -398,7 +654,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 text-center">
               <div class="guide-box">
                 <div class="g-b-img">
                   <img src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_450,dpr_1.0/general_assets/logged_out_homepage/assets/fiverr_guides/1440-strong-brand-2x.jpg" alt="">
@@ -417,7 +673,8 @@
   <section class="get-start">
     <div class="container-fluid">
       <div class="start-img">
-        <img src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_1400,dpr_1.0/general_assets/logged_out_homepage/assets/signup/1440-cta2x.jpg" alt="">
+        <img style="width:100%;min-height:300px; object-fit: cover;object-position: center center;"
+         src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_1400,dpr_1.0/general_assets/logged_out_homepage/assets/signup/1440-cta2x.jpg" alt="">
       </div>
       <div class="get-start-cont text-center">
         <h3>Find freelance services for your business today</h3>
@@ -450,5 +707,6 @@
 
 <?php $__env->startPush('scripts'); ?>
     <script src="<?php echo e(asset('')); ?>"></script>
+  
 <?php $__env->stopPush(); ?>
 <?php echo $__env->make('layouts.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\Shahidur project\project\miver\resources\views/pages/index.blade.php ENDPATH**/ ?>

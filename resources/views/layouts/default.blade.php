@@ -116,7 +116,7 @@
   </header>
 
 
-  <main id="#main_div">
+  <main id="#main_div" style="overflow-x: hidden;">
       @yield('content')
   </main>
 
