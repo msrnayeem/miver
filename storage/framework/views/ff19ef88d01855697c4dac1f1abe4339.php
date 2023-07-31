@@ -1,8 +1,6 @@
-@extends('layouts.default')
-
-@section('title', 'Miverr - Home')
-@push('styles')
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/profile.css') }}">
+<?php $__env->startSection('title', 'Miverr - Home'); ?>
+<?php $__env->startPush('styles'); ?>
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/css/profile.css')); ?>">
     <style>
         /* #become-seller{
             background: #fff;
@@ -73,8 +71,8 @@
     font-weight: 600;
 }
     </style>
-@endpush
-@section('content')
+<?php $__env->stopPush(); ?>
+<?php $__env->startSection('content'); ?>
 
 
 <div class="container">
@@ -83,9 +81,9 @@
             <div class="container mt-4 mb-4 p-3 d-flex justify-content-start"> 
                 <div class="card p-4">
                     <div class=" image d-flex flex-column justify-content-center align-items-center">
-                        <img src="{{ asset('uploads/'.$user->id.'.jpg') }}" height="100" width="100" />
-                        <span class="name mt-3">{{ $user->name }}</span> 
-                        <span class="idd">{{ $user->email }}</span> 
+                        <img src="<?php echo e(asset('uploads/'.$user->id.'.jpg')); ?>" height="100" width="100" />
+                        <span class="name mt-3"><?php echo e($user->name); ?></span> 
+                        <span class="idd"><?php echo e($user->email); ?></span> 
 
                         <div class=" d-flex mt-2">
                             <button class="btn btn-info">Edit Profile</button> 
@@ -102,11 +100,11 @@
                             <span><i class="fa fa-linkedin"></i></span> 
                         </div> 
                         <div class=" px-2 rounded mt-4 date "> 
-                            <span class="join">Joined, {{ \Carbon\Carbon::parse($user->created_at)->format('M d, Y') }}</span> 
+                            <span class="join">Joined, <?php echo e(\Carbon\Carbon::parse($user->created_at)->format('M d, Y')); ?></span> 
                         </div> 
                         <br><br>
                         <div class="col-md-6" id="become-seller">
-                                <a href="{{ route('seller.personal.info') }}">
+                                <a href="<?php echo e(route('seller.personal.info')); ?>">
                                     <span class="btn-standard btn-green">Become a Seller</span>
                                 </a>
                         </div>
@@ -143,20 +141,20 @@
             </div>  
             <div class="row mt-5" id="for_drafts" style="display:none;">
 
-                @for($i=1; $i<=2; $i++ )
+                <?php for($i=1; $i<=2; $i++ ): ?>
                 <div class="col-md-4 my-3">
                     <div class="gig_card border">
                         <div>
-                            <img src="{{ asset('image.png') }}" class="gig_image" />
+                            <img src="<?php echo e(asset('image.png')); ?>" class="gig_image" />
                         </div>
-                        <p class="gig_title px-3 pt-3">{{$i}} will be your web designer</p>
+                        <p class="gig_title px-3 pt-3"><?php echo e($i); ?> will be your web designer</p>
                         <div class="text-end px-3 align-self-end">
                             <span class="text-uppercase" style="font-size:15px;color:#1dbf73">Starting at </span>
-                            <span class="fw-bold" style="font-size:24px; color:#1dbf73">${{$i}}0</span>
+                            <span class="fw-bold" style="font-size:24px; color:#1dbf73">$<?php echo e($i); ?>0</span>
                         </div>
                     </div>
                 </div>
-                @endfor
+                <?php endfor; ?>
 
                 <div class="col-md-4">
                     <div class="gig_card border container">
@@ -181,10 +179,10 @@
     </div>
   </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('scripts')
-<script src="{{ asset('js/profile.js') }}"></script>
+<?php $__env->startPush('scripts'); ?>
+<script src="<?php echo e(asset('js/profile.js')); ?>"></script>
 <script>
     $(document).ready(function() {
         // When clicking on "Active gigs", show the corresponding section and hide "Drafts"
@@ -211,4 +209,5 @@
     });
 </script>
 
-@endpush
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('layouts.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\Shahidur project\project\miver\resources\views/pages/user/profile.blade.php ENDPATH**/ ?>
