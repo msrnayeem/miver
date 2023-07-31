@@ -1,5 +1,5 @@
 <nav class="header-bottom-menu">
-        <ul>
+        <ul style="padding-inline:0px">
             <li>
             <a href="{{ route('category', ['category' => 'graphics-design']) }}">Graphics & Design</a>
             <ul class="subcategories">

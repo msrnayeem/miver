@@ -137,36 +137,36 @@
  
             </div>  
             <div class="row mt-5" id="for_drafts" style="display:none;">
-                 
-                    <div class="col-md-4 my-3">
-                        @foreach ($user->gigs as $gig)
-                            <div class="gig_card border">
-                                <div>
-                                    <img src="{{ asset('image.png') }}" class="gig_image" />
-                                </div>
-                                <p class="gig_title px-3 pt-3">I will do {{ $gig->gig_title }}</p>
-                                <div class="text-end px-3 align-self-end">
-                                    <span class="text-uppercase" style="font-size:14px;color:#1dbf73">Starting at </span>
-                                    <span class="fw-bold" style="font-size:20px; color:#1dbf73">$ {{ $gig->packages->min('price') }}</span>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                    
-                    <div class="col-md-4">
-                        <div class="gig_card border container">
-                            <div class="row h-100">
-                                <div class="col ">
-                                    <div class="rounded-circle text-center d-flex justify-content-center mx-auto">
-                                        <i class="fa fa-plus align-self-center" id="cam_icon" style="font-size:36px; color:#f7f7f7;"></i>
-                                    </div>
-                                    <p class="text-center mt-4 fw-bold" style="font-size:20px;">Create a new Gig</p>
-                                </div>
-                                
-                            </div>
+
+                @for($i=1; $i<=4; $i++ )
+                <div class="col-md-4 my-3">
+                    <div class="gig_card border">
+                        <div>
+                            <img src="{{ asset('image.png') }}" class="gig_image" />
+                        </div>
+                        <p class="gig_title px-3 pt-3">{{$i}} will be your web designer</p>
+                        <div class="text-end px-3 align-self-end">
+                            <span class="text-uppercase" style="font-size:15px;color:#1dbf73">Starting at </span>
+                            <span class="fw-bold" style="font-size:24px; color:#1dbf73">${{$i}}0</span>
                         </div>
                     </div>
-               
+                </div>
+                @endfor
+
+                <div class="col-md-4 my-3">
+                    <div class="gig_card border container">
+                        <div class="row h-100">
+                            <div class="col ">
+                                <div class="rounded-circle text-center d-flex justify-content-center mx-auto">
+                                    <i class="fa fa-plus align-self-center" id="cam_icon" style="font-size:36px; color:#f7f7f7;"></i>
+                                </div>
+                                <p class="text-center mt-4 fw-bold" style="font-size:20px;">Create a new Gig</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
             </div>         
         </div>
     @else
