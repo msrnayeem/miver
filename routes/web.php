@@ -7,11 +7,13 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MailController;
 
 //get messages
 Route::get('/get-message', [MessageController::class, 'getMessages'])->name('messages.index');
 
-
+//send messages
+Route::get('/send-welcome-email', [MailController::class, 'sendWelcomeEmail'])->name('send.welcome.email');
 
 //login
 Route::post('/loginn', [MainController::class, 'loginSubmitted'])->name('loginn');

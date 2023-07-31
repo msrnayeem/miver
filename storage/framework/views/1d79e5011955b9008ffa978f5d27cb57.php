@@ -2,10 +2,10 @@
       
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-6 align-self-start">
           <div class="f-t-left">
             <div class="row">
-              <div class="col-lg-4">
+              <div class="col-lg-4 align-self-start">
                 <div class="f-r-box">
                   <h4>Categories</h4>
                   <nav>
@@ -23,7 +23,7 @@
                   </nav>
                 </div>
               </div>
-              <div class="col-lg-4">
+              <div class="col-lg-4 align-self-start">
                 <div class="f-r-box">
                   <h4>About</h4>
                   <nav>
@@ -39,7 +39,7 @@
                   </nav>
                 </div>
               </div>
-              <div class="col-lg-4">
+              <div class="col-lg-4 align-self-start">
                 <div class="f-r-box">
                   <h4>Support</h4>
                   <nav>
@@ -55,10 +55,10 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 align-self-start">
           <div class="f-t-right">
             <div class="row">
-              <div class="col-lg-6">
+              <div class="col-lg-6 align-self-start">
                 <div class="f-r-box">
                   <h4>Community</h4>
                   <nav>
@@ -76,7 +76,7 @@
                   </nav>
                 </div>
               </div>
-              <div class="col-lg-6">
+              <div class="col-lg-6 align-self-start">
                 <div class="f-r-box">
                   <h4>More From Miverr</h4>
                   <nav>
@@ -105,7 +105,7 @@
   <footer class="footer-bottom">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-6 ">
           <div class="f-b-left">
             <p><span>miverr</span>© Miverr International Ltd. 2020</p>
           </div>

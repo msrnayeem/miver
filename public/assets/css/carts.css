@@ -1,15 +1,3 @@
-
-.notification-container{
-    z-index: 333;
-    width: 210px;
-    height: 250px;
-    cursor: default;
-    background-color:#ebebeb;
-    position: absolute;
-    border-radius: 10px;
-    display: none;
-    flex-direction: column;
-    } 
   #notification {
     position: relative;
   }
@@ -21,7 +9,8 @@
     object-fit: cover;
     
   }
-  .messenger-container{
+  .notification-container, .messenger-container{
+    
     z-index: 333;
     width: 200px;
     height: 250px;
@@ -40,6 +29,10 @@
   #messenger .messenger-container {
     top: calc(100%);
   }
+  .message-body {
+    margin-top: 5px;
+}
+
   .profile-container{
     z-index: 333;
     cursor: default;
@@ -111,9 +104,6 @@
   }
   
   
-  .message-body {
-      margin-top: 5px;
-  }
   
   
   .footer {

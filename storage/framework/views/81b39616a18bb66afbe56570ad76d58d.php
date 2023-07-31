@@ -1,3 +1,8 @@
+<style>
+
+
+
+</style>
 <div class="modal fade" id="joinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
@@ -7,7 +12,7 @@
           </button>
           <div class="container">
             <div class="row">
-              <div class="col-sm-6">
+              <div class="col-sm-6" id="imageForSignIn">
                 <img src="<?php echo e(asset('assets/images/sign.png')); ?>" alt="" width="100%" />
               </div>
               <div class="col-sm-6">
@@ -73,4 +78,4 @@
         </div>
       </div>
     </div>
-  </div><?php /**PATH E:\Shahidur project\project\miver\resources\views/component/register.blade.php ENDPATH**/ ?>
+  </div><?php /**PATH C:\xampp\htdocs\miver\resources\views/component/register.blade.php ENDPATH**/ ?>

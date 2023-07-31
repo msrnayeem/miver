@@ -57,7 +57,7 @@
                     <ul>
                       <li id="notification">
                             <p>
-                                <i class="fa fa-bell" aria-hidden="true"></i>
+                                <i class="fa fa-bell" aria-hidden="true" style="font-size:25px"></i>
                                 <span class="count"></span>
                             </p>
                             <div class="notification-container">
@@ -75,7 +75,7 @@
 
                       <li id="messenger">
                         <p>
-                          <i class="fa fa-comments" aria-hidden="true"></i>
+                          <i class="fa fa-comments" aria-hidden="true" style="font-size:25px"></i>
                             <span class="count"></span>
                           </p>
                           <div class="messenger-container">
@@ -93,9 +93,9 @@
                       </li>
 
                       <li id="profile">
-                        <p>
-                            <img class="user-avatar" src="<?php echo e(asset('uploads/1.jpg')); ?>" alt="User Image">
-                        </p>
+                        
+                            <img class="user-avatar align-self-start" src="<?php echo e(asset('uploads/1.jpg')); ?>" alt="User Image" style="width:29px;height:29px;margin-bottom: 8px;">
+                        
                         <div class="profile-container" id="userDropdown">
                           <div class="notification-item odd"><a href="<?php echo e(route('profile')); ?>" class="profile-item even">Profile</a></div>
                           <div class="notification-item even"><a href="#" class="profile-item odd">Setting</a></div>
