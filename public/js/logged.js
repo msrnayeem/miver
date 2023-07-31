@@ -21,13 +21,14 @@ $(document).ready(function() {
           url: '/get-message',
           method: 'GET',
           success: function(data) {
+            
             $('.loading-message').hide();
             if (data.status === true && data.data.length > 0) {
             
               messengerContainer.find('.main').empty();
 
               data.data.forEach(function(message) {
-                var receiverName = message.receiver.name.split(' ')[0];
+                var receiverName = message.receiver ?  message.receiver.name.split(' ')[0] : 'Deleted User'; 
                 var body = message.body;
                 var truncatedBody = body.length > 20 ? body.substring(0, 20) + '...' : body;
                 var timestamp = calculateTimeAgo(message.created_at);

@@ -10,7 +10,7 @@ class MessageController extends Controller
 {
 public function getMessages()
     {
-        $userId = session('id');
+        $userId = session()->get('id');
 
         $messages = Message::selectRaw('LEAST(from_id, to_id) AS user1_id')
         ->selectRaw('GREATEST(from_id, to_id) AS user2_id')

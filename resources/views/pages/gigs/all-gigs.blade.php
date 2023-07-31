@@ -11,7 +11,7 @@
 <!-- categories -->
 
 <div class="CategoryContainer">
-  <form id="filter-form" action="{{ route('allProduct') }}" method="GET">
+  <form id="filter-form" action="{{ route('all.gigs') }}" method="GET">
     <div class="filter-section">
       <div class="category-select" style="margin-top: -10px;">
         <!-- Category select content goes here -->
@@ -40,15 +40,15 @@
         <button type="submit" class="btn btn-outline-primary btn-sm">Apply Filters</button>
         <button type="button" class="btn btn-outline-primary btn-sm" onclick="resetFilters()">Reset Filters</button>
       </div>
-      <p class="text-center">Showing {{ $products->firstItem() }} - {{ $products->lastItem() }} 
-        of {{ $products->total() }} Gigs</p>
+      <p class="text-center">Showing {{ $gigs->firstItem() }} - {{ $gigs->lastItem() }} 
+        of {{ $gigs->total() }} Gigs</p>
     </div>
     
   </form>
 
   <div class="categories">
   
-    @foreach($products as $product)
+    @foreach($gigs as $product)
     <div class="card">
       <img src="{{ asset('image.png') }}" alt="{{ $product->name }}">
 
@@ -60,15 +60,14 @@
           {{ $product->user->username }}
         </div>
       </div>
-      <h3><a href="{{ route('singleProduct', ['id' => $product->id]) }}">{{ $product->name }}</a></h3>
-      <h4>{{ $product->price }}</h4>
-      <p>{{ $product->details }}</p>
+      <h3><a href="{{ route('single.gig', ['id' => $product->id]) }}">{{ $product->gig_title }}</a></h3>     
+      <p>{{ $product->description }}</p>
     </div>
     @endforeach
   </div>
 
   <div class="pagination">
-     <p> {{ $products->links('vendor.pagination.bootstrap-4') }}</p>
+     <p> {{ $gigs->links('vendor.pagination.bootstrap-4') }}</p>
   </div>
 </div>
 @endsection
@@ -78,7 +77,7 @@
   function resetFilters() {
     // Reset the form and reload the page
     document.getElementById("filter-form").reset();
-    window.location.href = "{{ route('allProduct') }}";
+    window.location.href = "{{ route('all.gigs') }}";
   }
 
   // Price range slider

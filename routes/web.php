@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\GigController;
 use App\Http\Controllers\MainController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MailController;
@@ -35,9 +35,10 @@ Route::get('/getSubSubCategory', [CategoryController::class, 'getSubSubCategory'
 
 
 //all product
-Route::get('/all-gigs', [ProductController::class, 'showAllProducts'])->name('allProduct');
+Route::get('/all-gigs', [GigController::class, 'showAllProducts'])->name('all.gigs');
 //single product
-Route::get('/singleProduct/{id}', [ProductController::class, 'singleProduct'])->name('singleProduct');
+Route::get('/single-gig/{id}', [GigController::class, 'singleProduct'])->name('single.gig');
+
 
 //shahidur
 Route::get('/', [MainController::class, 'index'])->name('index');

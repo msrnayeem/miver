@@ -31,7 +31,7 @@
             <h3>{{ $subCategory->name }}</h3>
             <ul>
                 @foreach($subCategory->subSubCategories as $subSubCategory)
-                <li><a href="{{ route('allProduct') }}">{{ $subSubCategory->name }}</a></li>
+                <li><a href="{{ route('all.gigs') }}">{{ $subSubCategory->name }}</a></li>
                 @endforeach
             </ul>
         </div>

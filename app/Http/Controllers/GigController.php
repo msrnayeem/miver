@@ -7,59 +7,36 @@ use Illuminate\Http\Request;
 
 class GigController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function showAllProducts(Request $request)
     {
-        //
+        $query = Gig::query();
+
+        // Filter products based on price range
+        $priceRange = $request->input('price-range');
+        if ($priceRange) {
+            $query->whereBetween('price', [0, $priceRange]);
+        }
+
+        // Filter products based on category
+        $category = $request->input('category');
+
+        if ($category) {
+            $query->where('sub_sub_category_id', $category);
+        }
+
+        // Include the user relationship
+        $query->with('user');
+
+        // Paginate the filtered products
+        $gigs = $query->paginate(10);
+
+        return view('pages.gigs.all-gigs', compact('gigs'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function singleProduct($id)
     {
-        //
-    }
+        $gig = Gig::with(['subSubCategory.subCategory', 'user:id,name,email'])->find($id);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Gig $gig)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Gig $gig)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Gig $gig)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Gig $gig)
-    {
-        //
+        return view('pages.gigs.single-gig', compact('gig'));
     }
 }
