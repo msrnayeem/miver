@@ -9,6 +9,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\NotificationController;
 
 //get messages
 Route::get('/get-message', [MessageController::class, 'getMessages'])->name('messages.index');
@@ -58,25 +59,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //get-notification-data
 
-Route::get('/get-notification-data', function () {
-    $notifications = [
-        [
-            'message' => 'Notification 1',
-            'isRead' => false,
-        ],
-        [
-            'message' => 'Notification 2',
-            'isRead' => true,
-        ],
-        [
-            'message' => 'Notification 3',
-            'isRead' => true,
-        ],
-        // Add more notifications as needed
-    ];
-
-    return response()->json($notifications);
-});
-
-
-
+Route::get('/get-notification-data', [NotificationController::class, 'getNotificationData'])->name('getNotificationData');

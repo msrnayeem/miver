@@ -9,6 +9,7 @@ $(document).ready(function() {
     $('#messenger').on('click', function() {
       $('.profile-container').hide();
       $('.notification-container').hide();
+
       var messengerContainer = $('.messenger-container');
 
       // Check if the messenger container is hidden
@@ -80,7 +81,38 @@ $(document).ready(function() {
     $('#notification').on('click', function() {
     $('.messenger-container').hide();
     $('.profile-container').hide();
-    $('.notification-container').toggle();
+    // $('.notification-container').toggle();
+    var notificationContainer = $('.notification-container');
+
+    // Check if the notification container is hidden
+      if (notificationContainer.is(':hidden')) {
+        $.ajax({
+          url: '/get-notification-data', // Replace this with the actual route URL
+          type: 'GET',
+          dataType: 'json',
+          success: function(response) {
+              // Assuming the response is an array of notification items
+              if (Array.isArray(response)) {
+                var $mainDiv = notificationContainer.find('.main');
+                  $mainDiv.empty(); // Clear previous notification items
+
+                  // Loop through the response and append notification items to the DOM
+                  response.forEach(function(item, index) {
+                      var notificationItem = '<div class="notification-item ' + (index % 2 === 0 ? 'even' : 'odd') + '">' + item.notification_text + '</div>';
+                      $mainDiv.append(notificationItem);
+                  });
+                  $('.notification-container').toggle();
+              }
+          },
+          error: function(error) {
+              console.error('Error fetching notification data:', error);
+          }
+       });
+      } else {
+        // If the notification container is already open, just toggle it to hide it
+        notificationContainer.toggle();
+      }
+
     });
 
     $('#profile').on('click', function() {
