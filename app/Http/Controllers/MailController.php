@@ -18,4 +18,14 @@ class MailController extends Controller
 
         return "Welcome email sent successfully!";
     }
+
+    public function OrderPlaced()
+    {
+        $user = User::find(1); // Replace 1 with the user ID you want to send the welcome email to
+
+        // Send the email using the custom WelcomeEmail class
+        Mail::to($user->email)->send(new OrderPlaced($user));
+
+        return "Welcome email sent successfully!";
+    }
 }

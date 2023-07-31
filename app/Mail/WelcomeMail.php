@@ -33,7 +33,7 @@ class WelcomeMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails')
+        return $this->view('emails.welcome')
                     ->subject('Welcome to miver')
                     ->with([
                         'name' => $this->user->name,

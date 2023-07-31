@@ -8,12 +8,18 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\OrderController;
 
 //get messages
 Route::get('/get-message', [MessageController::class, 'getMessages'])->name('messages.index');
 
 //send messages
 Route::get('/send-welcome-email', [MailController::class, 'sendWelcomeEmail'])->name('send.welcome.email');
+
+
+
+//PlaceOrder
+Route::get('/place-order', [OrderController::class, 'placedOrder'])->name('place.order');
 
 //login
 Route::post('/loginn', [MainController::class, 'loginSubmitted'])->name('loginn');
