@@ -77,7 +77,7 @@
 @section('content')
 
 
-<div class="container">
+<div class="container" >
     <div class="row">
         <div class="col-md-5">
             <div class="container mt-4 mb-4 p-3 d-flex justify-content-start"> 
@@ -104,19 +104,14 @@
                         <div class=" px-2 rounded mt-4 date "> 
                             <span class="join">Joined, {{ \Carbon\Carbon::parse($user->created_at)->format('M d, Y') }}</span> 
                         </div> 
-                        <br><br>
-                        <div class="col-md-6" id="become-seller">
-                                <a href="{{ route('seller.personal.info') }}">
-                                    <span class="btn-standard btn-green">Become a Seller</span>
-                                </a>
-                        </div>
+                    
                     </div> 
                 </div>
             </div>
         </div>
 
       <!-- tav -->
-
+    @if ($user->gigs->count() > 0)
         <div class="col-md-7 align-self-start mt-4 pt-3">
             <div class="row mx-0" >
                 <div class=" border" style="background-color:#f7f7f7;">
@@ -142,39 +137,48 @@
  
             </div>  
             <div class="row mt-5" id="for_drafts" style="display:none;">
-
-                @for($i=1; $i<=2; $i++ )
-                <div class="col-md-4 my-3">
-                    <div class="gig_card border">
-                        <div>
-                            <img src="{{ asset('image.png') }}" class="gig_image" />
-                        </div>
-                        <p class="gig_title px-3 pt-3">{{$i}} will be your web designer</p>
-                        <div class="text-end px-3 align-self-end">
-                            <span class="text-uppercase" style="font-size:15px;color:#1dbf73">Starting at </span>
-                            <span class="fw-bold" style="font-size:24px; color:#1dbf73">${{$i}}0</span>
-                        </div>
-                    </div>
-                </div>
-                @endfor
-
-                <div class="col-md-4">
-                    <div class="gig_card border container">
-                        <div class="row h-100">
-                            <div class="col ">
-                                <div class="rounded-circle text-center d-flex justify-content-center mx-auto">
-                                    <i class="fa fa-plus align-self-center" id="cam_icon" style="font-size:36px; color:#f7f7f7;"></i>
+                 
+                    <div class="col-md-4 my-3">
+                        @foreach ($user->gigs as $gig)
+                            <div class="gig_card border">
+                                <div>
+                                    <img src="{{ asset('image.png') }}" class="gig_image" />
                                 </div>
-                                <p class="text-center mt-4 fw-bold" style="font-size:20px;">Create a new Gig</p>
+                                <p class="gig_title px-3 pt-3">I will do {{ $gig->gig_title }}</p>
+                                <div class="text-end px-3 align-self-end">
+                                    <span class="text-uppercase" style="font-size:14px;color:#1dbf73">Starting at </span>
+                                    <span class="fw-bold" style="font-size:20px; color:#1dbf73">$ {{ $gig->packages->min('price') }}</span>
+                                </div>
                             </div>
-                            
+                        @endforeach
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="gig_card border container">
+                            <div class="row h-100">
+                                <div class="col ">
+                                    <div class="rounded-circle text-center d-flex justify-content-center mx-auto">
+                                        <i class="fa fa-plus align-self-center" id="cam_icon" style="font-size:36px; color:#f7f7f7;"></i>
+                                    </div>
+                                    <p class="text-center mt-4 fw-bold" style="font-size:20px;">Create a new Gig</p>
+                                </div>
+                                
+                            </div>
                         </div>
                     </div>
-                </div>
-
+               
             </div>         
         </div>
+    @else
+    
+    <div class="col-md-6 d-flex align-items-center justify-content-center" id="become-seller" style="background-color: #ffffff; height: 300px; border:1px solid #ddd">
+    <a href="{{ route('seller.personal.info') }}">
+        <span class="btn-standard btn-green rounded">Become a Seller</span>
+    </a>
+    </div>
 
+
+    @endif
     <!-- tab emd -->
 
       

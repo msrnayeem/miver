@@ -116,7 +116,7 @@
   </header>
 
 
-  <main id="#main_div">
+  <main style="background-color:#f7f7f7;">
       @yield('content')
   </main>
 

@@ -10,11 +10,17 @@ class UserController extends Controller
     public function profile()
     {
         if (session()->has('id')) {
-            //check id in user table
-            $user = User::where('id', session()->get('id'))->first();
+
+            $userId = session()->get('id');
+            
+            $user = User::with(['gigs.packages' => function ($query) {
+                $query->orderBy('price', 'asc')->take(1);
+            }])->find($userId);
 
             return view('pages.user.profile', compact('user'));
+
         } else {
+            
             return redirect()->route('index');
         }
     }

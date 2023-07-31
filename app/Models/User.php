@@ -38,11 +38,11 @@ class User extends Model
         return $this->belongsToMany(Category::class, 'category_user')->withTimestamps();
     }
 
-    public function products()
+    public function gigs()
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Gig::class, 'user_id');
     }
-
+    
     public function personalInfo()
     {
         return $this->hasOne(PersonalInfo::class);
