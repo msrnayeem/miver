@@ -46,25 +46,7 @@
     
   </form>
 
-  <div class="categories">
   
-    @foreach($gigs as $product)
-    <div class="card">
-      <img src="{{ asset('image.png') }}" alt="{{ $product->name }}">
-
-      <div class="user-section">
-        <div class="user-icon">
-          <img src="{{ asset('image.png') }}" alt="User Icon" class="user-image">
-        </div>
-        <div class="user-name">
-          {{ $product->user->username }}
-        </div>
-      </div>
-      <h3><a href="{{ route('single.gig', ['id' => $product->id]) }}">{{ $product->gig_title }}</a></h3>     
-      <p>{{ $product->description }}</p>
-    </div>
-    @endforeach
-  </div>
 
   <div class="pagination">
      <p> {{ $gigs->links('vendor.pagination.bootstrap-4') }}</p>

@@ -2,17 +2,172 @@
 
 @section('title', 'Miverr - Home')
 @push('styles')
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/profile.css') }}">
-    <style>
-        /* #become-seller{
-            background: #fff;
-    text-align: center;
-    padding: 128px 0 120px;
-    border: 1px solid #ddd;
-    border-radius: 2px;
-    margin-bottom: 20px;
-        } */
-        .btn-green{
+<style>
+    .left-content {
+        width: 400px;
+        height: 400px; /* Set the minimum height for left content */
+        margin-top: 20px; /* Add a top margin of 20px */
+        border: 1px solid #ccc;
+        padding: 10px;
+        overflow-y: auto; /* Add scrollbars if content overflows */
+    }
+
+    .right-content {
+        width: 800px;
+        min-height: 300px; /* Set the minimum height for right content */
+        margin-top: 20px; /* Add a top margin of 20px */
+        border: 1px solid #ccc;
+        padding: 10px;
+        overflow-y: auto; /* Add scrollbars if content overflows */
+    }
+
+    /* Add gutter between the columns */
+    .row {
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+
+    .col-6 {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .left-content .profile-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        height: 100%;
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+
+    .left-content  .profile-card .profile-image-wrapper {
+        max-width: 350px;
+        max-height: 350px; 
+        border-radius: 1%;
+        background-color: #f0f0f0; /* Fallback color if image is not available */
+        overflow: hidden;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .left-content .profile-card .profile-image-wrapper .profile-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .profile-name {
+        font-size: 18px;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+
+    hr {
+        width: 80%;
+        border: 1px solid black;
+        margin: 10px auto;
+    }
+    /* Styling for label and info rows */
+    .row {
+        margin-bottom: 5px;
+        width: 100%;
+    }
+
+    .profile-label {
+        font-size: 14px;
+        color: #888;
+        margin: 0;
+    }
+
+    .profile-info {
+        font-size: 14px;
+        color: #333;
+        margin: 0;
+    }
+
+
+    /* Styling for the right content */
+    
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  
+}
+
+.categories .card {
+  min-width: 210px;
+  max-width: 210px;
+  margin: 10px;
+  padding: 10px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 768px) {
+    .categories .card {
+    width: 100%;
+  }
+}
+
+.categories .card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+
+.user-name {
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+h3 a {
+  color: #333;
+  text-decoration: none;
+}
+
+h4 {
+  color: #666;
+  margin-top: 5px;
+}
+
+p {
+  color: #888;
+  margin-top: 5px;
+  text-align: right;
+}
+    
+#active-gigs{
+    background-color:#f7f7f7;
+    border-bottom: 6px solid #1dbf73;
+    padding: 16px 16px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+}
+#drafts{
+    background-color:#f7f7f7;
+    padding: 16px 16px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1dbf73;
+}
+.btn-green{
             font-size: 16px;
     line-height: 24px;
     padding: 9px 24px;
@@ -31,145 +186,103 @@
     text-decoration: none;
     color: #fff;
 }
+</style>
 
-#active-gigs{
-    background-color:#f7f7f7;
-    border-bottom: 6px solid #1dbf73;
-    padding: 16px 16px;
-    cursor: pointer;
-    font-size: 20px;
-    font-weight: 600;
-}
-#drafts{
-    background-color:#f7f7f7;
-    padding: 16px 16px;
-    cursor: pointer;
-    font-size: 20px;
-    font-weight: 600;
-    color: #1dbf73;
-}
 
-.gig_card{
-    width: 100%;
-    height: 300px;
-    background-color: #f7f7f7;
-    cursor: pointer;
-}
-.rounded-circle{
-    height: 100px;
-    background-color: #78cdd2;
-    width: 100px;
-}
-
-.gig_image{
-    object-fit: cover;
-    background-repeat: no-repeat;
-    height:55%;
-    width:100%;
-}
-
-.gig_title{
-    font-size: 20px;
-    font-weight: 600;
-}
-    </style>
 @endpush
 @section('content')
-
-
-<div class="container" >
+<div class="container">
     <div class="row">
-        <div class="col-md-5">
-            <div class="container mt-4 mb-4 p-3 d-flex justify-content-start"> 
-                <div class="card p-4">
-                    <div class=" image d-flex flex-column justify-content-center align-items-center">
-                        <img src="{{ asset('uploads/'.$user->id.'.jpg') }}" height="100" width="100" />
-                        <span class="name mt-3">{{ $user->name }}</span> 
-                        <span class="idd">{{ $user->email }}</span> 
+        <div class="col-md-6 left-content">
+            <div class="profile-card">
+                    <div class="profile-image-wrapper">
 
-                        <div class=" d-flex mt-2">
-                            <button class="btn btn-info">Edit Profile</button> 
-                        </div> 
-                        <div class="text mt-3"> 
-                            <span>Eleanor Pena is a creator of minimalistic x bold graphics and digital artwork.
-                                <br><br> Artist/ Creative Director by Day #NFT minting@ with FND night. 
-                            </span> 
-                        </div> 
-                        <div class="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center">
-                            <span><i class="fa fa-twitter"></i></span> 
-                            <span><i class="fa fa-facebook-f"></i></span> 
-                            <span><i class="fa fa-instagram"></i></span> 
-                            <span><i class="fa fa-linkedin"></i></span> 
-                        </div> 
-                        <div class=" px-2 rounded mt-4 date "> 
-                            <span class="join">Joined, {{ \Carbon\Carbon::parse($user->created_at)->format('M d, Y') }}</span> 
-                        </div> 
-                    
-                    </div> 
+                         <img src="{{ asset('uploads/'.$user->id.'.jpg') }}" alt="Profile Image" class="profile-image">
+
+                        </div>
+                            <p class="profile-name">{{ $user->name }}</p>
+                            <hr>
+                        <div class="row">
+                            <div class="col-md-6 ">
+                                <p class="profile-label">Location:</p>
+                            </div>
+                            <div class="col-md-6 text-md-end">
+                                <p class="profile-info">New York, USA</p>
+                            </div>
+                        </div>
+
+                <!-- Second row inside the left-content column -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="profile-label">Joined:</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <p class="profile-info">{{ \Carbon\Carbon::parse($user->created_at)->format('M d, Y') }}</p>
+                    </div>
                 </div>
             </div>
         </div>
-
-      <!-- tav -->
-    @if ($user->gigs->count() > 0)
-        <div class="col-md-7 align-self-start mt-4 pt-3">
+        @if ($user->gigs->count() > 0)
+        <div class="col-md-6 right-content">
             <div class="row mx-0" >
                 <div class=" border" style="background-color:#f7f7f7;">
                     <label class="text-center me-2" id="active-gigs">Active gigs</label>
                     <label class="text-center ms-2" id="drafts">Drafts</label>
                 </div>
             </div>
-
-            <div class="row mt-5" id="for_gigs" >
-                <div class="col-md-4">
-                    <div class="gig_card border container">
-                        <div class="row h-100">
-                            <div class="col ">
-                                <div class="rounded-circle text-center d-flex justify-content-center mx-auto">
-                                    <i class="fa fa-plus align-self-center" id="cam_icon" style="font-size:36px; color:#f7f7f7;"></i>
-                                </div>
-                                <p class="text-center mt-4 fw-bold" style="font-size:20px;">Create a new Gig</p>
-                            </div>
-                            
-                        </div>
+           
+                <div class="categories" id="for_gigs">
+                    <div class="card">
+                        <img src="{{ asset('image.png') }}" alt="name">
+                        
+                        <h3><a href="">Title</a></h3>     
+                        <p>Starting at 29.99</p>
+                    </div>
+                    <div class="card">
+                        <img src="{{ asset('image.png') }}" alt="name">
+                        
+                        <h3><a href="">Title</a></h3>     
+                        <p>Starting at 29.99</p>
+                    </div>
+                    <div class="card">
+                        <img src="{{ asset('image.png') }}" alt="name">
+                        
+                        <h3><a href="">Title</a></h3>     
+                        <p>Starting at 29.99</p>
+                    </div>
+                    <div class="card">
+                        <img src="{{ asset('image.png') }}" alt="name">
+                        
+                        <h3><a href="">Title</a></h3>     
+                        <p>Starting at 29.99</p>
+                    </div>
+                    <div class="card">
+                        <img src="{{ asset('image.png') }}" alt="name">
+                        
+                        <h3><a href="">Title</a></h3>     
+                        <p>Starting at 29.99</p>
                     </div>
                 </div>
- 
-            </div>  
-            <div class="row mt-5" id="for_drafts" style="display:none;">
 
-                @for($i=1; $i<=4; $i++ )
-                <div class="col-md-4 my-3">
-                    <div class="gig_card border">
-                        <div>
-                            <img src="{{ asset('image.png') }}" class="gig_image" />
-                        </div>
-                        <p class="gig_title px-3 pt-3">{{$i}} will be your web designer</p>
-                        <div class="text-end px-3 align-self-end">
-                            <span class="text-uppercase" style="font-size:15px;color:#1dbf73">Starting at </span>
-                            <span class="fw-bold" style="font-size:24px; color:#1dbf73">${{$i}}0</span>
-                        </div>
+                <div class="categories" id="for_drafts" style="display: none;">
+                    <div class="card">
+                        <img src="{{ asset('image.png') }}" alt="name">
+                        
+                        <h3><a href="">Title</a></h3>     
+                        <p>Starting at 29.99</p>
                     </div>
                 </div>
-                @endfor
-
-            </div>         
         </div>
-    @else
-    
-    <div class="col-md-6 d-flex align-items-center justify-content-center" id="become-seller" style="background-color: #ffffff; height: 300px; border:1px solid #ddd">
-    <a href="{{ route('seller.personal.info') }}">
-        <span class="btn-standard btn-green rounded">Become a Seller</span>
-    </a>
+        @else
+        <div class="col-md-6 d-flex align-items-center justify-content-center" id="become-seller" style="background-color: #ffffff; height: 300px; border:1px solid #ddd">
+            <a href="{{ route('seller.personal.info') }}">
+                <span class="btn-standard btn-green rounded">Become a Seller</span>
+            </a>
+        </div>
+        @endif
     </div>
+</div>
 
-
-    @endif
-    <!-- tab emd -->
-
-      
-    </div>
-  </div>
 
 @endsection
 
