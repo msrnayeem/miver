@@ -1,23 +1,20 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GigController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\MessageController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\MailController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
 
 //get messages
 Route::get('/get-message', [MessageController::class, 'getMessages'])->name('messages.index');
 
 //send messages
 Route::get('/send-welcome-email', [MailController::class, 'sendWelcomeEmail'])->name('send.welcome.email');
-
-
 
 //PlaceOrder
 Route::get('/place-order', [OrderController::class, 'placedOrder'])->name('place.order');
@@ -33,12 +30,10 @@ Route::get('/category/{category}', [CategoryController::class, 'category'])->nam
 Route::get('/getSubCategory', [CategoryController::class, 'getSubCategory'])->name('getSubCategory');
 Route::get('/getSubSubCategory', [CategoryController::class, 'getSubSubCategory'])->name('getSubSubCategory');
 
-
 //all product
 Route::get('/all-gigs', [GigController::class, 'showAllProducts'])->name('all.gigs');
 //single product
 Route::get('/single-gig/{id}', [GigController::class, 'singleProduct'])->name('single.gig');
-
 
 //shahidur
 Route::get('/', [MainController::class, 'index'])->name('index');

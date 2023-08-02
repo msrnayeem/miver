@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class ChMessage extends Model
 {
-    
     public function sender()
     {
         return $this->belongsTo(User::class, 'from_id', 'id');

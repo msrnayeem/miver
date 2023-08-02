@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Gig;
+use Illuminate\Database\Seeder;
 
 class GigsTableSeeder extends Seeder
 {
@@ -13,19 +12,19 @@ class GigsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        
+
         Gig::create([
-            'gig_title' => 'web design', 
-            'user_id' => 1, 
-            'sub_sub_category_id' => 1, 
+            'gig_title' => 'web design',
+            'user_id' => 1,
+            'sub_sub_category_id' => 1,
             'keyword' => 'development',
             'image_name' => 'sample_gig_1.jpg',
         ]);
 
         Gig::create([
-            'gig_title' => 'app development', 
-            'user_id' => 2, 
-            'sub_sub_category_id' => 2, 
+            'gig_title' => 'app development',
+            'user_id' => 2,
+            'sub_sub_category_id' => 2,
             'keyword' => 'development',
             'image_name' => 'sample_gig_2.jpg',
         ]);

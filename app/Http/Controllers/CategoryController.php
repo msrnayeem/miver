@@ -20,13 +20,13 @@ class CategoryController extends Controller
     public function getSubCategory(Request $request)
     {
         $category = $request->input('category');
-        
+
         $categories = Category::with('subCategories')
             ->where('bannerImageLink', $category)
             ->get(['id', 'name']); // Retrieve only id and name of categories
 
         $subCategoriesInfo = [];
-        
+
         foreach ($categories as $category) {
             foreach ($category->subCategories as $subCategory) {
                 $subCategoriesInfo[] = [
@@ -37,13 +37,13 @@ class CategoryController extends Controller
         }
 
         return response()->json($subCategoriesInfo);
-           
+
     }
 
-    public function getSubSubCategory(Request $request){
-        $subSubCategoryInfo = SubSubCategory :: where('sub_category_id', $request->input('SubCategory'))->get(['id', 'name']);
+    public function getSubSubCategory(Request $request)
+    {
+        $subSubCategoryInfo = SubSubCategory::where('sub_category_id', $request->input('SubCategory'))->get(['id', 'name']);
+
         return response()->json($subSubCategoryInfo);
     }
-
-
 }

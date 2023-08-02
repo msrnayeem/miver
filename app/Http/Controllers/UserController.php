@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -12,7 +11,7 @@ class UserController extends Controller
         if (session()->has('id')) {
 
             $userId = session()->get('id');
-            
+
             $user = User::with(['gigs.packages' => function ($query) {
                 $query->orderBy('price', 'asc')->take(1);
             }])->find($userId);
@@ -20,7 +19,7 @@ class UserController extends Controller
             return view('pages.user.profile', compact('user'));
 
         } else {
-            
+
             return redirect()->route('index');
         }
     }
@@ -28,16 +27,15 @@ class UserController extends Controller
     public function personalInfo()
     {
         if (session()->has('id')) {
-            return view('pages.user.personal-info')->with('userId',session()->has('id'));
+            return view('pages.user.personal-info')->with('userId', session()->has('id'));
         } else {
             return redirect()->route('index');
         }
     }
 
-
     public function addGig()
     {
-        return view('pages.user.add-gig');        
+        return view('pages.user.add-gig');
     }
 
     public function gigInfo()

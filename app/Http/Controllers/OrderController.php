@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Gig;
-use App\Models\Order;
-use App\Models\Notification;
-use App\Models\User;
-
-use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderPlacedSeller;
+use App\Models\Gig;
+use App\Models\Notification;
+use App\Models\Order;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -18,19 +17,19 @@ class OrderController extends Controller
         $gigId = 1;
         $packageId = 1;
 
-        $buyer_id =  session()->get('id');
+        $buyer_id = session()->get('id');
 
         $gig = Gig::with(['user', 'packages' => function ($query) use ($packageId) {
             $query->where('id', $packageId);
         }])->find($gigId);
-           
+
         $seller_id = $gig->user->id;
         $price = $gig->packages->first()->price;
 
         //place order
 
         $order = new Order();
-        $order->order_id =  'ORD-' . $seller_id . '-' . $buyer_id . '-' . $gigId . '-' . now()->format('YmdHis');
+        $order->order_id = 'ORD-'.$seller_id.'-'.$buyer_id.'-'.$gigId.'-'.now()->format('YmdHis');
         $order->buyer_id = $buyer_id;
         $order->seller_id = $seller_id;
         $order->gig_id = $gigId;
@@ -38,7 +37,6 @@ class OrderController extends Controller
         $order->created_at = now();
         $order->save();
 
-        
         //create notifiction for seller
         $notification = new Notification();
         $notification->user_id = $seller_id;
@@ -57,6 +55,6 @@ class OrderController extends Controller
         $seller = User::find($seller_id); // Replace 1 with the user ID you want to send the welcome email to
         Mail::to($seller->email)->send(new OrderPlacedSeller($seller, $order->order_id));
 
-        return "Order Placed Successfully";
+        return 'Order Placed Successfully';
     }
 }

@@ -19,8 +19,6 @@ class MainController extends Controller
         return view('pages.index');
     }
 
- 
-
     public function profilePic(Request $request)
     {
         $request->validate([

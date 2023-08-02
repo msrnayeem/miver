@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('order_id')->unique();
             $table->unsignedBigInteger('gig_id')->nullable();
             $table->unsignedBigInteger('buyer_id')->nullable();
-            $table->decimal('price', 10, 2); 
+            $table->decimal('price', 10, 2);
             $table->unsignedBigInteger('seller_id')->nullable();
             $table->timestamps();
 

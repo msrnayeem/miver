@@ -42,10 +42,9 @@ class User extends Model
     {
         return $this->hasMany(Gig::class, 'user_id');
     }
-    
+
     public function personalInfo()
     {
         return $this->hasOne(PersonalInfo::class);
     }
-
 }

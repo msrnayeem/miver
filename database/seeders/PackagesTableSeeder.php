@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Package;
+use Illuminate\Database\Seeder;
 
 class PackagesTableSeeder extends Seeder
 {
@@ -13,7 +12,7 @@ class PackagesTableSeeder extends Seeder
      */
     public function run()
     {
-      
+
         Package::create([
             'gig_id' => 1,
             'name' => 'Basic',
@@ -37,7 +36,7 @@ class PackagesTableSeeder extends Seeder
             'delivery_time' => 15,
             'delivery_details' => 'Sample delivery details for the Standard Package.',
         ]);
-      
+
         Package::create([
             'gig_id' => 2,
             'name' => 'Basic',
