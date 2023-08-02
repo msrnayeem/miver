@@ -12,6 +12,19 @@ use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
+    public function orders(Request $request)
+    {
+        if(!session()->has('id')){
+            return redirect()->route('index');
+        }
+        $sellerId = session()->get('id');
+
+        $orders = Order::with('user')->where('seller_id', $sellerId)->get();
+          
+        return view('pages.user.orders', compact('orders'));
+        
+    }
+
     public function placedOrder(Request $request)
     {
         $gigId = 1;

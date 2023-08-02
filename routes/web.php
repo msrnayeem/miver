@@ -47,6 +47,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/seller/personal-info', [UserController::class, 'personalInfo'])->name('seller.personal.info');
     Route::get('/add-gig', [UserController::class, 'addGig'])->name('user.add.gig');
     Route::get('/gig-info.', [UserController::class, 'gigInfo'])->name('user.gig.info');
+    Route::get('/orders', [OrderController::class, 'orders'])->name('user.gig.orders');
 });
 
 Route::post('/profile-pic', [MainController::class, 'profilePic'])->name('profilePic');
