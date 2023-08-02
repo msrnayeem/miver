@@ -2,7 +2,7 @@
 <?php $__env->startPush('styles'); ?>
 <style>
     .left-content {
-        width: 400px;
+        width: 30%;
         height: 400px; /* Set the minimum height for left content */
         margin-top: 20px; /* Add a top margin of 20px */
         border: 1px solid #ccc;
@@ -11,18 +11,13 @@
     }
 
     .right-content {
-        width: 800px;
+        width: 70%;
         min-height: 300px; /* Set the minimum height for right content */
         margin-top: 20px; /* Add a top margin of 20px */
         border: 1px solid #ccc;
         padding: 10px;
         overflow-y: auto; /* Add scrollbars if content overflows */
-    }
-
-    /* Add gutter between the columns */
-    .row {
-        margin-left: -15px;
-        margin-right: -15px;
+        
     }
 
     .col-6 {
@@ -191,7 +186,7 @@ p {
 <?php $__env->startSection('content'); ?>
 <div class="container">
     <div class="row">
-        <div class="col-md-6 left-content">
+        <div class="col-md-5 left-content" style=" margin-right:20px; margin-left:-20px;">
             <div class="profile-card">
                     <div class="profile-image-wrapper">
 
@@ -221,7 +216,7 @@ p {
             </div>
         </div>
         <?php if($user->gigs->count() > 0): ?>
-        <div class="col-md-6 right-content">
+        <div class="col-md-7 right-content">
             <div class="row mx-0" >
                 <div class=" border" style="background-color:#f7f7f7;">
                     <label class="text-center me-2" id="active-gigs">Active gigs</label>
