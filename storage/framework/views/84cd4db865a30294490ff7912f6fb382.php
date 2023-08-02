@@ -185,7 +185,7 @@ p {
 <?php $__env->stopPush(); ?>
 <?php $__env->startSection('content'); ?>
 <div class="container">
-    <div class="row">
+    <div class="row align-items-start">
         <div class="col-md-5 left-content" style=" margin-right:20px; margin-left:-20px;">
             <div class="profile-card">
                     <div class="profile-image-wrapper">
