@@ -6,6 +6,7 @@ use App\Mail\OrderPlacedSeller;
 use App\Models\Gig;
 use App\Models\Notification;
 use App\Models\Order;
+use App\Models\Package;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -27,16 +28,19 @@ class OrderController extends Controller
 
     public function placedOrder(Request $request)
     {
-        $gigId = 1;
-        $packageId = 1;
+         // Retrieve the gigIdNumber and package from the AJAX request
+         $gigId = $request->input('gigIdNumber');
+         $package = $request->input('package');
+
+        $packageId = Package::where('name', $package)->where('gig_id', $gigId)->first()->id;
 
         $buyer_id = session()->get('id');
 
-        $gig = Gig::with(['user', 'packages' => function ($query) use ($packageId) {
+        $gig = Gig::with(['seller', 'packages' => function ($query) use ($packageId) {
             $query->where('id', $packageId);
         }])->find($gigId);
 
-        $seller_id = $gig->user->id;
+        $seller_id = $gig->seller->id;
         $price = $gig->packages->first()->price;
 
         //place order
@@ -47,6 +51,7 @@ class OrderController extends Controller
         $order->seller_id = $seller_id;
         $order->gig_id = $gigId;
         $order->price = $price;
+        $order->order_status = 'pending';
         $order->created_at = now();
         $order->save();
 
@@ -68,7 +73,8 @@ class OrderController extends Controller
         $seller = User::find($seller_id); // Replace 1 with the user ID you want to send the welcome email to
         Mail::to($seller->email)->send(new OrderPlacedSeller($seller, $order->order_id));
 
-        return 'Order Placed Successfully';
+        //return json response true
+        return response()->json(['success' => true]);
     }
 
     public function orderDetails(Request $request){

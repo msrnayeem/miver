@@ -40,7 +40,7 @@ class User extends Model
 
     public function gigs()
     {
-        return $this->hasMany(Gig::class, 'user_id');
+        return $this->hasMany(Gig::class);
     }
 
     public function personalInfo()

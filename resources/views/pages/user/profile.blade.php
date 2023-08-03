@@ -247,7 +247,7 @@ p {
                 </div>
         </div>
         @else
-        <div class="col-md-6 d-flex align-items-center justify-content-center" id="become-seller" style="background-color: #ffffff; height: 300px; border:1px solid #ddd">
+        <div class="col-md-6 d-flex align-items-center justify-content-center mt-4" id="become-seller" style="background-color: #ffffff; height: 300px; border:1px solid #ddd">
             <a href="{{ route('seller.personal.info') }}">
                 <span class="btn-standard btn-green rounded">Become a Seller</span>
             </a>

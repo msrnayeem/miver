@@ -5,14 +5,16 @@
 <link rel="stylesheet" href="{{ asset('assets/css/single.css') }}">
 @section('content')
 
-
 <div class="container">
-  <div class="product-column">
+  <div class="product-column" id="product-column">
     <div class="scrollable-content">
-      <h2>Name of Product</h2>
+   
+
+      <h2> {{ $gig->gig_title }} </h2>
+     
       <div class="seller-info">
         <img src="{{ asset('image.png') }}" alt="Seller Icon" class="seller-icon">
-        <span class="seller-name">Seller Name</span>
+        <span class="seller-name">{{ $gig->seller->name }}</span>
       </div>
       <img src="{{ asset('image.png') }}" alt="Product Image" class="product-image">
       <div class="about-gig">
@@ -85,121 +87,102 @@
     </div>
   </div>
   <div class="sidebar-column">
-    <div class="scrollable-content">
-      <div class="card">
-        <div class="tab-container">
-          <div class="tab active" data-tab="basic-tab">Basic</div>
-          <div class="tab" data-tab="standard-tab">Standard</div>
-          <div class="tab" data-tab="premium-tab">Premium</div>
-        </div>
-        <div class="info-container">
-          <div class="info active" id="basic-tab-info">
-            <h2>Basic Package</h2>
-            <p>Package details for Basic.</p>
+      <div class="scrollable-content">
+          <div class="card">
+             <div class="tab-container">
+                  <div class="tab active" data-tab="basic-tab">Basic</div>
+                  <div class="tab" data-tab="standard-tab">Standard</div>
+                  <div class="tab" data-tab="premium-tab">Premium</div>
+              </div>
+              <div class="info-container">
+                  <div class="info active" id="basic-tab-info">
+                      <h2>Basic Package</h2>
+                      <p>Package details for Basic.</p>
+                      <p>Basic Price: ${{ $gig->packages[0]->price }}</p>
+                  </div>
+                  <div class="info" id="standard-tab-info">
+                      <h2>Standard Package</h2>
+                      <p>Package details for Standard.</p>
+                      <p>Standard Price: ${{ $gig->packages[1]->price }}</p>
+                  </div>
+                  <div class="info" id="premium-tab-info">
+                      <h2>Premium Package</h2>
+                      <p>Package details for Premium.</p>
+                      <p>Premium Price: ${{ $gig->packages[2]->price }}</p>
+                  </div>
+                  <span style="display: none;" name="{{ $gig->id }}" id="gig_id">
+              </div>
+              <div class="mt-3">
+                  <button class="btn btn-primary btn-sm" id="order">Order Now</button>
+              </div>
           </div>
-          <div class="info" id="standard-tab-info">
-            <h2>Standard Package</h2>
-            <p>Package details for Standard.</p>
-          </div>
-          <div class="info" id="premium-tab-info">
-            <h2>Premium Package</h2>
-            <p>Package details for Premium.</p>
-          </div>
-        </div>
-        <div> <a href="">contact now </a></div>
-      </div>
     </div>
   </div>
 </div>
-
-
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    // Get the tabs and info elements
-    const tabs = document.querySelectorAll('.tab');
-    const infoElements = document.querySelectorAll('.info');
-
-    // Function to show the selected tab and corresponding info
-    function showTab(tabId) {
-      // Remove active class from all tabs and info elements
-      tabs.forEach(tab => tab.classList.remove('active'));
-      infoElements.forEach(info => info.classList.remove('active'));
-
-      // Add active class to the selected tab
-      const selectedTab = document.querySelector(`[data-tab="${tabId}"]`);
-      selectedTab.classList.add('active');
-
-      // Find the corresponding info element and add active class to display it
-      const infoElement = document.getElementById(`${tabId}-info`);
-      infoElement.classList.add('active');
-    }
-
-    // Add click event listener to each tab
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        // Get the data-tab value of the clicked tab
-        const tabId = tab.dataset.tab;
-        showTab(tabId);
-      });
-    });
-
-    // Show the default tab (Basic) on page load
-    showTab('basic-tab');
-  });
-
-
-  const productColumn = document.getElementById('product-column');
-
-productColumn.addEventListener('scroll', function () {
-  const scrollHeight = productColumn.scrollHeight;
-  const clientHeight = productColumn.clientHeight;
-  const scrollTop = productColumn.scrollTop;
-
-  if (scrollTop + clientHeight >= scrollHeight) {
-    // Reached the end of the product column, enable scrolling for the entire page
-    document.body.style.overflow = 'auto';
-  } else {
-    // Still scrolling within the product column, disable scrolling for the entire page
-    document.body.style.overflow = 'hidden';
-  }
-});
-
-</script>
-
-
-
-
-
-
-</div>
-<script>
-  // Get the tabs and info elements
-  const tabs = document.querySelectorAll('.tab');
-  const infoElements = document.querySelectorAll('.info');
-
-  // Add click event listener to each tab
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      // Remove active class from all tabs and info elements
-      tabs.forEach(tab => tab.classList.remove('active'));
-      infoElements.forEach(info => info.classList.remove('active'));
-
-      // Add active class to the clicked tab
-      tab.classList.add('active');
-
-      // Get the data-tab value of the clicked tab
-      const tabId = tab.dataset.tab;
-
-      // Find the corresponding info element and add active class to display it
-      const infoElement = document.getElementById(tabId);
-      infoElement.classList.add('active');
-    });
-  });
-</script>
 
 @endsection
 
 @push('scripts')
     <script src="{{ asset('') }}"></script>
+    
+
+<script>
+  let package = "basic" ;
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const tabs = document.querySelectorAll('.tab');
+        const infoElements = document.querySelectorAll('.info');
+
+        function showTab(tabId) {
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            infoElements.forEach(info => info.classList.remove('active'));
+
+            const selectedTab = document.querySelector(`[data-tab="${tabId}"]`);
+            selectedTab.classList.add('active');
+
+            const infoElement = document.getElementById(`${tabId}-info`);
+            infoElement.classList.add('active');
+        }
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.dataset.tab;
+                showTab(tabId);
+                package = getActiveTabClassName();
+            });
+        });
+
+        showTab('basic-tab');
+    });
+
+
+    function getActiveTabClassName() {
+        const activeTabElement = document.querySelector('.tab.active');
+        activeTabClassName = activeTabElement.dataset.tab.replace('-tab', '');
+        return activeTabClassName;
+    }
+
+    document.getElementById('order').addEventListener('click', function () {
+        const gigIdNumber = parseInt(document.getElementById('gig_id').getAttribute('name'));
+
+        $.ajax({
+            type: 'GET',
+            url: '{{ route("place.order") }}',
+            data: {
+                gigIdNumber: gigIdNumber,
+                package: package
+            },
+            success: function (response) {
+              console.log(response);
+                if(response.success) {
+                    alert('Order placed successfully');
+                }
+            },
+            error: function (error) {
+                // Handle any errors that occur during the AJAX request (if needed)
+                console.error('Error placing order:', error);
+            }
+    });
+  });
+</script>
 @endpush

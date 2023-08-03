@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Gig extends Model
 {
-    public function user()
+    public function seller()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function subSubCategory()

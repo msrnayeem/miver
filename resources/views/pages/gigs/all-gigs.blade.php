@@ -56,7 +56,7 @@
             <img src="{{ asset('image.png') }}" alt="User Icon" class="user-image">
           </div>
           <div class="user-name">
-            {{ $gig->user->name }}
+            {{ $gig->seller->name }}
           </div>
         </div>
         <h3><a href="{{ route('gig', ['id' => $gig->id]) }}">{{ $gig->gig_title }}</a></h3>
