@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Route;
 
 //get messages
 Route::get('/get-message', [MessageController::class, 'getMessages'])->name('messages.index');
+//get msg and notification count
+Route::get('/get-msg-notification-count', [MessageController::class, 'getMsgNotificationCount'])->name('getMsgNotificationCount');
+
+//mark as read
+Route::get('/mark-as-read', [NotificationController::class, 'markAsRead'])->name('markAsRead');
 
 //send messages
 Route::get('/send-welcome-email', [MailController::class, 'sendWelcomeEmail'])->name('send.welcome.email');

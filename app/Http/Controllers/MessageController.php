@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Message;
+use App\Models\Notification;
 
 class MessageController extends Controller
 {
@@ -32,5 +33,18 @@ class MessageController extends Controller
                 'data' => 'No messages found',
             ]);
         }
+    }
+
+    public function getMsgNotificationCount(){
+        $message = Message::where('to_id', session()->get('id'))->where('seen', 0)->count();
+        $notification = Notification::where('user_id', session()->get('id'))->where('is_read', 0)->count();
+        
+        return response()->json([
+            'status' => true,
+            'data' => [
+                'message' => $message,
+                'notification' => $notification,
+            ],
+        ]);
     }
 }

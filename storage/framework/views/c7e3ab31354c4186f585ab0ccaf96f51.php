@@ -58,7 +58,7 @@
                       <li id="notification">
                             <p>
                                 <i class="fa fa-bell" aria-hidden="true" style="font-size:25px"></i>
-                                <span class="count"></span>
+                                <span class="count" id="notification_count"></span>
                             </p>
                             <div class="notification-container">
                               <div class="top">
@@ -68,7 +68,7 @@
                                 <div class="notification-item odd">Notification 3</div>
                               </div>
                               <div class="footer">
-                                <a href="#" style="text-decoration: underline; color:black; font-size: 12px;">mark as read</a>
+                                <a href="#" id="mark_read">mark as read</a>
                               </div>
                             </div>
                       </li>
@@ -76,7 +76,7 @@
                       <li id="messenger">
                         <p>
                           <i class="fa fa-comments" aria-hidden="true" style="font-size:25px"></i>
-                            <span class="count"></span>
+                            <span class="count" id="msg_count"></span>
                           </p>
                           <div class="messenger-container">
                               <div class="top">
@@ -87,7 +87,7 @@
                                 <p class="text-center d-flex justify-content-center align-items-center no-messages-message" style="min-height: 180px;">No messages yet</p>
                               </div>
                               <div class="footer">
-                                  <a href="#" style="text-decoration: underline; color:black; font-size: 12px;">all messages</a>
+                                  <a href="#">all messages</a>
                               </div>
                           </div>
                       </li>
@@ -117,7 +117,7 @@
   </header>
 
 
-  <main style="background-color:#f7f7f7;">
+  <main style="background-color:#f7f7f7;width:100%;">
       <?php echo $__env->yieldContent('content'); ?>
   </main>
 

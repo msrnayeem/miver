@@ -1,7 +1,36 @@
 $(document).ready(function() {
 
+  $.ajax({
+      url: '/get-msg-notification-count',
+      method: 'GET',
+      success: function(response) {
+
+          if (response.status === true) {
+
+              var messageCount = response.data.message;
+              var notificationCount = response.data.notification;
+
+              displayCountIfNotZero(messageCount, 'msg_count');
+              displayCountIfNotZero(notificationCount, 'notification_count');
+          } else {
+            console.log('Error fetching data.');
+          }
+        
+    },
+    error: function(xhr, status, error) {
+      console.error('Error fetching count:', error);
+    }
+  });
+
+   function displayCountIfNotZero(count, elementId) {
+    if (count > 0) {
+      $('#' + elementId).text(count);
+    } else {
+      $('#' + elementId).hide(); // Hide the element if count is 0
+    }
+}
     setRightMargin();
-    // Call the function whenever the window is resized (to handle responsive design)
+    
     $(window).resize(function() {
     setRightMargin();
     });
@@ -117,56 +146,85 @@ $(document).ready(function() {
     });
 
     $('#profile').on('click', function() {
-    $('.messenger-container').hide();
-    $('.notification-container').hide();
-    $('.profile-container').toggle();
+      $('.messenger-container').hide();
+      $('.notification-container').hide();
+      $('.profile-container').toggle();
     });
 
     // Hide all containers when clicking outside
     $(document).on('click', function(event) {
-    if (
-      !$(event.target).closest('#messenger, #notification, #profile').length &&
-      !$(event.target).closest('.messenger-container, .notification-container, .profile-container').length
-    ) {
-      $('.messenger-container, .notification-container, .profile-container').hide();
-    }
+      if (
+        !$(event.target).closest('#messenger, #notification, #profile').length &&
+        !$(event.target).closest('.messenger-container, .notification-container, .profile-container').length
+      ) {
+        $('.messenger-container, .notification-container, .profile-container').hide();
+      }
     });
-    });
+
     // Function to calculate the time ago
     function calculateTimeAgo(createdAt) {
-    var now = new Date();
-    var createdDate = new Date(createdAt);
+        var now = new Date();
+        var createdDate = new Date(createdAt);
 
-    var timeDiff = now - createdDate;
-    var secondsDiff = Math.floor(timeDiff / 1000);
+        var timeDiff = now - createdDate;
+        var secondsDiff = Math.floor(timeDiff / 1000);
 
-    if (secondsDiff < 60) {
-    return secondsDiff + ' seconds ago';
-    } else if (secondsDiff < 3600) {
-    var minutesDiff = Math.floor(secondsDiff / 60);
-    return minutesDiff + ' minutes ago';
-    } else if (secondsDiff < 86400) {
-    var hoursDiff = Math.floor(secondsDiff / 3600);
-    return hoursDiff + ' hours ago';
-    } else if (secondsDiff < 2592000) {
-    var daysDiff = Math.floor(secondsDiff / 86400);
-    return daysDiff + ' days ago';
-    } else if (secondsDiff < 31536000) {
-    var monthsDiff = Math.floor(secondsDiff / 2592000);
-    return monthsDiff + ' months ago';
-    } else {
-    var yearsDiff = Math.floor(secondsDiff / 31536000);
-    return yearsDiff + ' years ago';
+        if (secondsDiff < 60)
+        {
+          return secondsDiff + ' seconds ago';
+        } 
+        else if (secondsDiff < 3600) 
+        {
+          var minutesDiff = Math.floor(secondsDiff / 60);
+          return minutesDiff + ' minutes ago';
+        } 
+        else if (secondsDiff < 86400) 
+        {
+          var hoursDiff = Math.floor(secondsDiff / 3600);
+          return hoursDiff + ' hours ago';
+        } 
+        else if (secondsDiff < 2592000) 
+        {
+          var daysDiff = Math.floor(secondsDiff / 86400);
+          return daysDiff + ' days ago';
+        } 
+        else if (secondsDiff < 31536000) 
+        {
+          var monthsDiff = Math.floor(secondsDiff / 2592000);
+          return monthsDiff + ' months ago';
+        } 
+        else {
+          var yearsDiff = Math.floor(secondsDiff / 31536000);
+          return yearsDiff + ' years ago';
+        }
     }
-    }
-    function setRightMargin() {
-    // For Messenger container
-    var messengerIconWidth = $('#messenger i').outerWidth(true);
-    var messengerRightMargin = $(window).width() - ($('#messenger').offset().left + messengerIconWidth) - 50;
-    $('.messenger-container').css('right', messengerRightMargin + 'px');
 
-    // For Notification container
-    var notificationIconWidth = $('#notification i').outerWidth(true);
-    var notificationRightMargin = $(window).width() - ($('#notification').offset().left + notificationIconWidth) -100;
-    $('.notification-container').css('right', notificationRightMargin + 'px');
+    function setRightMargin()
+    {
+        // For Messenger container
+        var messengerIconWidth = $('#messenger i').outerWidth(true);
+        var messengerRightMargin = $(window).width() - ($('#messenger').offset().left + messengerIconWidth) - 50;
+        $('.messenger-container').css('right', messengerRightMargin + 'px');
+
+        // For Notification container
+        var notificationIconWidth = $('#notification i').outerWidth(true);
+        var notificationRightMargin = $(window).width() - ($('#notification').offset().left + notificationIconWidth) -100;
+        $('.notification-container').css('right', notificationRightMargin + 'px');
     }
+
+
+  $('#mark_read').on('click', function(event) {
+    $.ajax({
+      url: '/mark-as-read', // Replace this with the actual route URL
+      type: 'GET',
+      dataType: 'json',
+      success: function(response) {
+          displayCountIfNotZero(response.data, 'notification_count');
+      },
+      error: function(error) {
+          console.error('Error fetching notification data:', error);
+      }
+   });
+  });
+
+});
