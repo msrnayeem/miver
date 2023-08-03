@@ -123,7 +123,14 @@
         <a href="#" data-filter="delivered">Delivered</span></a>
         <a href="#" data-filter="cancelled">Cancelled</span></a>
     </div>
-
+        @if($errors->any())
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong> {{ $errors->first() }} </strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
     <hr class="menu-hr">
 
     <div class="table-container">
@@ -151,7 +158,7 @@
                 @if(count($orders) > 0)
                  @foreach($orders as $order)
                     <tr>
-                        <td class="d-md-table-cell">{{$order->order_id}}</td>
+                        <td class="d-md-table-cell"><a href="{{ route('order.details', ['orderId' => $order->order_id]) }}">{{$order->order_id}}</a></td>
                         <td class="d-none d-md-table-cell">{{$order->buyer->name}}</td>
                         <td class="d-none d-md-table-cell">{{$order->price}}</td>
                         <td class="d-none d-md-table-cell">{{ $order->created_at->format('M d, y') }}</td>
@@ -173,7 +180,12 @@
 
 @push('scripts')
 <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 <script>
+     $(".close").on("click", function () {
+                        $(this).closest(".alert").alert("close");
+                    });
+
     $(document).ready(function() {
         var table = $('#orderTable').DataTable({
             dom: 'lrtip',

@@ -17,8 +17,10 @@ class Order extends Model
     {
         return $this->belongsTo(User::class, 'seller_id');
     }
-
-
+    public function gig()
+    {
+        return $this->belongsTo(Gig::class);
+    }
     public function service()
     {
         return $this->belongsTo(Service::class);

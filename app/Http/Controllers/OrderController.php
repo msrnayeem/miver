@@ -70,4 +70,15 @@ class OrderController extends Controller
 
         return 'Order Placed Successfully';
     }
+
+    public function orderDetails(Request $request){
+        $orderId = $request->orderId;
+        $order = Order::with('gig')->where('order_id', $orderId)->first();
+        
+        if($order->seller_id != session()->get('id')){
+            //redirect back with errors
+            return redirect()->back()->withErrors(['You are not authorized to view this order']);
+        }
+        return view('pages.user.order-details', compact('order'));
+    }
 }

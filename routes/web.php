@@ -12,54 +12,47 @@ use Illuminate\Support\Facades\Route;
 
 //get messages
 Route::get('/get-message', [MessageController::class, 'getMessages'])->name('messages.index');
-//get msg and notification count
-Route::get('/get-msg-notification-count', [MessageController::class, 'getMsgNotificationCount'])->name('getMsgNotificationCount');
 
-//mark as read
+Route::get('/get-notification-data', [NotificationController::class, 'getNotificationData'])->name('getNotificationData');
+Route::get('/get-msg-notification-count', [MessageController::class, 'getMsgNotificationCount'])->name('getMsgNotificationCount');
 Route::get('/mark-as-read', [NotificationController::class, 'markAsRead'])->name('markAsRead');
 
 //send messages
 Route::get('/send-welcome-email', [MailController::class, 'sendWelcomeEmail'])->name('send.welcome.email');
 
-//PlaceOrder
-Route::get('/place-order', [OrderController::class, 'placedOrder'])->name('place.order');
-
-//login
-Route::post('/loginn', [MainController::class, 'loginSubmitted'])->name('loginn');
-
-//signup
-Route::post('/signup', [MainController::class, 'signupSubmitted'])->name('signup');
 
 //category
 Route::get('/category/{category}', [CategoryController::class, 'category'])->name('category');
 Route::get('/getSubCategory', [CategoryController::class, 'getSubCategory'])->name('getSubCategory');
 Route::get('/getSubSubCategory', [CategoryController::class, 'getSubSubCategory'])->name('getSubSubCategory');
 
-//shahidur
+//auth
 Route::get('/', [MainController::class, 'index'])->name('index');
-//user
-
+Route::post('/signup', [MainController::class, 'signupSubmitted'])->name('signup');
+Route::post('/loginn', [MainController::class, 'loginSubmitted'])->name('loginn');
 Route::get('/logout', [MainController::class, 'logout'])->name('logout');
 
+//user
 Route::group(['prefix' => 'user'], function () {
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
     Route::get('/seller/personal-info', [UserController::class, 'personalInfo'])->name('seller.personal.info');
 });
 
+//gigs
 Route::group(['prefix' => 'gigs'], function () {
     Route::get('/gig-info.', [UserController::class, 'gigInfo'])->name('user.gig.info');
     Route::get('/add-gig', [UserController::class, 'addGig'])->name('user.add.gig');
    
     Route::get('/all-gigs', [GigController::class, 'allGigs'])->name('all.gigs');
     Route::get('/gig/{id}', [GigController::class, 'gig'])->name('gig');
-
-    Route::get('/orders', [OrderController::class, 'orders'])->name('user.gig.orders');
 });
-
 Route::post('/profile-pic', [MainController::class, 'profilePic'])->name('profilePic');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//orders
+Route::group(['prefix' => 'orders'], function () {
+    Route::get('/orders', [OrderController::class, 'orders'])->name('user.gig.orders');
+    Route::get('/order-details', [OrderController::class, 'orderDetails'])->name('order.details');
+    Route::get('/place-order', [OrderController::class, 'placedOrder'])->name('place.order');
+});
 
-//get-notification-data
 
-Route::get('/get-notification-data', [NotificationController::class, 'getNotificationData'])->name('getNotificationData');

@@ -20,4 +20,9 @@ class Gig extends Model
     {
         return $this->hasMany(Package::class, 'gig_id');
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }
