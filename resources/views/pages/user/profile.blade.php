@@ -227,44 +227,22 @@ p {
             </div>
            
                 <div class="categories" id="for_gigs">
+                    @foreach ($user->gigs as $gig)
                     <div class="card">
                         <img src="{{ asset('image.png') }}" alt="name">
                         
-                        <h3><a href="">Title</a></h3>     
-                        <p>Starting at 29.99</p>
+                        <h5><a href="">{{$gig->gig_title}}</a></h5> 
+                        @if ($gig->packages->isNotEmpty())
+                            <p>Starting at {{ $gig->packages->first()->price }}</p>
+                        @endif    
+
                     </div>
-                    <div class="card">
-                        <img src="{{ asset('image.png') }}" alt="name">
-                        
-                        <h3><a href="">Title</a></h3>     
-                        <p>Starting at 29.99</p>
-                    </div>
-                    <div class="card">
-                        <img src="{{ asset('image.png') }}" alt="name">
-                        
-                        <h3><a href="">Title</a></h3>     
-                        <p>Starting at 29.99</p>
-                    </div>
-                    <div class="card">
-                        <img src="{{ asset('image.png') }}" alt="name">
-                        
-                        <h3><a href="">Title</a></h3>     
-                        <p>Starting at 29.99</p>
-                    </div>
-                    <div class="card">
-                        <img src="{{ asset('image.png') }}" alt="name">
-                        
-                        <h3><a href="">Title</a></h3>     
-                        <p>Starting at 29.99</p>
-                    </div>
+                    @endforeach
                 </div>
 
                 <div class="categories" id="for_drafts" style="display: none;">
                     <div class="card">
-                        <img src="{{ asset('image.png') }}" alt="name">
-                        
-                        <h3><a href="">Title</a></h3>     
-                        <p>Starting at 29.99</p>
+                        <p>There are no drafts yet.</p>
                     </div>
                 </div>
         </div>

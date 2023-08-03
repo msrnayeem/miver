@@ -15,9 +15,9 @@ class UserController extends Controller
             $userId = session()->get('id');
 
             $user = User::with(['gigs.packages' => function ($query) {
-                $query->orderBy('price', 'asc')->take(1);
+                $query->orderBy('price', 'asc');
             }])->find($userId);
-            //dd($user->gigs->first()->packages->first()->price);
+          
             return view('pages.user.profile', compact('user'));
 
         } else {
