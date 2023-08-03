@@ -19,8 +19,8 @@ class OrderController extends Controller
         }
         $sellerId = session()->get('id');
 
-        $orders = Order::with('user')->where('seller_id', $sellerId)->get();
-          
+        $orders = Order::where('seller_id', $sellerId)->get();
+
         return view('pages.user.orders', compact('orders'));
         
     }

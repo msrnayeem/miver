@@ -18,6 +18,6 @@ class Gig extends Model
 
     public function packages()
     {
-        return $this->hasMany(Package::class);
+        return $this->hasMany(Package::class, 'gig_id');
     }
 }

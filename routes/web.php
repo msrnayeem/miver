@@ -35,11 +35,6 @@ Route::get('/category/{category}', [CategoryController::class, 'category'])->nam
 Route::get('/getSubCategory', [CategoryController::class, 'getSubCategory'])->name('getSubCategory');
 Route::get('/getSubSubCategory', [CategoryController::class, 'getSubSubCategory'])->name('getSubSubCategory');
 
-//all product
-Route::get('/all-gigs', [GigController::class, 'showAllProducts'])->name('all.gigs');
-//single product
-Route::get('/single-gig/{id}', [GigController::class, 'singleProduct'])->name('single.gig');
-
 //shahidur
 Route::get('/', [MainController::class, 'index'])->name('index');
 //user
@@ -48,10 +43,16 @@ Route::get('/logout', [MainController::class, 'logout'])->name('logout');
 
 Route::group(['prefix' => 'user'], function () {
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
-    // Route::get('/add-gig', [UserController::class, 'addGig'])->name('user.add.gig');
     Route::get('/seller/personal-info', [UserController::class, 'personalInfo'])->name('seller.personal.info');
-    Route::get('/add-gig', [UserController::class, 'addGig'])->name('user.add.gig');
+});
+
+Route::group(['prefix' => 'gigs'], function () {
     Route::get('/gig-info.', [UserController::class, 'gigInfo'])->name('user.gig.info');
+    Route::get('/add-gig', [UserController::class, 'addGig'])->name('user.add.gig');
+   
+    Route::get('/all-gigs', [GigController::class, 'allGigs'])->name('all.gigs');
+    Route::get('/gig/{id}', [GigController::class, 'gig'])->name('gig');
+
     Route::get('/orders', [OrderController::class, 'orders'])->name('user.gig.orders');
 });
 

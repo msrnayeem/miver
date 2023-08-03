@@ -46,6 +46,27 @@
     
   </form>
 
+  <div class="categories">
+      @foreach($gigs as $gig)
+      <div class="card">
+        <img src="{{ asset('image.png') }}" alt="{{ $gig->gig_title }}">
+
+        <div class="user-section">
+          <div class="user-icon">
+            <img src="{{ asset('image.png') }}" alt="User Icon" class="user-image">
+          </div>
+          <div class="user-name">
+            {{ $gig->user->name }}
+          </div>
+        </div>
+        <h3><a href="{{ route('gig', ['id' => $gig->id]) }}">{{ $gig->gig_title }}</a></h3>
+        @if ($gig->packages->isNotEmpty())
+            <h4>{{ $gig->packages->first()->price }}</h4>
+        @endif
+        <p>{{ $gig->details }}</p>
+      </div>
+      @endforeach
+</div>
   
 
   <div class="pagination">

@@ -1,7 +1,5 @@
-@extends('layouts.default')
-
-@section('title', 'Miverr - Orders')
-@push('styles')
+<?php $__env->startSection('title', 'Miverr - Orders'); ?>
+<?php $__env->startPush('styles'); ?>
 <style>
     .container {
         width: 100%;
@@ -105,8 +103,8 @@
     }
 </style>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
-@endpush
-@section('content')
+<?php $__env->stopPush(); ?>
+<?php $__env->startSection('content'); ?>
 <div class="container">
     <div class="header-order">
         <h1>Manage orders</h1>
@@ -148,30 +146,30 @@
                 </tr>
             </thead>
             <tbody>
-                @if(count($orders) > 0)
-                 @foreach($orders as $order)
+                <?php if(count($orders) > 0): ?>
+                 <?php $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                        <td class="d-md-table-cell">{{$order->order_id}}</td>
-                        <td class="d-none d-md-table-cell">{{$order->buyer->name}}</td>
-                        <td class="d-none d-md-table-cell">{{$order->price}}</td>
-                        <td class="d-none d-md-table-cell">{{ $order->created_at->format('M d, y') }}</td>
-                        <td>{{ $order->delivery_date ? $order->delivery_date->format('M d, y') : 'Not fixed yet' }}</td>
-                        <td>{{$order->order_status}}</td>
+                        <td class="d-md-table-cell"><?php echo e($order->order_id); ?></td>
+                        <td class="d-none d-md-table-cell"><?php echo e($order->buyer->name); ?></td>
+                        <td class="d-none d-md-table-cell"><?php echo e($order->price); ?></td>
+                        <td class="d-none d-md-table-cell"><?php echo e($order->created_at->format('M d, y')); ?></td>
+                        <td><?php echo e($order->delivery_date ? $order->delivery_date->format('M d, y') : 'Not fixed yet'); ?></td>
+                        <td><?php echo e($order->order_status); ?></td>
                     </tr>
-                @endforeach
-                @else
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <?php else: ?>
                 <tr>
                     <td colspan="7">No orders found</td>
                 </tr>
-                @endif
+                <?php endif; ?>
             </tbody>
         </table>
     </div>
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('scripts')
+<?php $__env->startPush('scripts'); ?>
 <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function() {
@@ -205,4 +203,5 @@
     });
 </script>
 
-@endpush
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('layouts.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\miver\resources\views/pages/user/orders.blade.php ENDPATH**/ ?>
