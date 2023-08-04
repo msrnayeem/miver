@@ -51,6 +51,7 @@ Route::post('/profile-pic', [MainController::class, 'profilePic'])->name('profil
 //orders
 Route::group(['prefix' => 'orders'], function () {
     Route::get('/orders', [OrderController::class, 'orders'])->name('user.gig.orders');
+    Route::get('/my-orders', [OrderController::class, 'myOrders'])->name('user.gig.myorders');
     Route::get('/order-details', [OrderController::class, 'orderDetails'])->name('order.details');
     Route::get('/place-order', [OrderController::class, 'placedOrder'])->name('place.order');
 });

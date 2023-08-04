@@ -164,9 +164,10 @@
 
     document.getElementById('order').addEventListener('click', function () {
         const gigIdNumber = parseInt(document.getElementById('gig_id').getAttribute('name'));
-
+        const countElement = document.getElementById("notification_count");
+        const countValue = countElement.innerText;       
         $.ajax({
-            type: 'GET',
+            type: 'get',
             url: '{{ route("place.order") }}',
             data: {
                 gigIdNumber: gigIdNumber,
@@ -175,12 +176,18 @@
             success: function (response) {
               console.log(response);
                 if(response.success) {
+
+                  if (countValue == "") {
+                      countElement.innerText = "1";
+                    } else {
+                      const count = parseInt(countValue) + 1;
+                      countElement.innerText = count;
+                    }
                     alert('Order placed successfully');
                 }
             },
             error: function (error) {
-                // Handle any errors that occur during the AJAX request (if needed)
-                console.error('Error placing order:', error);
+               console.error('Error placing order:', error);
             }
     });
   });

@@ -99,6 +99,7 @@
                         <div class="profile-container" id="userDropdown">
                           <div class="notification-item odd"><a href="{{ route('profile') }}" class="profile-item even">Profile</a></div>
                           <div class="notification-item odd"><a href="{{ route('user.gig.orders') }}" class="profile-item even">Orders</a></div>
+                          <div class="notification-item odd"><a href="{{ route('user.gig.myorders') }}" class="profile-item even">My Orders</a></div>
                           <div class="notification-item even"><a href="#" class="profile-item odd">Setting</a></div>
                           <div class="notification-item even"><a href="#" class="profile-item odd">Change Password</a></div>
                           <div class="notification-item even"><a href="/logout" class="profile-item odd">Logout</a></div>

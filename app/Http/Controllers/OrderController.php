@@ -21,10 +21,23 @@ class OrderController extends Controller
         $sellerId = session()->get('id');
 
         $orders = Order::where('seller_id', $sellerId)->get();
-
-        return view('pages.user.orders', compact('orders'));
+        $type = 'seller';
+        return view('pages.user.orders', compact('orders', 'type'));
         
     }
+    public function myOrders(Request $request)
+    {
+        if(!session()->has('id')){
+            return redirect()->route('index');
+        }
+        $sellerId = session()->get('id');
+
+        $orders = Order::where('buyer_id', $sellerId)->get();
+        $type = 'buyer';
+        return view('pages.user.orders', compact('orders', 'type'));
+        
+    }
+    
 
     public function placedOrder(Request $request)
     {
@@ -80,11 +93,15 @@ class OrderController extends Controller
     public function orderDetails(Request $request){
         $orderId = $request->orderId;
         $order = Order::with('gig')->where('order_id', $orderId)->first();
-        
-        if($order->seller_id != session()->get('id')){
-            //redirect back with errors
+        $type = $request->type;
+        if($type == 'buyer' && $order->buyer_id != session()->get('id')){
             return redirect()->back()->withErrors(['You are not authorized to view this order']);
         }
-        return view('pages.user.order-details', compact('order'));
+        
+        if($type == 'seller' && $order->seller_id != session()->get('id')){
+            return redirect()->back()->withErrors(['You are not authorized to view this order']);
+        }
+       
+        return view('pages.user.order-details', compact('order', 'type'));
     }
 }

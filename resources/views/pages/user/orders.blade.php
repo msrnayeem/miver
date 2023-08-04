@@ -158,7 +158,7 @@
                 @if(count($orders) > 0)
                  @foreach($orders as $order)
                     <tr>
-                        <td class="d-md-table-cell"><a href="{{ route('order.details', ['orderId' => $order->order_id]) }}">{{$order->order_id}}</a></td>
+                        <td class="d-md-table-cell"><a href="{{ route('order.details', ['orderId' => $order->order_id, 'type'=>"$type"]) }}">{{$order->order_id}}</a></td>
                         <td class="d-none d-md-table-cell">{{$order->buyer->name}}</td>
                         <td class="d-none d-md-table-cell">{{$order->price}}</td>
                         <td class="d-none d-md-table-cell">{{ $order->created_at->format('M d, y') }}</td>

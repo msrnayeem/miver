@@ -11,12 +11,12 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Buyer Information</h5>
+                        <h5 class="card-title" style=" text-transform: capitalize;">{{$type}} information</h5>
                         <!-- Add buyer information here -->
                         <!-- For example: -->
                         <p>Name: {{ $order->buyer->name}}</p>
                         <p>Email: {{ $order->buyer->email}}</p>
-                        <!-- Add more buyer information as needed -->
+                        <a href="#" class="btn btn-primary btn-sm">Message Now</a>
                     </div>
                 </div>
             </div>

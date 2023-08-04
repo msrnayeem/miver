@@ -26,7 +26,7 @@ $(document).ready(function() {
     if (count > 0) {
       $('#' + elementId).text(count);
     } else {
-      $('#' + elementId).hide(); // Hide the element if count is 0
+      $('#' + elementId).text(""); // Hide the element if count is 0
     }
 }
     setRightMargin();
