@@ -102,7 +102,7 @@
                           <div class="notification-item odd"><a href="{{ route('user.gig.myorders') }}" class="profile-item even">My Orders</a></div>
                           <div class="notification-item even"><a href="#" class="profile-item odd">Setting</a></div>
                           <div class="notification-item even"><a href="#" class="profile-item odd">Change Password</a></div>
-                          <div class="notification-item even"><a href="/logout" class="profile-item odd">Logout</a></div>
+                          <div class="notification-item even"><a href="" class="profile-item odd" id="logout">Logout</a></div>
                         </div>
                       </li>
                     </ul>        
@@ -127,6 +127,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
 
   @if(!session()->has('name'))
     <script src="{{ asset('js/register.js') }}"></script>

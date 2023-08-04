@@ -124,7 +124,7 @@
 
 @push('scripts')
     <script src="{{ asset('') }}"></script>
-    
+   
 
 <script>
   let package = "basic" ;
@@ -166,30 +166,63 @@
         const gigIdNumber = parseInt(document.getElementById('gig_id').getAttribute('name'));
         const countElement = document.getElementById("notification_count");
         const countValue = countElement.innerText;       
-        $.ajax({
-            type: 'get',
-            url: '{{ route("place.order") }}',
-            data: {
-                gigIdNumber: gigIdNumber,
-                package: package
-            },
-            success: function (response) {
-              console.log(response);
-                if(response.success) {
 
-                  if (countValue == "") {
-                      countElement.innerText = "1";
-                    } else {
-                      const count = parseInt(countValue) + 1;
-                      countElement.innerText = count;
-                    }
-                    alert('Order placed successfully');
-                }
-            },
-            error: function (error) {
-               console.error('Error placing order:', error);
+        Swal.fire({
+            title: 'Are you sure ?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'Cancel'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                  title: 'Placing Order',
+                  icon: 'info',
+                  showConfirmButton: false,
+                  allowOutsideClick: false,
+                  allowEscapeKey: false,
+                  allowEnterKey: false,
+                });
+                $.ajax({
+                      type: 'get',
+                      url: '{{ route("place.order") }}',
+                      data: {
+                          gigIdNumber: gigIdNumber,
+                          package: package
+                      },
+                      success: function (response) {
+                        console.log(response);
+                          if(response.success) {
+
+                            if (countValue == "") {
+                                countElement.innerText = "1";
+                              } else {
+                                const count = parseInt(countValue) + 1;
+                                countElement.innerText = count;
+                              }
+                              Swal.fire({
+                                title: 'Order Placed Successfully',
+                                icon: 'success',
+                                confirmButtonText: 'Ok',
+                              });
+                          }
+                      },
+                      error: function (error) {
+                        console.error('Error placing order:', error);
+                        Swal.fire({
+                          title: 'Error Placing Order',
+                          icon: 'error',
+                          confirmButtonText: 'Ok',
+                        });
+                      }
+                });
+             
+           } else {
+              // If the user clicks the cancel button or closes the confirmation box, do nothing.
             }
-    });
+          });
   });
 </script>
 @endpush

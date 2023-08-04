@@ -97,6 +97,6 @@ class MainController extends Controller
         //Session::forget('name');
         Session::flush();
 
-        return redirect()->route('index');
+        return response()->json(['success' => true]);
     }
 }

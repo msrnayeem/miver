@@ -16,7 +16,9 @@
                         <!-- For example: -->
                         <p>Name: {{ $order->buyer->name}}</p>
                         <p>Email: {{ $order->buyer->email}}</p>
+                        @if($type == 'seller')
                         <a href="#" class="btn btn-primary btn-sm">Message Now</a>
+                        @endif
                     </div>
                 </div>
             </div>

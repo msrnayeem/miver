@@ -227,4 +227,51 @@ $(document).ready(function() {
    });
   });
 
+
+
+  $('#logout').on('click', function(event) {
+    event.preventDefault();
+    Swal.fire({
+      title: 'Are you sure you want to logout?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, logout',
+      cancelButtonText: 'Cancel',
+    }).then((result) => {
+      
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Logging out..',
+          icon: 'info',
+          showConfirmButton: false,
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          allowEnterKey: false,
+        });
+        $.ajax({
+          url: '/logout', 
+          type: 'get',  
+          success: function(data) {
+            if (data.success) {            
+              window.location.href = '/'; 
+            } else {
+              console.error('Logout failed:', data);
+              Swal.fire('Logout Failed', 'An error occurred while logging out.', 'error');
+            }
+          },
+          error: function(err) {
+           
+            console.error('Logout failed:', err);
+          }
+        });
+      } else {
+        // If the user clicks the cancel button or closes the confirmation box, do nothing.
+      }
+    });
+  });
+
+
+
 });
