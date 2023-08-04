@@ -71,8 +71,9 @@ class OrderController extends Controller
         //create notifiction for seller
         $notification = new Notification();
         $notification->user_id = $seller_id;
-        $notification->notification_text = "You have a new order, id:'.$order->order_id.";
+        $notification->notification_text = "You have a new order, id:'$order->order_id";
         $notification->notification_date = now();
+        $notification->order_id = $order->order_id;
         $notification->save();
 
         //create notifiction for buyer
@@ -80,6 +81,7 @@ class OrderController extends Controller
         $notification->user_id = $buyer_id;
         $notification->notification_text = "You have placed a new order, id:'.$order->order_id.";
         $notification->notification_date = now();
+        $notification->order_id = $order->order_id;
         $notification->save();
 
         //send email to seller
@@ -93,6 +95,7 @@ class OrderController extends Controller
     public function orderDetails(Request $request){
         $orderId = $request->orderId;
         $order = Order::with('gig')->where('order_id', $orderId)->first();
+       
         $type = $request->type;
         if($type == 'buyer' && $order->buyer_id != session()->get('id')){
             return redirect()->back()->withErrors(['You are not authorized to view this order']);

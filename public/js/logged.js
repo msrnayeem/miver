@@ -128,8 +128,10 @@ $(document).ready(function() {
 
                   // Loop through the response and append notification items to the DOM
                   response.forEach(function(item, index) {
-                      var notificationItem = '<div class="notification-item ' + (index % 2 === 0 ? 'even' : 'odd') + '">' + item.notification_text + '</div>';
-                      $mainDiv.append(notificationItem);
+                    var link = '/orders/order-details/:orderId/buyer';
+                    link = link.replace(':orderId', item.order_id);
+                    var notificationItem = '<div class="notification-item">' + '<a href="' + link + '">' + item.notification_text + '</a>' + '</div>';
+                    $mainDiv.append(notificationItem);
                   });
                   $('.notification-container').toggle();
               }
