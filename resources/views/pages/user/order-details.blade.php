@@ -10,16 +10,26 @@
             <!-- Left column for buyer information -->
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title" style=" text-transform: capitalize;">information</h5>
-                        <!-- Add buyer information here -->
-                        <!-- For example: -->
-                        <p>Name: {{ $order->buyer->name}}</p>
-                        <p>Email: {{ $order->buyer->email}}</p>
-                        
-                        <a href="#" class="btn btn-primary btn-sm">Message Now</a>
-                        
-                    </div>
+                    @if($type == 'seller')
+                        <div class="card-body">
+                            <h5 class="card-title" style=" text-transform: capitalize;">Buyer information</h5>
+                            <!-- Add buyer information here -->
+                            <!-- For example: -->
+                            <p>Name: {{ $order->buyer->name}}</p>
+                            <p>Email: {{ $order->buyer->email}}</p>
+                            
+                            <a href="#" class="btn btn-primary btn-sm">Message Now</a>
+                        </div>
+                    @else
+                        <div class="card-body">
+                            <h5 class="card-title" style=" text-transform: capitalize;">Seller information</h5>
+                            <!-- Add buyer information here -->
+                            <!-- For example: -->
+                            <p>Name: {{ $order->seller->name}}</p>
+                            <p>Email: {{ $order->seller->email}}</p>
+                            <a href="#" class="btn btn-primary btn-sm">Message Now</a>
+                        </div>
+                    @endif
                 </div>
             </div>
             

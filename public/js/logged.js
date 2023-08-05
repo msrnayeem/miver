@@ -39,11 +39,10 @@ $(document).ready(function() {
       $('.profile-container').hide();
       $('.notification-container').hide();
 
-      var messengerContainer = $('.messenger-container');
+      var messengerContainer = $('.messenger-container');   
 
-      // Check if the messenger container is hidden
       if (messengerContainer.is(':hidden')) {
-      $('.no-messages-message').hide(); // Initially hide the "No messages yet" message
+      $('.no-messages-message').hide(); 
       $('.loading-message').show();
       
         $.ajax({
@@ -85,7 +84,7 @@ $(document).ready(function() {
                 messengerContainer.find('.main').append(messageHTML);
               });
 
-              // Show the messenger container after adding the messages
+              
               messengerContainer.toggle();
             } else {
               console.log('No messages found');
@@ -102,7 +101,7 @@ $(document).ready(function() {
         }
       });
     } else {
-    // If the messenger container is already open, just toggle it to hide it
+   
     messengerContainer.toggle();
     }
     });
@@ -111,26 +110,20 @@ $(document).ready(function() {
     $('#notification').on('click', function() {
     $('.messenger-container').hide();
     $('.profile-container').hide();
-    // $('.notification-container').toggle();
+
     var notificationContainer = $('.notification-container');
 
-    // Check if the notification container is hidden
       if (notificationContainer.is(':hidden')) {
         $.ajax({
-          url: '/get-notification-data', // Replace this with the actual route URL
+          url: '/get-notification-data', 
           type: 'GET',
           dataType: 'json',
           success: function(response) {
-              // Assuming the response is an array of notification items
               if (Array.isArray(response)) {
                 var $mainDiv = notificationContainer.find('.main');
-                  $mainDiv.empty(); // Clear previous notification items
-
-                  // Loop through the response and append notification items to the DOM
+                  $mainDiv.empty(); 
                   response.forEach(function(item, index) {
-                    var link = '/orders/order-details/:orderId/buyer';
-                    link = link.replace(':orderId', item.order_id);
-                    var notificationItem = '<div class="notification-item">' + '<a href="' + link + '">' + item.notification_text + '</a>' + '</div>';
+                    var notificationItem = '<div class="notification-item">'+ item.notification_text +'</div>';
                     $mainDiv.append(notificationItem);
                   });
                   $('.notification-container').toggle();
@@ -153,7 +146,7 @@ $(document).ready(function() {
       $('.profile-container').toggle();
     });
 
-    // Hide all containers when clicking outside
+  
     $(document).on('click', function(event) {
       if (
         !$(event.target).closest('#messenger, #notification, #profile').length &&
@@ -264,12 +257,9 @@ $(document).ready(function() {
             }
           },
           error: function(err) {
-           
             console.error('Logout failed:', err);
           }
         });
-      } else {
-        // If the user clicks the cancel button or closes the confirmation box, do nothing.
       }
     });
   });

@@ -25,7 +25,12 @@ class GigController extends Controller
     public function gig($id)
     {
         $gig = Gig::with(['packages','subSubCategory.subCategory'])->find($id);
-        
-        return view('pages.gigs.single-gig', compact('gig'));
+        if($gig->user_id == session()->get('id')){
+            $order = false;
+        }
+        else{
+            $order = true;
+        }
+        return view('pages.gigs.single-gig', compact('gig','order'));
     }
 }

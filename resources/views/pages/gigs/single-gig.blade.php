@@ -112,9 +112,15 @@
                   </div>
                   <span style="display: none;" name="{{ $gig->id }}" id="gig_id">
               </div>
-              <div class="mt-3">
-                  <button class="btn btn-primary btn-sm" id="order">Order Now</button>
-              </div>
+              @if($order)
+                <div class="mt-3">
+                    <button class="btn btn-primary btn-sm" id="order">Order Now</button>
+                </div>
+              @else
+                <div class="mt-3">
+                    <p class="btn btn-warning" style="cursor:default;">Can't Order</p>
+                </div>
+              @endif
           </div>
     </div>
   </div>

@@ -137,12 +137,11 @@
         <table class="order-table" id="orderTable">
             <thead>
                 <tr>
-                   
                     <!-- Gig ID always visible -->
                     <th class="d-md-table-cell">Order id</th>
 
                     <!-- Show Buyer ID on desktop, hide on mobile -->
-                    <th class="d-none d-md-table-cell">Buyer</th>
+                    <th class="d-none d-md-table-cell" style="text-transform: capitalize;">{{ $type }}</th>
 
                     <!-- Show Price on desktop, hide on mobile -->
                     <th class="d-none d-md-table-cell">Price</th>
@@ -156,20 +155,20 @@
             </thead>
             <tbody>
                 @if(count($orders) > 0)
-                 @foreach($orders as $order)
-                    <tr>
-                        <td class="d-md-table-cell"><a href="{{ route('order.details', ['orderId' => $order->order_id, 'type'=>"$type"]) }}">{{$order->order_id}}</a></td>
-                        <td class="d-none d-md-table-cell">{{$order->buyer->name}}</td>
-                        <td class="d-none d-md-table-cell">{{$order->price}}</td>
-                        <td class="d-none d-md-table-cell">{{ $order->created_at->format('M d, y') }}</td>
-                        <td>{{ $order->delivery_date ? $order->delivery_date->format('M d, y') : 'Not fixed yet' }}</td>
-                        <td>{{$order->order_status}}</td>
-                    </tr>
-                @endforeach
+                    @foreach($orders as $order)
+                        <tr>
+                            <td class="d-md-table-cell"><a href="{{ route('order.details', ['orderId' => $order->order_id]) }}">{{$order->order_id}}</a></td>
+                            <td class="d-none d-md-table-cell">{{ ($type == 'seller') ? $order->seller->name : $order->buyer->name }}</td>
+                            <td class="d-none d-md-table-cell">{{$order->price}}</td>
+                            <td class="d-none d-md-table-cell">{{ $order->created_at->format('M d, y') }}</td>
+                            <td>{{ $order->delivery_date ? $order->delivery_date->format('M d, y') : 'Not fixed yet' }}</td>
+                            <td>{{$order->order_status}}</td>
+                        </tr>
+                     @endforeach
                 @else
-                <tr>
-                    <td colspan="7">No orders found</td>
-                </tr>
+                    <tr>
+                        <td colspan="7">No orders found</td>
+                    </tr>
                 @endif
             </tbody>
         </table>

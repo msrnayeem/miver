@@ -231,7 +231,7 @@ p {
                     <div class="card">
                         <img src="{{ asset('image.png') }}" alt="name">
                         
-                        <h5><a href="">{{$gig->gig_title}}</a></h5> 
+                        <h5><a href="{{ route('gig', ['id' => $gig->id]) }}">{{ $gig->gig_title }}</a></h5> 
                         @if ($gig->packages->isNotEmpty())
                             <p>Starting at {{ $gig->packages->first()->price }}</p>
                         @endif    

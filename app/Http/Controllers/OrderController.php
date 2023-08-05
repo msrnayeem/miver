@@ -21,7 +21,7 @@ class OrderController extends Controller
         $sellerId = session()->get('id');
 
         $orders = Order::where('seller_id', $sellerId)->get();
-        $type = 'seller';
+        $type = 'buyer';
         return view('pages.user.orders', compact('orders', 'type'));
         
     }
@@ -33,12 +33,11 @@ class OrderController extends Controller
         $sellerId = session()->get('id');
 
         $orders = Order::where('buyer_id', $sellerId)->get();
-        $type = 'buyer';
+        $type = 'seller';
         return view('pages.user.orders', compact('orders', 'type'));
         
     }
     
-
     public function placedOrder(Request $request)
     {
          // Retrieve the gigIdNumber and package from the AJAX request
@@ -67,26 +66,24 @@ class OrderController extends Controller
         $order->order_status = 'pending';
         $order->created_at = now();
         $order->save();
-
+       
         //create notifiction for seller
         $notification = new Notification();
         $notification->user_id = $seller_id;
-        $notification->notification_text = "You have a new order, id:'$order->order_id";
+        $notification->notification_text = '<a href="' . route('order.details', ['orderId' => $order->order_id]) . '">you have got a new order</a>';
         $notification->notification_date = now();
-        $notification->order_id = $order->order_id;
         $notification->save();
 
         //create notifiction for buyer
         $notification = new Notification();
         $notification->user_id = $buyer_id;
-        $notification->notification_text = "You have placed a new order, id:'.$order->order_id.";
+        $notification->notification_text = '<a href="' . route('order.details', ['orderId' => $order->order_id]) . '">you have placed a new order</a>';
         $notification->notification_date = now();
-        $notification->order_id = $order->order_id;
         $notification->save();
 
         //send email to seller
-        $seller = User::find($seller_id); // Replace 1 with the user ID you want to send the welcome email to
-        Mail::to($seller->email)->send(new OrderPlacedSeller($seller, $order->order_id));
+      //  $seller = User::find($seller_id); // Replace 1 with the user ID you want to send the welcome email to
+     //   Mail::to($seller->email)->send(new OrderPlacedSeller($seller, $order->order_id));
 
         //return json response true
         return response()->json(['success' => true]);
@@ -95,16 +92,16 @@ class OrderController extends Controller
     public function orderDetails(Request $request){
         $orderId = $request->orderId;
         $order = Order::with('gig')->where('order_id', $orderId)->first();
-       
-        $type = $request->type;
-        if($type == 'buyer' && $order->buyer_id != session()->get('id')){
-            return redirect()->back()->withErrors(['You are not authorized to view this order']);
-        }
         
-        if($type == 'seller' && $order->seller_id != session()->get('id')){
+        if($order->buyer_id == session()->get('id')){
+            $type = 'buyer';
+        }
+        else if($order->seller_id == session()->get('id')){
+            $type = 'seller';
+        }
+        else{
             return redirect()->back()->withErrors(['You are not authorized to view this order']);
         }
-       
         return view('pages.user.order-details', compact('order', 'type'));
     }
 }
