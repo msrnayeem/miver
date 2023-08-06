@@ -54,6 +54,7 @@ Route::group(['prefix' => 'orders'], function () {
     Route::get('/my-orders', [OrderController::class, 'myOrders'])->name('user.gig.myorders');
     Route::get('/order-details/{orderId}', [OrderController::class, 'orderDetails'])->name('order.details');
     Route::get('/place-order', [OrderController::class, 'placedOrder'])->name('place.order');
+    Route::get('/update-order', [OrderController::class, 'orderUpdate'])->name('order.update');
 });
 
 

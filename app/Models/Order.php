@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $guarded = ['id'];
+    
+    protected $casts = [
+        'delivery_date' => 'date',
+    ];
 
     public function buyer()
     {

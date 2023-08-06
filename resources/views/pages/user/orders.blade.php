@@ -162,7 +162,29 @@
                             <td class="d-none d-md-table-cell">{{$order->price}}</td>
                             <td class="d-none d-md-table-cell">{{ $order->created_at->format('M d, y') }}</td>
                             <td>{{ $order->delivery_date ? $order->delivery_date->format('M d, y') : 'Not fixed yet' }}</td>
-                            <td>{{$order->order_status}}</td>
+                            <td>
+                                @php
+                                    $statusText = '';
+                                    switch($order->order_status) {
+                                        case 0:
+                                            $statusText = 'Pending';
+                                            break;
+                                        case 1:
+                                            $statusText = 'Accepted';
+                                            break;
+                                        case 2:
+                                            $statusText = 'Delivered';
+                                            break;
+                                        case 3:
+                                            $statusText = 'Cancelled';
+                                            break;
+                                        default:
+                                            $statusText = 'Unknown';
+                                            break;
+                                    }
+                                @endphp
+                                {{$statusText}}
+                            </td>
                         </tr>
                      @endforeach
                 @else

@@ -63,8 +63,9 @@ class OrderController extends Controller
         $order->seller_id = $seller_id;
         $order->gig_id = $gigId;
         $order->price = $price;
-        $order->order_status = 'pending';
         $order->created_at = now();
+        $order->updated_at = now();
+        $order->delivery_date = now()->addDays($gig->delivery_time);
         $order->save();
        
         //create notifiction for seller
@@ -103,5 +104,42 @@ class OrderController extends Controller
             return redirect()->back()->withErrors(['You are not authorized to view this order']);
         }
         return view('pages.user.order-details', compact('order', 'type'));
+    }
+
+    public function orderUpdate(Request $request){
+
+        $orderId = $request->input('order_id');
+        $status = $request->input('status');
+
+        $statusValue = '';
+
+        switch ($status) {
+            case 'pending':
+                $statusValue = 0;
+                break;
+            case 'accepted':
+                $statusValue = 1;
+                break;
+            case 'delivered':
+                $statusValue = 2;
+                break;
+            case 'cancelled':
+                $statusValue = 3;
+                break;
+            default:
+                return response()->json(['error' => 'Invalid status value'], 422);
+            }
+        $order = Order::find($orderId);
+        $order->order_status = $statusValue;
+        $order->save();
+
+        //create notifiction for buyer
+        $notification = new Notification();
+        $notification->user_id = $order->buyer_id;
+        $notification->notification_text = '<a href="' . route('order.details', ['orderId' => $order->order_id]) . '">your order status has been updated : ' . $status . '</a>';
+        $notification->notification_date = now();
+        $notification->save();
+
+        return response()->json(['success' => true]);
     }
 }
