@@ -142,4 +142,38 @@ class OrderController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+    public function cancelOrder(Request $request){
+        $orderId = $request->input('id');
+        $order = Order::find($orderId);
+
+        if($order->buyer_id !== session()->get('id')){
+           return redirect()->back()->withErrors('You are not authorized to cancel this order');
+        }
+
+        if($order->order_status == 3){
+            return redirect()->back()->withErrors('Order cancelled already');
+        }
+        if($order->order_status !== 0){
+         
+          return redirect()->back()->withErrors('You can canel your order if its only in pending status');
+
+        }
+
+        if($order->order_status == 0){
+            $order->order_status = 3;
+            $order->save();
+            //create notifiction for seller
+            $notification = new Notification();
+            $notification->user_id = $order->seller_id;
+            $notification->notification_text = '<a href="' . route('order.details', ['orderId' => $order->order_id]) . '">your order has been cancelled by buyer</a>';
+            $notification->notification_date = now();
+            $notification->save();
+            
+            return redirect()->back()->withErrors('Order cancelled successfully');
+        }
+        
+       return redirect()->back()->withErrors('You can canel your order if its in pending');
+   
+    }
 }

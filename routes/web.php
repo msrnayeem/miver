@@ -55,6 +55,7 @@ Route::group(['prefix' => 'orders'], function () {
     Route::get('/order-details/{orderId}', [OrderController::class, 'orderDetails'])->name('order.details');
     Route::get('/place-order', [OrderController::class, 'placedOrder'])->name('place.order');
     Route::get('/update-order', [OrderController::class, 'orderUpdate'])->name('order.update');
+    Route::get('/cancel-order', [OrderController::class, 'cancelOrder'])->name('order.cancel');
 });
 
 

@@ -56,6 +56,12 @@ class MainController extends Controller
         if (! Hash::check($password, $user->password)) {
             return 'Wrong credentials';
         }
+        if($user->is_admin == 1){
+            $request->session()->put('admin', $user->is_admin);
+        }
+        if($user->is_active == 0){
+            return 'Blocked user, please contact with support';
+        }
 
         // Set session
         $request->session()->put('name', $user->name);

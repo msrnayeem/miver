@@ -5,13 +5,13 @@
 <style>
 /* Custom CSS for button alignment */
 /* Custom CSS for button alignment */
-#update {
+#update, #cancel {
     display: block;
     margin: 0 auto;
 }
 
 @media (max-width: 599px) {
-    #update {
+    #update, #cancel {
         display: block;
         margin: 0 auto;
     }
@@ -21,6 +21,16 @@
 @endpush
 @section('content')
     <div class="container mt-4">
+
+        @if($errors->any())
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong> {{ $errors->first() }} </strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+
         <div class="row">
             <!-- Left column for buyer information -->
             <div class="col-md-4">
@@ -84,6 +94,12 @@
                                 $order->order_status == 2) disabled @endif>Update Order</button>
                         </div>
                     </div>
+                @else
+                    <div class="row">
+                        <div class="col-md-2"  id="cancel">
+                            <a href="{{ route('order.cancel', [ 'id'=> $order->id ]) }}">Cancel Request</a>
+                        </div>
+                    </div>
                 @endif
             </div>
 
@@ -96,7 +112,6 @@
                         <p>Service: {{ $order->gig->gig_title}}</p>
                         <p>Price: {{ $order->price}}</p>
                         <p>Delivery Date: {{ $order->delivery_date ? $order->delivery_date->format('d F, Y') : null }}</p>
-
                     </div>
                 </div>
             </div>
@@ -107,8 +122,12 @@
 
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
-
 <script>
+
+       $(".close").on("click", function () {
+                        $(this).closest(".alert").alert("close");
+                    });
+
     // Function to handle the button click
     $('#update').on('click', function () {
         const orderStatus = "{{ $order->order_status }}";

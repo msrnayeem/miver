@@ -43,7 +43,7 @@ document.getElementById('signInTrigger').addEventListener('click', function() {
                   window.location.href = "/";
               }
               else {
-                  $("#signIn_error").text("Invalid Credentials");
+                  $("#signIn_error").text(data);
               }
           },
           error: function() {
