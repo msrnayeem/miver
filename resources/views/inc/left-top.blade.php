@@ -158,6 +158,36 @@
             </ul>
 
           </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class='fas fa-user-tie'></i>
+              <p>
+                Gigs
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview  ml-4">
+            <li class="nav-item">
+            <a href="{{ route('all.gigs', ['status' => 0]) }}" class="nav-link">
+                <i class="far fa fa-users" ></i>
+                  <p>Pending</p>
+                </a>
+              </li>
+              <li class="nav-item">
+              <a href="{{ route('all.gigs', ['status' => 1]) }}" class="nav-link">
+                <i class="far fa fa-users" ></i>
+                  <p>Active</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('all.gigs') }}" class="nav-link">
+                <i class="far fa fa-users" ></i>
+                  <p>All Gigs</p>
+                </a>
+              </li>
+            </ul>
+          </li>
           
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -169,17 +199,35 @@
             </a>
             <ul class="nav nav-treeview  ml-4">
               <li class="nav-item">
-                <a href="" class="nav-link">
-                <i class='fa fa-plus' style='color:#796c0b'></i>
-                  <p>Pending</p>
+                <a href="{{ route('all.orders') }}" class="nav-link">
+                  <i class='fa fa-list'></i>
+                  All orders
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link">
-                <i class='fa fa-list' style='color:#796c0b'></i>
-                  <p>Room List</p>
+                <a href="{{ route('all.orders', ['status' => 0]) }}" class="nav-link">
+                  <i class='fa fa-list'></i>
+                  Pending
                 </a>
-              
+              </li>
+              <li class="nav-item">
+              <a href="{{ route('all.orders', ['status' => 1]) }}" class="nav-link">
+                <i class='fa fa-list'></i>
+                 Accepted
+                </a>
+              </li>
+              <li class="nav-item">
+              <a href="{{ route('all.orders', ['status' => 2]) }}" class="nav-link">
+                <i class='fa fa-list'></i>
+                  Delivered
+                </a>
+              </li>
+              <li class="nav-item">
+              <a href="{{ route('all.orders', ['status' => 3]) }}" class="nav-link">
+                <i class='fa fa-list'></i>
+                  Cancelled
+                </a>
+              </li>
             </ul>
           </li>
           

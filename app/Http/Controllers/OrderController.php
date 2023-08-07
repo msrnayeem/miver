@@ -176,4 +176,21 @@ class OrderController extends Controller
        return redirect()->back()->withErrors('You can canel your order if its in pending');
    
     }
+
+
+    //for admin panel
+
+    public function allOrders(Request $request){
+        $status = $request->query('status');
+
+        if ($status === null) {
+            $orders = Order::all();
+        }
+        else {
+            // 'status' parameter provided, filter orders by the specified status
+            $orders = Order::where('order_status', $status)->get();
+        }
+        
+        return view('pages.admin.all-orders', compact('orders'));
+    }
 }

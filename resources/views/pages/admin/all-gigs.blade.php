@@ -22,45 +22,39 @@
 
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-bordered table-hover" id="userTable">
+            <table class="table table-bordered table-hover" id="gigTable">
               <thead>
                   <tr>
-                      <th>name</th>
-                      <th>email</th>
-                      <th class="text-center">Status</th>
+                      <th>Title</th>
+                      <th>Seller</th>
+                      <th>Status</th>
                       <th class="text-center">Action</th>
-                      <th>Joined</th>
+                      <th>Created at</th>
                   </tr>
               </thead>
               <tbody>
-                  @if(count($users) > 0)
-                      @foreach($users as $user)
+                  @if(count($gigs) > 0)
+                      @foreach($gigs as $gig)
                         <tr>
-                          <td>{{ $user->name }}</td>
-                          <td>{{ $user->email }}</td>
+                          <td> {{ $gig->gig_title }} </td>
+                          <td> {{ $gig->seller->name }} </td>
+                          <td> {{ $gig->gig_status == 1 ? "Approved" : "Pending" }} </td>
+                          
                           <td class="text-center">
-                              <span class="badge {{ $user->is_active == 1 ? 'bg-success' : 'bg-danger' }}">
-                                  {{ $user->is_active == 1 ? 'Active' : 'Blocked' }}
-                              </span>
-                          </td>
-
-                          <td class="text-center">
-
-                            <button class="btn btn-sm btn-warning view-button" data-user="{{ $user }}">
-                                {{ $user->is_active == 0 ? 'Unblock' : 'Block' }}
+                            <button class="btn btn-sm btn-warning view-button" data-gig="{{ $gig }}">
+                             {{ $gig->gig_status == 1 ? "Pending" : "Approve" }}
                             </button>
-                            <button class="btn btn-sm btn-danger ml-2 delete-button" data-user="{{ $user }}">
+                            <button class="btn btn-sm btn-danger ml-2 delete-button" data-gig="{{ $gig }}">
                                 Delete
                             </button>
-                            
-                          </td>
-                        
-                        <td> {{ $user->registration_date }} </td>
+                         </td>
+
+                          <td> {{ $gig->created_at }} </td>
                         </tr>
                       @endforeach 
                   @else
                       <tr>
-                          <td colspan="4">No users found</td>
+                          <td colspan="4">No gigs found</td>
                       </tr>
                   @endif
               </tbody>
@@ -102,15 +96,15 @@
    
       
       // Initialize DataTables
-      var table = $('#userTable').DataTable();
+      var table = $('#gigTable').DataTable();
 
       // Handle "View" button click
       $('.view-button').click(function() {
-          var user = $(this).data('user');
-          var status = user.is_active == 1 ? 'block' : 'unblock';
+          var gig = $(this).data('gig');
+          var status = gig.gig_status == 1 ? 'pending' : 'approve';
           Swal.fire({
               title: 'Change status !',
-              text: 'Are you sure you want to ' + status + ' this user ?',
+              text: 'Are you sure you want to ' + status + ' this gig ?',
               icon: 'warning',
               confirmButtonText: 'OK',
               showCancelButton: true,
@@ -128,11 +122,11 @@
                       });
 
                       $.ajax({
-                          url: '{{ route("user.update.status") }}',
+                          url: '{{ route("gig.update.status") }}',
                           type: "get",
                           data: {
-                              "user_id": user.id,
-                              "status": user.is_active == 1 ? 0 : 1,
+                              "gig_id": gig.id,
+                              "status": gig.gig_status == 1 ? 0 : 1,
                           },
                           success: function(response) {
                            
@@ -140,7 +134,7 @@
                           
                               Swal.fire({
                                   title: 'Success !',
-                                  text: 'User status has been changed successfully !',
+                                  text: 'Gig status has been changed successfully !',
                                   icon: 'success',
                                   confirmButtonText: 'OK',
                               })

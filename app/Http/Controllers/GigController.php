@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gig;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class GigController extends Controller
@@ -12,14 +13,39 @@ class GigController extends Controller
         $gigsQuery = Gig::with(['seller', 'packages' => function ($query) {
             $query->orderBy('price', 'asc');
         }]);
-        
-        if (session()->has('id')) {
-            $gigsQuery->where('user_id', '!=', session()->get('id'));
+
+        $user = User :: find(session()->get('id'));
+        $status = $request->query('status');
+
+        if($user->is_admin == 1){
+            if ($status === null){
+                $gigs = $gigsQuery->get();
+            }
+            else{
+                $gigs = $gigsQuery->where('gig_status', $status)->get();
+            }
+            
+            return view('pages.admin.all-gigs', compact('gigs'));
         }
+        else{
 
-        $gigs = $gigsQuery->paginate(10);
+            if (session()->has('id')) {
+                $gigsQuery->where('user_id', '!=', session()->get('id'));
+            }
 
-        return view('pages.gigs.all-gigs', compact('gigs'));
+            $gigs = $gigsQuery->paginate(10);
+            return view('pages.gigs.all-gigs', compact('gigs'));
+        }
+       
+    }
+
+    public function updateStatus(Request $request){
+        $gigId = $request->input('gig_id');
+        $newStatus = $request->input('status');
+
+        Gig::where('id', $gigId)->update(['gig_status' => $newStatus]);
+
+        return response()->json(['success' => true]);
     }
 
     public function gig($id)

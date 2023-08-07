@@ -10,7 +10,7 @@
 @endpush
 
 @section('content')
- 
+
 <div class="row">
   <div class="col-12">
     <div class="card">
@@ -25,37 +25,50 @@
             <table class="table table-bordered table-hover" id="userTable">
               <thead>
                   <tr>
-                      <th>name</th>
-                      <th>email</th>
-                      <th class="text-center">Status</th>
-                      <th class="text-center">Action</th>
-                      <th>Joined</th>
+                      <th>Order Id</th>
+                      <th>Buyer</th>
+                      <th>Seller</th>
+                      <th>Price</th>
+                      <th>Created at</th>
+                      <th>Delivery Date</th>
+                      <th>Status</th>
+                      <th>Priority</th>
                   </tr>
               </thead>
               <tbody>
-                  @if(count($users) > 0)
-                      @foreach($users as $user)
+                  @if(count($orders) > 0)
+                      @foreach($orders as $order)
                         <tr>
-                          <td>{{ $user->name }}</td>
-                          <td>{{ $user->email }}</td>
-                          <td class="text-center">
-                              <span class="badge {{ $user->is_active == 1 ? 'bg-success' : 'bg-danger' }}">
-                                  {{ $user->is_active == 1 ? 'Active' : 'Blocked' }}
-                              </span>
-                          </td>
-
-                          <td class="text-center">
-
-                            <button class="btn btn-sm btn-warning view-button" data-user="{{ $user }}">
-                                {{ $user->is_active == 0 ? 'Unblock' : 'Block' }}
-                            </button>
-                            <button class="btn btn-sm btn-danger ml-2 delete-button" data-user="{{ $user }}">
-                                Delete
-                            </button>
-                            
-                          </td>
-                        
-                        <td> {{ $user->registration_date }} </td>
+                            <td> {{ $order->order_id }} </td>
+                            <td> {{ $order->buyer->name }} </td>
+                            <td> {{ $order->seller->name }} </td>
+                            <td> {{ $order->price }} </td>
+                            <td> {{ $order->created_at }} </td>
+                            <td> {{ $order->delivery_date }} </td> 
+                            <td>
+                                @php
+                                    $statusText = '';
+                                    switch($order->order_status) {
+                                        case 0:
+                                            $statusText = 'Pending';
+                                            break;
+                                        case 1:
+                                            $statusText = 'Accepted';
+                                            break;
+                                        case 2:
+                                            $statusText = 'Delivered';
+                                            break;
+                                        case 3:
+                                            $statusText = 'Cancelled';
+                                            break;
+                                        default:
+                                            $statusText = 'Unknown';
+                                            break;
+                                    }
+                                @endphp
+                                {{$statusText}}
+                            </td>  
+                            <td> {{ $order->is_urgent == 0 ? "No" : "Yes" }} </td>                   
                         </tr>
                       @endforeach 
                   @else

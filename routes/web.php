@@ -38,9 +38,10 @@ Route::get('/logout', [MainController::class, 'logout'])->name('logout');
 Route::group(['prefix' => 'user'], function () {
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
     Route::get('/seller/personal-info', [UserController::class, 'personalInfo'])->name('seller.personal.info');
+    Route::get('/update-status', [UserController::class, 'updateStatus'])->name('user.update.status');
 });
 
-//user
+//admin
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/admin-panel', [AdminController::class, 'index'])->name('admin.panel');
     Route::get('/user-list', [AdminController::class, 'userList'])->name('user.list');
@@ -52,7 +53,8 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['prefix' => 'gigs'], function () {
     Route::get('/gig-info.', [UserController::class, 'gigInfo'])->name('user.gig.info');
     Route::get('/add-gig', [UserController::class, 'addGig'])->name('user.add.gig');
-   
+
+    Route::get('/update-status', [GigController::class, 'updateStatus'])->name('gig.update.status');  
     Route::get('/all-gigs', [GigController::class, 'allGigs'])->name('all.gigs');
     Route::get('/gig/{id}', [GigController::class, 'gig'])->name('gig');
 });
@@ -61,6 +63,7 @@ Route::post('/profile-pic', [MainController::class, 'profilePic'])->name('profil
 //orders
 Route::group(['prefix' => 'orders'], function () {
     Route::get('/orders', [OrderController::class, 'orders'])->name('user.gig.orders');
+    Route::get('/all-orders', [OrderController::class, 'allOrders'])->name('all.orders');
     Route::get('/my-orders', [OrderController::class, 'myOrders'])->name('user.gig.myorders');
     Route::get('/order-details/{orderId}', [OrderController::class, 'orderDetails'])->name('order.details');
     Route::get('/place-order', [OrderController::class, 'placedOrder'])->name('place.order');

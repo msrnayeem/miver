@@ -16,6 +16,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('admin_lte/dist/css/adminlte.min.css') }}">
 
+
   @stack('styles')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -27,11 +28,9 @@
            
  <!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper">
-    
- 
     <!-- Main content -->
     <div class="content">
-      <div class="container ml-0 mt-1">
+      <div class="container-fluid ml-1 mt-2">
         <!-- EVERYTHING WILL BE HERE -->
      
         @yield('content')
@@ -58,6 +57,7 @@
 <script src="{{ asset('admin_lte/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('admin_lte/dist/js/demo.js')}}></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 @stack('scripts')
 </body>
 

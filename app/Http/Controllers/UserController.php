@@ -39,6 +39,16 @@ class UserController extends Controller
         }
     }
 
+    public function updateStatus(Request $request)
+    {
+        $userId = $request->input('user_id');
+        $newStatus = $request->input('status');
+
+        User::where('id', $userId)->update(['is_active' => $newStatus]);
+
+        return response()->json(['success' => true]);
+    }
+
     public function personalInfo()
     {
         if (session()->has('id')) {

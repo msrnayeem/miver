@@ -14,7 +14,9 @@ class AdminController extends Controller
 
     public function userList()
     {
-        $users = User::select('id', 'name', 'email', 'registration_date', 'is_active')->get();
+        $users = User::select('id', 'name', 'email', 'registration_date', 'is_active')
+            ->where('is_admin', '!=', 1)
+            ->get();
 
         return view('pages.admin.user-list', compact('users'));
     }
