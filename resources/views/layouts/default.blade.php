@@ -96,10 +96,15 @@
                         
                             <img class="user-avatar align-self-start" src="{{ asset('uploads/1.jpg') }}" alt="User Image" style="width:29px;height:29px;margin-bottom: 8px;">
                         
-                        <div class="profile-container" id="userDropdown">
+                        <div class="profile-container" id="userDropdown"> 
                           <div class="notification-item odd"><a href="{{ route('profile') }}" class="profile-item even">Profile</a></div>
-                          <div class="notification-item odd"><a href="{{ route('user.gig.orders') }}" class="profile-item even">Orders</a></div>
-                          <div class="notification-item odd"><a href="{{ route('user.gig.myorders') }}" class="profile-item even">Placed Orders</a></div>
+                         
+                          @if ($is_admin)
+                            <div class="notification-item even"><a href="{{ route('admin.panel') }}" class="profile-item odd">Admin Panel</a></div>
+                          @else
+                            <div class="notification-item odd"><a href="{{ route('user.gig.orders') }}" class="profile-item even">Orders</a></div>
+                            <div class="notification-item odd"><a href="{{ route('user.gig.myorders') }}" class="profile-item even">Placed Orders</a></div>
+                          @endif
                           <div class="notification-item even"><a href="#" class="profile-item odd">Setting</a></div>
                           <div class="notification-item even"><a href="#" class="profile-item odd">Change Password</a></div>
                           <div class="notification-item even"><a href="" class="profile-item odd" id="logout">Logout</a></div>
@@ -119,6 +124,7 @@
 
 
   <main style="background-color:#f7f7f7;width:100%;">
+
       @yield('content')
   </main>
 

@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
+    public function adminInfo()
+    {
+        $userId = session()->get('id');
+        $admin = User::select('is_admin')->find($userId);
+        
+        return $admin->is_admin;
+    }
+
     public function profile()
     {
         if (session()->has('id')) {

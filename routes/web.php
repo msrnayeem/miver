@@ -8,6 +8,8 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+
 use Illuminate\Support\Facades\Route;
 
 //get messages
@@ -37,6 +39,13 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
     Route::get('/seller/personal-info', [UserController::class, 'personalInfo'])->name('seller.personal.info');
 });
+
+//user
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/admin-panel', [AdminController::class, 'index'])->name('admin.panel');
+});
+
+
 
 //gigs
 Route::group(['prefix' => 'gigs'], function () {

@@ -4,7 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
-
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\View;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -20,6 +21,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        View::composer('layouts.default', function ($view) {
+            $admin = new UserController();
+            $is_admin = $admin->adminInfo(); // Call a method in your controller to fetch the dynamic data
+            $view->with('is_admin', $is_admin);
+        });
         Paginator::useBootstrap();
     }
 }
