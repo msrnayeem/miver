@@ -43,6 +43,7 @@ Route::group(['prefix' => 'user'], function () {
 //user
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/admin-panel', [AdminController::class, 'index'])->name('admin.panel');
+    Route::get('/user-list', [AdminController::class, 'userList'])->name('user.list');
 });
 
 

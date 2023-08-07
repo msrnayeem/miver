@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="{{ asset('admin_lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('admin_lte/dist/css/adminlte.min.css') }}">
+
+  @stack('styles')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <!-- Site wrapper -->
@@ -29,7 +31,7 @@
  
     <!-- Main content -->
     <div class="content">
-      <div class="container ml-0">
+      <div class="container ml-0 mt-1">
         <!-- EVERYTHING WILL BE HERE -->
      
         @yield('content')
@@ -56,7 +58,7 @@
 <script src="{{ asset('admin_lte/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('admin_lte/dist/js/demo.js')}}></script>
-
+@stack('scripts')
 </body>
 
 </html>
