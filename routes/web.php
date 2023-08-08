@@ -44,6 +44,9 @@ Route::group(['prefix' => 'user'], function () {
 //admin
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/admin-panel', [AdminController::class, 'index'])->name('admin.panel');
+    Route::get('/admin-profile', [AdminController::class, 'profile'])->name('admin.profile');
+    Route::post('/admin-info-update', [AdminController::class, 'adminInfoUpdate'])->name('admin.info.update');
+    Route::post('/admin-change-password', [AdminController::class, 'adminPasswordChange'])->name('admin.change.password');
     Route::get('/user-list', [AdminController::class, 'userList'])->name('user.list');
 });
 

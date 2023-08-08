@@ -48,7 +48,7 @@
 
 <!-- ./wrapper -->
 <!-- jQuery -->
-<script src="{{ asset('admin_lte/plugins/jquery/jquery.min.js')}} "></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('admin_lte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- overlayScrollbars -->

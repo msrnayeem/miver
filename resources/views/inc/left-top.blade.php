@@ -48,7 +48,7 @@
           />
     </a>
     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-        <a class="dropdown-item" href="">Profile</a>
+        <a class="dropdown-item" href="{{ route('admin.profile') }}">Profile</a>
         <a class="dropdown-item" type="button" data-toggle="modal" data-target="#staticBackdrop">Logout</a>
     </div>
   </li>
@@ -60,9 +60,9 @@
 <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="" class="brand-link">
+    <a href="{{ route('admin.panel') }}" class="brand-link">
       <!-- <img src="" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"> -->
-      <span class="brand-text font-weight-light">Dashboard</span>
+      <span class="brand-text font-weight-light">Miver Dashboard</span>
     </a>
 
     <!-- Sidebar -->
@@ -76,7 +76,7 @@
            >
         </div>
         <div class="info">
-          <a href="" class="d-block">Admin Name</a>
+          <a href="{{ route('admin.profile') }}" class="d-block">{{ $admin_name }}</a>
         </div>
       </div>
 

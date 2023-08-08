@@ -26,6 +26,11 @@ class AppServiceProvider extends ServiceProvider
             $is_admin = $admin->adminInfo(); // Call a method in your controller to fetch the dynamic data
             $view->with('is_admin', $is_admin);
         });
+        View::composer('inc.left-top', function ($view) {
+            $admin = new UserController();
+            $admin_name = $admin->adminName(); // Call a method in your controller to fetch the dynamic data
+            $view->with('admin_name', $admin_name);
+        });
         Paginator::useBootstrap();
     }
 }

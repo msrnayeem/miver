@@ -21,6 +21,14 @@ class UserController extends Controller
         
     }
 
+    public function adminName(){
+        $userId = session()->get('id');
+        $admin = User::select('name')->find($userId);
+ 
+        return $admin->name;
+        
+    }
+
     public function profile()
     {
         if (session()->has('id')) {
