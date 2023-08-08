@@ -91,23 +91,42 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-user-secret"></i>
               <p>
-                Admin
+                History
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview  ml-4">
-              <li class="nav-item">
+             <li class="nav-item">
                 <a href="" class="nav-link">
-                  <i class="fa fa-user-plus" style='color: blue'></i>
-                  <p>Add Admin</p>
+                  <i class="far fa fa-users" style='color: blue'></i>
+                  <p>User</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="" class="nav-link">
                   <i class="far fa fa-users" style='color: blue'></i>
-                  <p>Admin List</p>
+                  <p>Admin</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="far fa fa-users" style='color: blue'></i>
+                  <p>New gig</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="far fa fa-users" style='color: blue'></i>
+                  <p>New order</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('history') }}" class="nav-link">
+                  <i class="fa fa-user-plus" style='color: blue'></i>
+                  <p>All history</p>
+                </a>
+              </li>
+              
             </ul>
           </li>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gig;
+use App\Models\History;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -44,6 +45,13 @@ class GigController extends Controller
         $newStatus = $request->input('status');
 
         Gig::where('id', $gigId)->update(['gig_status' => $newStatus]);
+
+        //create history
+        History::create([
+            'user_id' => session()->get('id'),
+            'action' => 'gig status update',
+            'description' => 'admin updated gig status.',
+        ]);
 
         return response()->json(['success' => true]);
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\OrderPlacedSeller;
 use App\Models\Gig;
+use App\Models\History;
 use App\Models\Notification;
 use App\Models\Order;
 use App\Models\Package;
@@ -68,6 +69,13 @@ class OrderController extends Controller
         $order->delivery_date = now()->addDays($gig->delivery_time);
         $order->save();
        
+        //create history
+        $history = new History();
+        $history->user_id = $buyer_id;
+        $history->action = 'order placed';
+        $history->description = 'order placed for gig id '.$gigId;
+        $history->save();
+
         //create notifiction for seller
         $notification = new Notification();
         $notification->user_id = $seller_id;
@@ -132,6 +140,14 @@ class OrderController extends Controller
         $order = Order::find($orderId);
         $order->order_status = $statusValue;
         $order->save();
+        
+
+        //create history
+        $history = new History();
+        $history->user_id = $order->seller_id;
+        $history->action = 'order status updated';
+        $history->description = 'order status updated to '.$status.' for order id '.$orderId;
+        $history->save();
 
         //create notifiction for buyer
         $notification = new Notification();
@@ -170,6 +186,14 @@ class OrderController extends Controller
             $notification->notification_date = now();
             $notification->save();
             
+
+            //create history
+            $history = new History();
+            $history->user_id = $order->buyer_id;
+            $history->action = 'order cancelled';
+            $history->description = 'order cancelled for order id '.$orderId.' by buyer'.$order->buyer_id;
+            $history->save();
+
             return redirect()->back()->withErrors('Order cancelled successfully');
         }
         

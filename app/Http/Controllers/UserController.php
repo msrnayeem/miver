@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\History;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -53,6 +54,13 @@ class UserController extends Controller
         $newStatus = $request->input('status');
 
         User::where('id', $userId)->update(['is_active' => $newStatus]);
+
+        //create history
+        $history = new History();
+        $history->user_id = session()->get('id');
+        $history->action = 'user status update';
+        $history->description = 'user status update to ' . $newStatus.'for user id '.$userId;
+        $history->save();
 
         return response()->json(['success' => true]);
     }

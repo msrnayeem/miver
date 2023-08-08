@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\History;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -30,10 +31,6 @@ class MainController extends Controller
             $imageName = session()->get('id').'.'.$image->getClientOriginalExtension();
             $image->move(public_path('uploads'), $imageName);
 
-            //if file exists than overwrite
-
-            // return riderct with msg
-
             return redirect()->back()->withErrors(['image' => 'Image uploaded successfully.']);
         }
 
@@ -45,27 +42,37 @@ class MainController extends Controller
         $email = $request->input('signInemail');
         $password = $request->input('signInpassword');
 
-        // Assuming you have a "User" model with an "email" column
         $user = User::where('email', $email)->first();
 
         if (! $user) {
             return 'no found';
         }
 
-        // Assuming the password is stored as a hash in the "password" column
+        
         if (! Hash::check($password, $user->password)) {
+            History::create([
+                'user_id' => $user->id,
+                'action' => 'login attempt',
+                'description' => 'user tried with wrong password.',
+            ]);
             return 'Wrong credentials';
         }
         if($user->is_admin == 1){
             $request->session()->put('admin', $user->is_admin);
         }
+
         if($user->is_active == 0){
             return 'Blocked user, please contact with support';
         }
 
-        // Set session
         $request->session()->put('name', $user->name);
         $request->session()->put('id', $user->id);
+
+        History::create([
+            'user_id' => $user->id,
+            'action' => session()->get('id') == 1 ? 'admin_login' : 'user_login',
+            'description' => session()->get('id') == 1 ? 'admin_login successfully logged in' : 'user_login successfully logged in',
+        ]);
 
         return 'done';
     }
@@ -89,10 +96,23 @@ class MainController extends Controller
         $user->profile_info = 'I am a professional freelancer.';
         $user->save();
 
+        
         // Check if user information is successfully saved
         if ($user->id) {
+            History::create([
+                'user_id' => $user->id,
+                'action' => 'user_signup',
+                'description' => 'user successfully signed up',
+            ]);
+
             return response()->json(['success' => true, 'message' => 'User successfully registered.']);
         } else {
+            //create history
+            History::create([
+                'user_id' => null,
+                'action' => 'user_signup',
+                'description' => 'user failed to sign up',
+            ]);
             return response()->json(['success' => false, 'message' => 'Failed to save user information.']);
         }
     }
@@ -100,8 +120,14 @@ class MainController extends Controller
     //logout
     public function logout()
     {
-        //Session::forget('name');
+        History::create([
+            'user_id' => session()->get('id'),
+            'action' => session()->get('id') == 1 ? 'admin_logout' : 'user_logout',
+            'description' => session()->get('id') == 1 ? 'admin_login successfully logged out' : 'user_login successfully logged out',
+        ]);
+        
         Session::flush();
+
 
         return response()->json(['success' => true]);
     }

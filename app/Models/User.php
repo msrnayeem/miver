@@ -47,4 +47,8 @@ class User extends Model
     {
         return $this->hasOne(PersonalInfo::class);
     }
+    public function history()
+    {
+        return $this->hasMany(History::class, 'user_id');
+    }
 }

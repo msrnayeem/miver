@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gig;
+use App\Models\History;
 use App\Models\Order;
 Use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -31,6 +32,13 @@ class AdminController extends Controller
         $user->name = $request->name;
         $user->save();
 
+        //create history
+        History::create([
+            'user_id' => $user->id,
+            'action' => 'profile update',
+            'description' => 'admin updated his profile.',
+        ]);
+
         return redirect()->back()->with('success', 'Profile updated successfully');
     }
 
@@ -40,16 +48,29 @@ class AdminController extends Controller
         $user = User::find(session()->get('id'));
 
         if (! Hash::check($request->currentPassword, $user->password)) {
+            //create history
+            History::create([
+                'user_id' => $user->id,
+                'action' => 'password change attempt',
+                'description' => 'admin tried to change password with wrong current password.',
+            ]);
 
-           $response = [
-            'status' => 'error',
-            'message' => 'Current password does not match',
+            $response = [
+                'status' => 'error',
+                'message' => 'Current password does not match',
             ];
         }
         else{
             $user->password = Hash::make($request->newPassword);
             $user->save();
-    
+            
+            //create history
+            History::create([
+                'user_id' => $user->id,
+                'action' => 'password change',
+                'description' => 'admin changed his password.',
+            ]);
+
             $response = [
             'status' => 'success',
             'message' => 'Password changed successfully',
@@ -64,7 +85,7 @@ class AdminController extends Controller
         $users = User::select('id', 'name', 'email', 'registration_date', 'is_active')
             ->where('is_admin', '!=', 1)
             ->get();
-
+        
         return view('pages.admin.user-list', compact('users'));
     }
 }

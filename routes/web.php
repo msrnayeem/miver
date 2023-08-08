@@ -9,7 +9,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\HistoryController;
 use Illuminate\Support\Facades\Route;
 
 //get messages
@@ -48,6 +48,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/admin-info-update', [AdminController::class, 'adminInfoUpdate'])->name('admin.info.update');
     Route::post('/admin-change-password', [AdminController::class, 'adminPasswordChange'])->name('admin.change.password');
     Route::get('/user-list', [AdminController::class, 'userList'])->name('user.list');
+    Route::get('/history', [HistoryController::class, 'allHistory'])->name('history');
 });
 
 
