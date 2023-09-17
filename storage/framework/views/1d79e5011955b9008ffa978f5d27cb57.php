@@ -1,4 +1,5 @@
-<footer class="footer-top">  
+<footer class="footer-top">
+      
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-6 align-self-start">
@@ -126,4 +127,4 @@
         </div>
       </div>
     </div>
-  </footer>
+  </footer><?php /**PATH C:\xampp\htdocs\miver\resources\views/component/footer.blade.php ENDPATH**/ ?>

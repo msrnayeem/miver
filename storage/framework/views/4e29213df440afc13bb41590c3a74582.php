@@ -2,7 +2,7 @@
 <nav class="header-bottom-menu row" id="full-row">
         <ul class="col-auto mb-0">
             <li>
-            <a href="{{ route('category', ['category' => 'graphics-design']) }}">Graphics & Design</a>
+            <a href="<?php echo e(route('category', ['category' => 'graphics-design'])); ?>">Graphics & Design</a>
             <ul class="subcategories">
                 <li><a href="#">Logo Design</a></li>
                 <li><a href="#">Illustration</a></li>
@@ -11,7 +11,7 @@
             </li>
             <!-- Repeat the above structure for other categories -->
             <li>
-                <a href="{{ route('category', ['category' => 'digital-marketing']) }}">Digital Marketing</a>
+                <a href="<?php echo e(route('category', ['category' => 'digital-marketing'])); ?>">Digital Marketing</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
@@ -19,7 +19,7 @@
                 </ul>
             </li>
             <li>
-                <a href="{{ route('category', ['category' => 'writing-translation']) }}">Writing & Translation</a>
+                <a href="<?php echo e(route('category', ['category' => 'writing-translation'])); ?>">Writing & Translation</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
@@ -27,7 +27,7 @@
                 </ul>
             </li>
             <li>
-                <a href="{{ route('category', ['category' => 'video-animation']) }}">Video & Animation</a>
+                <a href="<?php echo e(route('category', ['category' => 'video-animation'])); ?>">Video & Animation</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
@@ -35,7 +35,7 @@
                 </ul>
             </li>
             <li>
-                <a href="{{ route('category', ['category' => 'music-audio']) }}">Music & Audio</a>
+                <a href="<?php echo e(route('category', ['category' => 'music-audio'])); ?>">Music & Audio</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
@@ -43,7 +43,7 @@
                 </ul>
             </li>
             <li>
-                <a href="{{ route('category', ['category' => 'programming-tech']) }}">Programming & Tech</a>
+                <a href="<?php echo e(route('category', ['category' => 'programming-tech'])); ?>">Programming & Tech</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
@@ -51,7 +51,7 @@
                 </ul>
             </li>
             <li>
-            <a href="{{ route('category', ['category' => 'photography']) }}">Photography</a>
+            <a href="<?php echo e(route('category', ['category' => 'photography'])); ?>">Photography</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
@@ -59,7 +59,7 @@
                 </ul>
             </li>
             <li>
-                <a href="{{ route('category', ['category' => 'business']) }}">Business</a>
+                <a href="<?php echo e(route('category', ['category' => 'business'])); ?>">Business</a>
                 <ul class="subcategories">
                     <li><a href="#">Social Media Marketing</a></li>
                     <li><a href="#">SEO</a></li>
@@ -68,3 +68,4 @@
             </li>            
         </ul>
     </nav>
+<?php /**PATH C:\xampp\htdocs\miver\resources\views/component/header-bottom-menu.blade.php ENDPATH**/ ?>

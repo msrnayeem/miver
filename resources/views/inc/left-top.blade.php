@@ -87,8 +87,8 @@
                with font-awesome or any other icon font library -->
                
                <li class="nav-header">LEBEL</li>
-               <li class="nav-item">
-            <a href="#" class="nav-link">
+                <li class="nav-item">
+                   <a href="#" class="nav-link">
               <i class="nav-icon fa fa-user-secret"></i>
               <p>
                 History
